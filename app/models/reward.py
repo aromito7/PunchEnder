@@ -1,5 +1,6 @@
 from .db import db
 from datetime import datetime
+from .backing import backing_table
 
 
 class Reward(db.Model):
@@ -14,6 +15,7 @@ class Reward(db.Model):
   description = db.Column(db.String(50000), nullable=False)
 
   project = db.relationship('Project', back_populates='rewards')
+  user = db.relationship('User', secondary=backing_table, back_populates='rewards')
 
   def to_dict(self):
     return {
