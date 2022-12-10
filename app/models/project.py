@@ -1,11 +1,11 @@
 from .db import db
 from datetime import datetime
-
+from sqlalchemy import ForeignKey
 
 class Project(db.Model):
   __tablename__ = 'projects'
   id = db.Column(db.Integer, primary_key=True)
-  owner_id = db.Column(db.Integer, db.ForeignKey=('users.id'), nullable=False)
+  owner_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
   name = db.Column(db.String(50), nullable=False)
   goal_amount = db.Column(db.Integer, nullable=False)
   current_amount = db.Column(db.Integer, nullable=False)
@@ -17,7 +17,9 @@ class Project(db.Model):
   city = db.Column(db.String(50), nullable=False)
   state = db.Column(db.String(2), nullable=False)
 
-  owner = db.relationship('User', back_populates='projects')
+  owner = db.relationship('User', back_populates='project')
+  reward = db.relationship('Reward', back_populates='project', cascade="all, delete")
+
   # Add relationships for backings
 
   def to_dict(self):
