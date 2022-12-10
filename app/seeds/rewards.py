@@ -1,7 +1,10 @@
 from app.models import db, Reward, environment, SCHEMA
 from datetime import datetime
+from .users import demouser
 
 # Adds a demo reward, you can add other rewards here if you want
+
+
 def seed_rewards():
     demo = Reward(
         project_id=1,
@@ -9,8 +12,10 @@ def seed_rewards():
         quantity=10,
         price_threshold=100,
         shipping_date=datetime.now(),
-        description="I like to ride my awesome bike!")
+        description="I like to ride my awesome bike!",
+        user=[demouser]
 
+    )
 
     db.session.add(demo)
     db.session.commit()
@@ -24,7 +29,8 @@ def seed_rewards():
 # it will reset the primary keys for you as well.
 def undo_rewards():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.rewards RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.rewards RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM rewards")
 

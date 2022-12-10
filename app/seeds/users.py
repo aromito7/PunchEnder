@@ -2,15 +2,17 @@ from app.models import db, User, environment, SCHEMA
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_users():
-    demo = User(
-        firstname='demo', lastname='user', email='demo@aa.io', password='password')
-    marnie = User(
-        firstname='isaac', lastname='ki', email='marnie@aa.io', password='password')
-    bobbie = User(
-        firstname='alex', lastname='romito', email='bobbie@aa.io', password='password')
+demouser = User(
+    firstname='demo', lastname='user', email='demo@aa.io', password='password')
+marnie = User(
+    firstname='isaac', lastname='ki', email='marnie@aa.io', password='password')
+bobbie = User(
+    firstname='alex', lastname='romito', email='bobbie@aa.io', password='password')
 
-    db.session.add(demo)
+
+def seed_users():
+
+    db.session.add(demouser)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.commit()
@@ -24,7 +26,8 @@ def seed_users():
 # it will reset the primary keys for you as well.
 def undo_users():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM users")
 

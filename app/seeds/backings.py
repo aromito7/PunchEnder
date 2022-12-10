@@ -2,11 +2,13 @@ from app.models import db, backing, environment, SCHEMA
 from datetime import datetime
 
 # Adds a demo backing, you can add other backings here if you want
+
+
 def seed_backings():
     demo = backing(
         user_id=1,
-        reward_id=1)
-
+        reward_id=1
+    )
 
     db.session.add(demo)
     db.session.commit()
@@ -20,7 +22,8 @@ def seed_backings():
 # it will reset the primary keys for you as well.
 def undo_backings():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.backings RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.backings RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM backings")
 
