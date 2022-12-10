@@ -1,7 +1,7 @@
 from app.models import db, Project, environment, SCHEMA
 from datetime import datetime
 
-# Adds a demo user, you can add other users here if you want
+# Adds a demo user, you can add other projects here if you want
 def seed_projects():
     demo = Project(
         owner_id= 1,
@@ -28,7 +28,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
     db.session.commit()
 
 
-# Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
+# Uses a raw SQL query to TRUNCATE or DELETE the projects table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE
 # removes all the data from the table, and RESET IDENTITY resets the auto
 # incrementing primary key, CASCADE deletes any dependent entities.  With
@@ -36,7 +36,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
 # it will reset the primary keys for you as well.
 def undo_projects():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.projects RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM projects")
 
