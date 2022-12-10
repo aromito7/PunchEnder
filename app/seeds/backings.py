@@ -1,5 +1,7 @@
 from app.models import db, backing, environment, SCHEMA
 from datetime import datetime
+from users import demo
+from rewards import demo
 
 # Adds a demo backing, you can add other backings here if you want
 
