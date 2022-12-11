@@ -32,3 +32,12 @@ class RewardsForm(FlaskForm):
     def validate_description(self, description):
         if not (50 <= len(description.data) <= 50000):
             raise ValidationError('Description length must be between 50 and 50,000 characters')
+
+    def to_dict(self):
+        return{
+            "name": self.name.data,
+            "quantity": self.quantity.data,
+            "price_threshold": self.price_threshold.data,
+            "shipping_date": self.shipping_date.data,
+            "description": self.description.data,
+        }

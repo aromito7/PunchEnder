@@ -43,6 +43,9 @@ function App() {
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
         </Route>
+        <Route path='/'>
+          <h1>Error: 404 - page not found</h1>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
