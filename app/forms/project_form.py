@@ -1,13 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalField, DateField
+from wtforms import StringField, IntegerField, DateField
 from wtforms.validators import DataRequired, ValidationError, URL
+from ..models import Project
 
 class ProjectForm(FlaskForm):
     # owner_id should be based on the current user so not included
     name = StringField('name', validators=[DataRequired()])
-    goal_amount = DecimalField('goal_amount', validators=[DataRequired()])
+    goal_amount = IntegerField('goal_amount', validators=[DataRequired()])
     # probably don't need current_amount in the form
-    # current_amount = DecimalField('current_amount', validators=[DataRequired()])
+    current_amount = IntegerField('current_amount', validators=[DataRequired()])
     start_date = DateField('start_date', validators=[DataRequired()])
     end_date = DateField('end_date', validators=[DataRequired()])
     short_description = StringField('short_description', validators=[DataRequired()])
@@ -53,12 +54,12 @@ class ProjectForm(FlaskForm):
             'owner_id': self.owner_id,
             'name': self.name,
             'goal_amount': self.goal_amount,
-            # 'current_amount': self.current_amount,
+            'current_amount': self.current_amount,
             'start_date': self.start_date,
             'end_date': self.end_date,
             'short_description': self.short_description,
             'long_description': self.long_description,
-            # 'preview_image': self.preview_image,
+            'preview_image': self.preview_image,
             'city': self.city,
             'state': self.state
         }
