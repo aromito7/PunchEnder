@@ -1,40 +1,61 @@
-import React, {useEffect, useState, useParams} from 'react';
+import React, {useEffect, useState} from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getRewards } from '../store/reward';
 
 const Reward = () => {
-    const {rewardId} = useParams()
-    const [reward, setReward] = useState(null)
-    useEffect(() => {
-        const searchProduct = async () => {
-            try {
-                const reward = fetch(`/api/rewards/1`)
-                setReward(reward);
-            } catch (error) {
-                error = error;
-            }
-            };
-           }, []);
+    const [rewards, setRewards] = useState(useSelector(state => state.rewards) || [])
+    const { projectId } = useParams()
+    useEffect(async() => {
 
-    //if(!reward) return null
+        if (!projectId) {
+            return;
+            }
+            (async () => {
+            const response = await fetch(`/api/rewards/projects/${projectId}`);
+            const {rewards} = await response.json();
+            setRewards(rewards);
+            })();
+
+        }, [projectId]);
+
+    if(rewards.length < 1) return null
     return (
         <>
-            <h1>Hello, world!</h1>
-            <ul>
-                <li>
-                    {reward?.name}
-                </li>
-                <li>
-                    {reward?.quantity}
-                </li>
-                <li>
-                    {reward?.price_threshold}
-                </li>
-                <li>
+        <h1>Hello, Project {projectId}!</h1>
+        {rewards.map(reward => {
 
-                </li>
-                <li>
-
-                </li>
-            </ul>
+            return(
+                <>
+                    <ul>
+                        <li>
+                            Reward Id: {reward.id}
+                        </li>
+                        <li>
+                            Name: {reward.name}
+                        </li>
+                        <li>
+                            Quantity: {reward.quantity}
+                        </li>
+                        <li>
+                            Required Donation: {reward.price_threshold}
+                        </li>
+                        <li>
+                            Includes: {reward.includes}
+                        </li>
+                        <li>
+                            Description: {reward.description}
+                        </li>
+                        <li>
+                            Estimated Shipping Date: {reward.shipping_date}
+                        </li>
+                        <li>
+                            Ships to: {reward.ships_to}
+                        </li>
+                    </ul>
+                </>
+            )
+        })}
         </>
         );
     }

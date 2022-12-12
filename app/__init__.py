@@ -36,6 +36,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(backing_routes, url_prefix='/api/backings')
 app.register_blueprint(project_routes, url_prefix='/api/projects')
 >>>>>>> c146107c36c7b7384c09a235c4247975d3fb6c12
+app.register_blueprint(reward_routes, url_prefix='/api/rewards')
 db.init_app(app)
 Migrate(app, db)
 
