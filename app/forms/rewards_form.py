@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalField, DateField, IntegerField, DateField, TextAreaField
+from wtforms import StringField, DecimalField, DateField, IntegerField, DateField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, ValidationError, URL
 from datetime import date
+import re
 
 class RewardsForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
@@ -9,7 +10,8 @@ class RewardsForm(FlaskForm):
     price_threshold = IntegerField('price_threshold', validators=[DataRequired()])
     shipping_date = DateField('shipping_date', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
-
+    ships_to = SelectField('ships_to', choices=["United States", "Anywhere in the world"], validators=[DataRequired()])
+    includes = StringField('includes', validators=[DataRequired()])
 
     def validate_name(self, name):
         if len(name.data) > 50:
@@ -32,6 +34,15 @@ class RewardsForm(FlaskForm):
     def validate_description(self, description):
         if not (50 <= len(description.data) <= 50000):
             raise ValidationError('Description length must be between 50 and 50,000 characters')
+
+    def validate_ships_to(self, ships_to):
+        if ships_to not in ["United States", "Anywhere in the world"]:
+            raise ValidationError("Ships to is not a valid option")
+
+    def validate_contains(self, contains):
+        if not re.search(r"^([0-9]+ [^,]*)?(, [0-9]+ [^,]*)*$", contains):
+            raise ValidationError("Not valid items to contain")
+
 
     def to_dict(self):
         return{

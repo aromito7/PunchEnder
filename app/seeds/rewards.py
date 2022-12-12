@@ -14,6 +14,8 @@ def seed_rewards():
         price_threshold=100,
         shipping_date=datetime.now(),
         description="Great for going downhill.",
+        ships_to="Anywhere in the world",
+        includes="1 scooter",
         user=[demouser]
     )
 
@@ -25,6 +27,8 @@ def seed_rewards():
         price_threshold=100,
         shipping_date=datetime.now(),
         description="I like to ride my awesome bike!",
+        ships_to="United States",
+        includes="1 bike, 1 helmet, 1 bike basket",
         user=[demouser]
     )
 
@@ -35,6 +39,8 @@ def seed_rewards():
         price_threshold=500,
         shipping_date=datetime.now(),
         description="Perfect for Europeans and/or hipsters.",
+        ships_to="Anywhere in the world",
+        includes="1 vespa, 1 helmet",
         user=[demouser]
     )
 
