@@ -32,9 +32,9 @@ class ProjectForm(FlaskForm):
         if start_date.data < datetime.now().date():
             raise ValidationError('Start date cannot be in the past')
 
-    def validate_end_date(self, end_date):
-        if end_date.data < self.start_date.data:
-            raise ValidationError('End date cannot be before start date')
+    # def validate_end_date(self, end_date):
+    #     if end_date.data < self.start_date.data:
+    #         raise ValidationError('End date cannot be before start date')
 
     def validate_short_description(self, short_description):
         if len(short_description.data) > 250:

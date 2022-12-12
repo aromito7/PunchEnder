@@ -32,7 +32,7 @@ def deleteProject(id):
         return {"error": f'project id {id} not found'}
 
 # CREATE a project
-@project_routes.route('/', methods=['POST'])
+@project_routes.route('/create', methods=['POST'])
 def create_project():
   form = ProjectForm()
   form['csrf_token'].data = request.cookies['csrf_token']
