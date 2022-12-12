@@ -34,29 +34,30 @@ def deleteProject(id):
 # CREATE a project
 @project_routes.route('/create', methods=['POST'])
 def create_project():
-  form = ProjectForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
-  if form.validate_on_submit():
-    print('FORM -------------> ', form.data)
-    print("USER OBJECT ------> ", current_user.get_id())
-    new_project = Project(
-      owner_id=current_user.get_id(),
-      name=form.data['name'],
-      goal_amount=form.data['goal_amount'],
-      current_amount=form.data['current_amount'],
-      end_date=(datetime.now() + timedelta(days=30)).isoformat(),
-      short_description=form.data['short_description'],
-      long_description=form.data['long_description'],
-      preview_image=form.data['preview_image'],
-      city=form.data['city'],
-      state=form.data['state']
-    )
-    print("NEW PROJECT --------------> ", new_project)
-    print("END DATE -------------> ", new_project.end_date)
-    db.session.add(new_project)
-    db.session.commit()
-
-    return new_project.to_dict()
+    form = ProjectForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        print('FORM -------------> ', form.data)
+        print("USER OBJECT ------> ", current_user.get_id())
+        new_project = Project(
+            owner_id=current_user.get_id(),
+            name=form.data['name'],
+            goal_amount=form.data['goal_amount'],
+            current_amount=form.data['current_amount'],
+            end_date=(datetime.now() + timedelta(days=30)).isoformat(),
+            short_description=form.data['short_description'],
+            long_description=form.data['long_description'],
+            preview_image=form.data['preview_image'],
+            city=form.data['city'],
+            state=form.data['state']
+        )
+        print("NEW PROJECT --------------> ", new_project)
+        print("END DATE -------------> ", new_project.end_date)
+        db.session.add(new_project)
+        db.session.commit()
+        return new_project.to_dict()
+    print(form.errors)
+    return jsonify(form.errors)
 
 # UPDATE a project
 @project_routes.route('/<projectid>', methods=['PUT'])
