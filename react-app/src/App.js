@@ -3,10 +3,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
+import SingleProject from './components/project/SingleProject';
+import CreateProject from './components/project/CreateProject';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import Reward from './components/Reward';
 import { authenticate } from './store/session';
 
 function App() {
@@ -34,14 +37,26 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/projects/create' exact={true}>
+          <CreateProject />
+        </Route>
+        <Route path='/projects/:id' exact={true}>
+          <SingleProject />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <Route path='/projects/:projectId/rewards' exact={true} >
+          <Reward/>
+        </Route>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
+        </Route>
+        <Route path='/'>
+          <h1>Error: 404 - page not found</h1>
         </Route>
       </Switch>
     </BrowserRouter>
