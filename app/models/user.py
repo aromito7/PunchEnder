@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
 
     reward = db.relationship(
         'Reward', secondary=backing_table, back_populates='user')
+
     project = db.relationship(
         'Project', back_populates='owner', cascade="all, delete")
 

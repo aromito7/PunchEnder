@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User, Reward, Project, backing_table, db
+from app.models import User, Reward, Project, db
 
 user_routes = Blueprint('users', __name__)
 
@@ -22,10 +22,9 @@ def get_user_backings(id):
     Query for current logged in user's pledges by user id
     """
     user = User.query.get(id)
-    # user_backings = backing_table.query(backing_table).filter(
-    #     backing_table.user_id == id).all()
     user_backings = user.reward
-    print(user_backings)
+    if len(user_backings) == 0:
+        return {"message": "no backings found"}
 
     user_backings_list = []
 
