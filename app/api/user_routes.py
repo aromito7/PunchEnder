@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User, Reward, Project, backing_table
+from app.models import User, Reward, Project, backing_table, db
 
 user_routes = Blueprint('users', __name__)
 
@@ -24,14 +24,15 @@ def get_user_backings(id):
     user = User.query.get(id)
     # user_backings = backing_table.query(backing_table).filter(
     #     backing_table.user_id == id).all()
-    print(dict(backing_table))
-    user_backings = [
-        backing for backing in backing_table if backing.user_id == id]
+    user_backings = user.reward
+    print(user_backings)
+
     user_backings_list = []
 
     for backing in user_backings:
         backing_obj = {}
-        reward = Reward.query.get(backing.reward_id)
+        print(backing.id)
+        reward = Reward.query.get(backing.id)
         project = Project.query.get(reward.project_id)
         backing_obj["project_name"] = project.name
         backing_obj["backing_value"] = reward.price_threshold
