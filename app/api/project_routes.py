@@ -1,5 +1,5 @@
 from flask import Blueprint
-from ..models import db, Project, User
+from ..models import db, Project, User, Reward, backing_table
 from ..forms import ProjectForm
 from flask_login import current_user
 
@@ -36,11 +36,55 @@ def deleteProject(id):
     else:
         return {"error": f'project id {id} not found'}
 
-# CREATE a pledge for a project
-
 
 @project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["POST"])
-def create_backing(reward_id):
-    user_id = current_user.id
+def create_backing(reward_id, id):
+    """
+    Create a backing for a project based on reward_id
+    """
+    user = current_user
+    reward = Reward.query.get(reward_id)
 
-    pass
+    user.reward.append(reward)
+
+    db.session.commit()
+
+    return {"message": "backing added"}
+
+
+@project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["PUT"])
+def update_backing(reward_id, id):
+    """
+    Update a backing for a project based on the user_id of a backing
+    """
+    user = current_user
+    reward = Reward.query.get(reward_id)
+
+    # previous_backing_index = user.reward.index(user.id)
+
+    for backing in reward.user:
+        if backing.id == user.id:
+            del backing
+
+    user.reward.append(reward)
+
+    db.session.commit()
+
+    return {"message": "backing updated"}
+
+
+@project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["DELETE"])
+def delete_backing(reward_id, id):
+    """
+    Delete a backing for a project based on the user_id of the backing
+    """
+    user = current_user
+    reward = Reward.query.get(reward_id)
+
+    for backing in reward.user:
+        if backing.id == user.id:
+            del reward.user[reward.user.index(backing)]
+
+    db.session.commit()
+
+    return {"message": "backing deleted"}

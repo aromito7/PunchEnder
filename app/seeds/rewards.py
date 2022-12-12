@@ -17,7 +17,17 @@ def seed_rewards():
 
     )
 
-    db.session.add(demo)
+    demo2 = Reward(
+        project_id=1,
+        name='test',
+        quantity=10,
+        price_threshold=100,
+        shipping_date=datetime.now(),
+        description="test",
+        user=[demouser]
+    )
+
+    db.session.add(demo, demo2)
     db.session.commit()
 
 

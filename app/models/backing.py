@@ -2,7 +2,6 @@ from .db import db
 from sqlalchemy.schema import Column, ForeignKey, Table
 
 
-# originally called backing_table
 backing_table = Table('backings',
                       db.Model.metadata,
                       Column("user_id", ForeignKey(

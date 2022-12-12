@@ -1,7 +1,7 @@
 from .db import db
 from datetime import datetime
 from sqlalchemy import ForeignKey
-from .backing import Backing
+from .backing import backing_table
 
 
 class Reward(db.Model):
@@ -18,11 +18,8 @@ class Reward(db.Model):
 
     project = db.relationship('Project', back_populates='reward')
 
-    user = db.relationship('User', secondary="backings",
+    user = db.relationship('User', secondary=backing_table,
                            back_populates='reward')
-
-    backings = db.relationship(
-        'Backing', back_populates="rewards")
 
     def to_dict(self):
         return {

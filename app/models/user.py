@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .backing import Backing
+from .backing import backing_table
 
 
 class User(db.Model, UserMixin):
@@ -17,13 +17,10 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     reward = db.relationship(
-        'Reward', secondary="backings", back_populates='user', foreign_keys="")
+        'Reward', secondary=backing_table, back_populates='user')
 
     project = db.relationship(
         'Project', back_populates='owner', cascade="all, delete")
-
-    # backings = db.relationship(
-    #     'Backing', back_populates="user", cascade="all, delete")
 
     @property
     def password(self):
