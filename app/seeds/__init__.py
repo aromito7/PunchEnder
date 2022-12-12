@@ -2,7 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .projects import seed_projects, undo_projects
 from .rewards import seed_rewards, undo_rewards
-from .backings import seed_backings, undo_backings
+# from .backings import seed_backings, undo_backings
 
 from app.models.db import db, environment, SCHEMA
 
