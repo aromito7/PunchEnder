@@ -12,7 +12,7 @@ class ProjectForm(FlaskForm):
     end_date = DateField('end_date', validators=[DataRequired()])
     short_description = StringField('short_description', validators=[DataRequired()])
     long_description = StringField('long_description', validators=[DataRequired()])
-    preview_image = StringField('preview_image', validators=[DataRequired(), URL])
+    preview_image = StringField('preview_image', validators=[DataRequired(), URL()])
     city = StringField('city', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])
 
