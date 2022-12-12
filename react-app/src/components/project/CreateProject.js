@@ -11,7 +11,6 @@ function CreateProject() {
     const [preview_image, setPreviewImage] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [errors, setErrors] = useState([]);
     const history = useHistory();
 
     const handleSubmit = async (e) => {
@@ -35,20 +34,14 @@ function CreateProject() {
         });
         const data = await res.json();
         window.print("DATA ---------------> ", data)
-        if (data.errors) {
-        setErrors(data.errors);
-        } else {
-        history.push(`/projects/${data.id}`);
-        }
+
+        history.push(`/projects/${data.id}`)
+
     };
 
     return (
+        <>
         <form onSubmit={handleSubmit}>
-        <ul>
-            {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-            ))}
-        </ul>
         <label>
             Name
             <input
@@ -73,15 +66,6 @@ function CreateProject() {
             type="number"
             value={current_amount}
             onChange={(e) => setCurrentAmount(e.target.value)}
-            required
-            />
-        </label>
-        <label>
-            End Date
-            <input
-            type="date"
-            value={end_date}
-            onChange={(e) => setEndDate(e.target.value)}
             required
             />
         </label>
@@ -132,6 +116,7 @@ function CreateProject() {
         </label>
         <button type="submit">Create Project</button>
         </form>
+        </>
     );
 }
 
