@@ -6,18 +6,48 @@ from .users import demouser
 
 
 def seed_rewards():
-    demo = Reward(
+
+    scooter = Reward(
+        project_id=1,
+        name='scooter',
+        quantity=50,
+        price_threshold=100,
+        shipping_date=datetime.now(),
+        description="Great for going downhill.",
+        ships_to="Anywhere in the world",
+        includes="1 scooter",
+        user=[demouser]
+    )
+
+
+    bike = Reward(
         project_id=1,
         name='bicycle',
         quantity=10,
         price_threshold=100,
         shipping_date=datetime.now(),
         description="I like to ride my awesome bike!",
+        ships_to="United States",
+        includes="1 bike, 1 helmet, 1 bike basket",
         user=[demouser]
-
     )
 
-    db.session.add(demo)
+    vespa = Reward(
+        project_id=1,
+        name='vespa',
+        quantity=5,
+        price_threshold=500,
+        shipping_date=datetime.now(),
+        description="Perfect for Europeans and/or hipsters.",
+        ships_to="Anywhere in the world",
+        includes="1 vespa, 1 helmet",
+        user=[demouser]
+    )
+
+
+    db.session.add(scooter)
+    db.session.add(bike)
+    db.session.add(vespa)
     db.session.commit()
 
 
