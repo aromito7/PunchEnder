@@ -44,7 +44,7 @@ def create_project():
       name=form.data['name'],
       goal_amount=form.data['goal_amount'],
       current_amount=form.data['current_amount'],
-      end_date=form.data['end_date']
+      end_date=form.data['end_date'],
       short_description=form.data["short_description"],
       long_description=form.data['long_description'],
       preview_image=form.data['preview_image'],
@@ -60,7 +60,7 @@ def create_project():
 
 # UPDATE a project
 @project_routes.route('/<projectid>', methods=['PUT'])
-def create_project():
+def update_project(projectid):
   form = ProjectForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   updated_project = db.session.query(projectid)

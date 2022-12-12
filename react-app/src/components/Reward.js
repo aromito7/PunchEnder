@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getRewards } from '../store/reward';
 
 const Reward = () => {
-    const [rewards, setRewards] = useState(useSelector(state => state.rewards) || [])
+    const [rewards, setRewards] = useState([])
     const { projectId } = useParams()
     useEffect(async() => {
 
@@ -19,7 +19,7 @@ const Reward = () => {
 
         }, [projectId]);
 
-    if(rewards.length < 1) return null
+    if(rewards.length < 1) return "Hello, world!"
     return (
         <>
         <h1>Hello, Project {projectId}!</h1>
