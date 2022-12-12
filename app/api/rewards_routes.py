@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import Reward
-
+from app.forms import RewardsForm
 
 reward_routes = Blueprint('rewards', __name__)
 
@@ -22,3 +22,9 @@ def get_rewards_by_project(id):
 def get_reward_by_id(id):
     rewards = Reward.query.filter(Reward.id == id).all()
     return {'rewards': [reward.to_dict() for reward in rewards]}
+
+#Create new rewawrd
+@reward_routes.route('/projects/<int:id>/new', methods=["GET"])
+def create_new_reward(id):
+    form = RewardsForm()
+    return 
