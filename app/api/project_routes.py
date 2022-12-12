@@ -1,16 +1,21 @@
 from flask import Blueprint
 from ..models import db, Project, User
 from ..forms import ProjectForm
+from flask_login import current_user
 
 project_routes = Blueprint('projects', __name__)
 
-#GET all projects
+# GET all projects
+
+
 @project_routes.route('/')
 def getAllProjects():
     projects = Project.query.all()
     return {'projects': [project.to_dict() for project in projects]}
 
-#GET a single project
+# GET a single project
+
+
 @project_routes.route('/<int:id>')
 def getProject(id):
     project = Project.query.get(id)
@@ -18,7 +23,9 @@ def getProject(id):
         return {'error': 'Project not found'}
     return project.to_dict()
 
-#DELETE a single project
+# DELETE a single project
+
+
 @project_routes.route('/<id>', methods=["DELETE"])
 def deleteProject(id):
     project = Project.query.get(id)
@@ -28,3 +35,12 @@ def deleteProject(id):
         return {"deleted project id": id}
     else:
         return {"error": f'project id {id} not found'}
+
+# CREATE a pledge for a project
+
+
+@project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["POST"])
+def create_backing(reward_id):
+    user_id = current_user.id
+
+    pass

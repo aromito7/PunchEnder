@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User, Reward, Project, backing_table, db
+from app.models import User, Reward, Project, db
 
 user_routes = Blueprint('users', __name__)
 
