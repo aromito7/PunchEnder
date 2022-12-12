@@ -10,7 +10,7 @@ class ProjectForm(FlaskForm):
     # probably don't need current_amount in the form
     current_amount = IntegerField('current_amount', validators=[DataRequired()])
     start_date = DateField('start_date', validators=[DataRequired()])
-    end_date = DateField('end_date', validators=[DataRequired()])
+    end_date = DateField('end_date', validators=[DataRequired()], format='%Y-%m-%d')
     short_description = StringField('short_description', validators=[DataRequired()])
     long_description = StringField('long_description', validators=[DataRequired()])
     preview_image = StringField('preview_image', validators=[DataRequired(), URL()])

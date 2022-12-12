@@ -44,7 +44,7 @@ def create_project():
       name=form.data['name'],
       goal_amount=form.data['goal_amount'],
       current_amount=form.data['current_amount'],
-      end_date=datetime.now(),
+      end_date=form.data['end_date']
       short_description=form.data["short_description"],
       long_description=form.data['long_description'],
       preview_image=form.data['preview_image'],
@@ -63,15 +63,15 @@ def create_project():
 def create_project():
   form = ProjectForm()
   form['csrf_token'].data = request.cookies['csrf_token']
-  the_project = db.session.query(projectid)
+  updated_project = db.session.query(projectid)
   if form.validate_on_submit():
     print('FORM -------------> ', form.data)
     print("USER OBJECT ------> ", current_user.get_id())
-    new_project = Project(
+    new_project = updated_project(
       name=form.data['name'],
       goal_amount=form.data['goal_amount'],
       current_amount=form.data['current_amount'],
-      end_date=datetime.now(),
+      end_date=form.data['end_date'],
       short_description=form.data["short_description"],
       long_description=form.data['long_description'],
       preview_image=form.data['preview_image'],
@@ -83,4 +83,4 @@ def create_project():
     db.session.add(new_project)
     db.session.commit()
 
-    return new_project.to_dict()
+    return updated_project.to_dict()
