@@ -11,9 +11,9 @@ def get_all_rewards():
     rewards = Reward.query.all()
     return {'rewards': [reward.to_dict() for reward in rewards]}
 
-@reward_routes.route('/project')
-def get_rewards_by_project():
-    rewards = Reward.query.filter(Reward.name == "vespa").all()
+@reward_routes.route('/projects/<id>')
+def get_rewards_by_project(id):
+    rewards = Reward.query.filter(Reward.project_id == id).all()
     return {'rewards': [reward.to_dict() for reward in rewards]}
 
 

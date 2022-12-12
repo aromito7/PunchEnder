@@ -1,38 +1,40 @@
-import React, {useEffect, useState, useParams} from 'react';
+import React, {useEffect, useState} from 'react';
+import { useParams } from 'react-router-dom';
 
 const Reward = () => {
-    const {rewardId} = useParams()
     const [reward, setReward] = useState(null)
-    useEffect(() => {
-        const searchProduct = async () => {
-            try {
-                const reward = fetch(`/api/rewards/1`)
-                setReward(reward);
-            } catch (error) {
-                error = error;
-            }
-            };
-           }, []);
+    const { rewardId } = useParams()
+    useEffect(async() => {
 
-    //if(!reward) return null
+        if (!rewardId) {
+            return;
+            }
+            (async () => {
+            const response = await fetch(`/api/rewards/${rewardId}`);
+            const {rewards} = await response.json();
+            setReward(rewards[0]);
+            })();
+        }, [rewardId]);
+
+    if(!reward) return null
     return (
         <>
-            <h1>Hello, world!</h1>
+            <h1>Hello, Reward {rewardId}!</h1>
             <ul>
                 <li>
-                    {reward?.name}
+                    Project Id: {reward.project_id}
                 </li>
                 <li>
-                    {reward?.quantity}
+                    Name: {reward.name}
                 </li>
                 <li>
-                    {reward?.price_threshold}
+                    Quantity: {reward.quantity}
                 </li>
                 <li>
-
+                    Required Donation: {reward.price_threshold}
                 </li>
                 <li>
-
+                    Estimated Shipping Date: {reward.shipping_date}
                 </li>
             </ul>
         </>

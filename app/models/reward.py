@@ -14,7 +14,6 @@ class Reward(db.Model):
   price_threshold = db.Column(db.Integer, nullable=False)
   shipping_date = db.Column(db.DateTime, nullable=False)
   description = db.Column(db.String(50000), nullable=False)
-
   project = db.relationship('Project', back_populates='reward')
   user = db.relationship('User', secondary=backing_table, back_populates='reward')
 
