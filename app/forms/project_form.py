@@ -17,14 +17,14 @@ class ProjectForm(FlaskForm):
     state = StringField('state', validators=[DataRequired()])
 
     def validate_name(self, name):
-        if len(name.data) > 50:
+        if len(name.data) < 50:
             raise ValidationError('Name must be less than 50 characters')
         name = Project.query.filter(Project.name == name.data).first()
         if name:
             raise ValidationError('Project name already exists')
 
     def validate_goal_amount(self, goal_amount):
-        if goal_amount.data < 100:
+        if goal_amount.data > 100:
             raise ValidationError('Goal amount must be at least $100')
 
     def validate_start_date(self, start_date):
