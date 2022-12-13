@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import IconBar from "./IconBar";
 
 function CreateProject() {
     const [name, setName] = useState("");
@@ -41,6 +42,7 @@ function CreateProject() {
 
     return (
         <div>
+            <IconBar />
             <div className="create-project-page__main-container">
                 <div className="create-project-form__header">
                     <h1 className="h1-help">Start with the basics</h1>
@@ -203,7 +205,7 @@ function CreateProject() {
                             </div>
                             <div className="float-child">
                                 <label>
-                                    Long Description
+                                    Description
                                     <textarea
                                     type="text"
                                     value={long_description}

@@ -24,7 +24,7 @@ const ProfileButton = () => {
         return (
             <div className='logged-in-nav'>
             <button onClick={openMenu} className="button">
-        <img
+                    <img
 						src="https://www.pngrepo.com/png/34340/180/avatar.png"
 						alt="self logo123"
                         className='profile-icon'
