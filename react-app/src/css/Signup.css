@@ -1,0 +1,110 @@
+.signup__container {
+    max-width: 70%;
+    margin-left: 38%;
+    margin-right: auto;
+    margin-top: 6em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 540px;
+  }
+
+  .signup-form {
+    width: 100%
+  }
+
+  .signup__title {
+    font-size: 3rem;
+    font-weight: 100;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .box-input-sign {
+    width: 80%;
+    height: 40px;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(197, 197, 197);
+    text-indent: 10px;
+    margin-left: 2.2em;
+    margin-top: 1em;
+    }
+
+    .box-input-sign:focus {
+    outline: 0;
+    border-color: rgba(42, 122, 2, 0.6);
+        }
+
+    .signup-title {
+        text-align: center;
+        position:absolute;
+        border-bottom: 1px solid rgba(118 118 118/0.4);
+        padding-bottom: 10px;
+        width: 100%;
+    }
+
+  .input4 {
+    margin-top: 3em;
+    margin-bottom: auto;
+    }
+
+
+  .signup-submit-button {
+    width: 80%;
+    margin-top: 30px;
+    margin-left: 2.2em;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 0px;
+    height: 40px;
+    color: white;
+    background-color: rgb(63, 130, 0);
+}
+
+.signup-toggle {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    text-align: center;
+    max-width: 70%;
+    margin-left: 25%;
+    margin-right: auto;
+    margin-top: 2em;
+    align-content: space-between;
+}
+
+.signup-title:before {
+content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: #000;
+  left: 0;
+  top: 50%;
+  position: absolute;
+}
+
+.signup-title:after {
+content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: #000;
+  right: 0;
+  top: 50%;
+  position: absolute;
+}
+
+
+.captcha {
+    font-size: 11px;
+    width: 80%;
+    margin-left: 10%;
+    color: grey;
+    font-weight: lighter;
+}
