@@ -55,7 +55,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/projects/:projectId/rewards' exact={true} >
-          <Reward/>
+          <ProjectRewards/>
         </Route>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
