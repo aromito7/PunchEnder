@@ -58,7 +58,7 @@ function App() {
           <ProjectRewards/>
         </Route>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <LandingPage />
         </Route>
         <Route path='/'>
           <h1>Error: 404 - page not found</h1>
