@@ -33,8 +33,8 @@ def create_new_reward(id):
     form = RewardsForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('FORM -------------> ', form.data)
-        print("USER OBJECT ------> ", current_user.get_id())
+        #print('FORM -------------> ', form.data)
+        #print("USER OBJECT ------> ", current_user.get_id())
         new_reward = Reward(
             name=form.data['name'],
             description=form.data['desctiption'],
@@ -48,3 +48,4 @@ def create_new_reward(id):
         db.session.commit()
 
         return new_reward.to_dict()
+    return form.data
