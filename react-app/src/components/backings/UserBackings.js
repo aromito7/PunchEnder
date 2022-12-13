@@ -8,8 +8,7 @@ import thunk from 'redux-thunk'
 
 function UserBackings() {
     const user = useSelector(state => state.session.user)
-    const userBackings = useSelector(state => state.UserBackings)
-
+    const userBackings = useSelector(state => state.userBackings)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -19,6 +18,21 @@ function UserBackings() {
     return (
         <>
             <h1>Projects You Back</h1>
+            <br></br>
+            <table>
+                <tr>
+                    <th style={{ textAlign: 'left' }}>Project</th>
+                    <th style={{ textAlign: 'left' }}>Pledge Amount</th>
+                    <th>Reward</th>
+                    <th>Status</th>
+                </tr>
+                {Object.values(userBackings).map(backing => (
+                    <tr>
+                        <td>{backing.project_name}</td>
+                        <td>${backing.backing_value}</td>
+                    </tr>
+                ))}
+            </table>
 
         </>
     )
