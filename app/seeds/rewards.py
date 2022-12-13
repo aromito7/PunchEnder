@@ -1,6 +1,6 @@
 from app.models import db, Reward, environment, SCHEMA
 from datetime import datetime, timedelta
-from .models import Reward
+from ..models import Reward
 from .users import users
 
 # Adds a demo reward, you can add other rewards here if you want
