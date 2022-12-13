@@ -1,6 +1,7 @@
 const GET_PROJECTS = 'projects/GET_PROJECTS'
 const ADD_PROJECT = 'projects/ADD_PROJECTS'
 const DELETE_PROJECT = 'projects/DELETE_PROJECT'
+const UPDATE_PROJECT = 'projects/DELETE_PROJECT'
 const GET_USER_PROJECTS = 'projects/GET_USER_PROJECTS'
 
 const actionGetAllProjects = (projects) => {
@@ -13,6 +14,13 @@ const actionGetAllProjects = (projects) => {
 const actionAddProject = (project) => {
     return {
         type: ADD_PROJECT,
+        payload: project
+    }
+}
+
+const actionUpdateProject = (project) => {
+    return {
+        type: UPDATE_PROJECT,
         payload: project
     }
 }
@@ -31,6 +39,29 @@ export const thunkGetAllProjects = () => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(actionGetAllProjects(data))
+        return response
+    }
+}
+
+export const thunkUpdateProject = (project, projectId) => async (dispatch) => {
+    const { name, goal_amount, current_amount, end_date, short_description, long_description, preview_image, city, state } = project
+    const response = await fetch(`/api/project/${projectId}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            name,
+            goal_amount,
+            current_amount,
+            end_date,
+            short_description,
+            long_description,
+            preview_image,
+            city,
+            state
+        })
+    })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(actionUpdateProject(data))
         return response
     }
 }
@@ -59,6 +90,10 @@ export default function projectsReducer(state = {}, action) {
             newState = { ...state }
             newState[action.payload.id] = action.payload
             return newState
+        case UPDATE_PROJECT:
+            newState = { ...state }
+            delete newState[action.payload.id]
+            newstate[action.payload.id] = action.payload
         case DELETE_PROJECT:
             newState = { ...state }
             delete newState[action.payload]
