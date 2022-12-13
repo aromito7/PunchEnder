@@ -21,7 +21,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(sessionActions.authenticate());
       setLoaded(true);
     })();
@@ -50,13 +50,16 @@ function App() {
               <SingleProject />
             </Route>
             <ProtectedRoute path='/users' exact={true} >
-              <UsersList/>
+              <UsersList />
+            </ProtectedRoute>
+            <ProtectedRoute path='/users/:userId/backings' exact={true} >
+              <UserBackings />
             </ProtectedRoute>
             <ProtectedRoute path='/users/:userId' exact={true} >
               <User />
             </ProtectedRoute>
             <Route path='/projects/:projectId/rewards' exact={true} >
-              <Reward/>
+              <Reward />
             </Route>
             <Route path='/' exact={true} >
               <LandingPage />
@@ -66,7 +69,7 @@ function App() {
             </Route>
           </Switch>
         </BrowserRouter>
-        </div>
+      </div>
     </div>
   );
 }

@@ -12,6 +12,7 @@ project_routes = Blueprint('projects', __name__)
 @project_routes.route('/')
 def getAllProjects():
     projects = Project.query.all()
+    print(projects)
     return {'projects': [project.to_dict() for project in projects]}
 
 # GET a single project
@@ -109,7 +110,6 @@ def delete_backing(reward_id, id):
     return {"message": "backing deleted", "project_name": project.name}
 
 # CREATE a project
-
 
 
 # @project_routes.route('/', methods=['POST'])

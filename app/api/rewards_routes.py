@@ -5,19 +5,25 @@ from app.models import Reward
 
 reward_routes = Blueprint('rewards', __name__)
 
-#Get all rewards
-@reward_routes.route('/') #@login_required
+# Get all rewards
+
+
+@reward_routes.route('/')  # @login_required
 def get_all_rewards():
     rewards = Reward.query.all()
     return {'rewards': [reward.to_dict() for reward in rewards]}
 
-#Get all rewards for a project
+# Get all rewards for a project
+
+
 @reward_routes.route('/projects/<id>')
 def get_rewards_by_project(id):
     rewards = Reward.query.filter(Reward.project_id == id).all()
     return {'rewards': [reward.to_dict() for reward in rewards]}
 
-#Get specific reward
+# Get specific reward
+
+
 @reward_routes.route('/<id>')
 def get_reward_by_id(id):
     rewards = Reward.query.filter(Reward.id == id).all()
