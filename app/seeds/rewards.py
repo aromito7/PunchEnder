@@ -19,7 +19,6 @@ def seed_rewards():
         user=[users[0]]
     )
 
-
     bike = Reward(
         project_id=1,
         name='bicycle',
@@ -230,10 +229,10 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
         user=users[::2]
     )
 
-
     db.session.add(scooter)
     db.session.add(bike)
     db.session.add(vespa)
+
     db.session.add(car_boat)
     db.session.add(car_theater)
     db.session.add(hoverboard)

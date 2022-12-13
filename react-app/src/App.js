@@ -11,7 +11,11 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import ProjectRewards from './components/reward/ProjectRewards';
 import CreateReward from './components/reward/CreateReward';
+import UserBackings from './components/backings/UserBackings';
 import { authenticate } from './store/session';
+import * as sessionActions from './store/session';
+import LandingPage from './components/home/LandingPage';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -19,7 +23,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate());
+      await dispatch(sessionActions.authenticate());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -51,10 +55,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/projects/:projectId/rewards' exact={true} >
-          <ProjectRewards/>
-        </Route>
-        <Route path='/projects/:projectId/rewards/create' exact={true}>
-          <CreateReward/>
+          <Reward/>
         </Route>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
