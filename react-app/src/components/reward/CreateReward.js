@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-function CreateReward() {
+const CreateReward = () => {
     const {projectId} = useParams()
     const history = useHistory();
     const [hasSubmitted, setHasSubmitted] = useState(false);

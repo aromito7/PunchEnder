@@ -15,6 +15,7 @@ import UserBackings from './components/backings/UserBackings';
 import { authenticate } from './store/session';
 import * as sessionActions from './store/session';
 import LandingPage from './components/home/LandingPage';
+import RewardComponent from './components/reward/RewardComponent';
 
 
 function App() {
@@ -56,6 +57,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/projects/:projectId/rewards' exact={true} >
           <ProjectRewards/>
+        </Route>
+        <Route path='/rewards/:rewardId' exact={true} >
+          <RewardComponent/>
         </Route>
         <Route path='/' exact={true} >
           <LandingPage />
