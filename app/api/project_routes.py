@@ -173,4 +173,4 @@ def update_project(projectid):
         db.session.add(new_project)
         db.session.commit()
 
-        return updated_project.to_dict()
+        return new_project.to_dict()

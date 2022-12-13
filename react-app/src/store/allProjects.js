@@ -23,6 +23,7 @@ const actionDeleteProject = (id) => {
         payload: id
     }
 }
+
 export const thunkGetAllProjects = () => async (dispatch) => {
     const response = await fetch(`/api/projects`, {
         method: 'GET'
@@ -30,6 +31,17 @@ export const thunkGetAllProjects = () => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(actionGetAllProjects(data))
+        return response
+    }
+}
+
+export const thunkDeleteProject = (projectId) => async (dispatch) => {
+    const response = await fetch(`/api/project/${projectId}`, {
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(actionDeleteProject(projectId))
         return response
     }
 }
@@ -46,6 +58,10 @@ export default function projectsReducer(state = {}, action) {
         case ADD_PROJECT:
             newState = { ...state }
             newState[action.payload.id] = action.payload
+            return newState
+        case DELETE_PROJECT:
+            newState = { ...state }
+            delete newState[action.payload]
             return newState
         default:
             return state
