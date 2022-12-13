@@ -10,6 +10,19 @@ const actionGetAllProjects = (projects) => {
     }
 }
 
+const actionAddProject = (project) => {
+    return {
+        type: ADD_PROJECT,
+        payload: project
+    }
+}
+
+const actionDeleteProject = (id) => {
+    return {
+        type: DELETE_PROJECT,
+        payload: id
+    }
+}
 export const thunkGetAllProjects = () => async (dispatch) => {
     const response = await fetch(`/api/projects`, {
         method: 'GET'
@@ -29,6 +42,10 @@ export default function projectsReducer(state = {}, action) {
             console.log(action.payload)
             action.payload.projects.forEach(project => projectsObj[project.id] = project)
             newState = projectsObj
+            return newState
+        case ADD_PROJECT:
+            newState = { ...state }
+            newState[action.payload.id] = action.payload
             return newState
         default:
             return state

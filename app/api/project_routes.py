@@ -9,8 +9,9 @@ project_routes = Blueprint('projects', __name__)
 # GET all projects
 
 
-@project_routes.route('/')
+@project_routes.route('/', strict_slashes=False)
 def getAllProjects():
+    print('TEST')
     projects = Project.query.all()
     print(projects)
     return {'projects': [project.to_dict() for project in projects]}

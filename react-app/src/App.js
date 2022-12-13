@@ -14,6 +14,7 @@ import UserBackings from './components/backings/UserBackings';
 import { authenticate } from './store/session';
 import * as sessionActions from './store/session';
 import LandingPage from './components/home/LandingPage';
+import AllProjects from './components/project/AllProjects';
 
 
 function App() {
@@ -42,6 +43,9 @@ function App() {
             </Route>
             <Route path='/sign-up' exact={true}>
               <SignUpForm />
+            </Route>
+            <Route path='/projects'>
+              <AllProjects />
             </Route>
             <Route path='/projects/create' exact={true}>
               <CreateProject />
