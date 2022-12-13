@@ -9,7 +9,8 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import Reward from './components/Reward';
+import ProjectRewards from './components/reward/ProjectRewards';
+import CreateReward from './components/reward/CreateReward';
 import { authenticate } from './store/session';
 
 function App() {
@@ -50,7 +51,10 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/projects/:projectId/rewards' exact={true} >
-          <Reward/>
+          <ProjectRewards/>
+        </Route>
+        <Route path='/projects/:projectId/rewards/create' exact={true}>
+          <CreateReward/>
         </Route>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>

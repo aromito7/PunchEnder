@@ -84,4 +84,3 @@ def update_project(projectid):
     db.session.commit()
 
     return updated_project.to_dict()
-  
