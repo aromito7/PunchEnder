@@ -14,16 +14,44 @@
     color: grey;
 }
 
-.rewards-includes-title, .estimated-delivery-title{
-    font-size:14px;
+.rewards-includes-title, .rewards-delivery-title{
+    font-size:10px;
     margin-bottom: 0;
-    padding-bottom: 0;
 }
 
 .includes-list{
     margin-top: 0;
 }
 
-.estimated-delivery-date{
+.rewards-delivery-value{
+    margin-top: 0;
+}
 
+#rewards-boxen *{
+    display: inline-block;
+    border-radius: 10px;
+    padding: 3px 10px 3px 10px;
+    font-size: 12px;
+    margin:2px;
+}
+
+#rewards-backers-box{
+    background-color: rgb(243, 243, 243);
+}
+
+#rewards-remaining-box{
+    background-color: rgb(255, 242, 236);
+}
+
+#rewards-delivery{
+    display:grid;
+    column-gap: 10px;
+}
+
+#rewards-delivery-left{
+    grid-column: 1;
+}
+
+#rewards-delivery-right{
+    grid-column: 2;
 }

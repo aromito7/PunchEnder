@@ -19,8 +19,8 @@ const RewardComponent = ({id}) => {
         }, [rewardId]);
 
     if(!reward) return "Hello, null!"
+    const remaining = reward.quantity - reward.users
     const includes = reward.includes.split(', ')
-    console.log(reward)
     return (
         <div className="reward-component">
             <p>Pledge ${reward.price_threshold}</p>
@@ -30,7 +30,7 @@ const RewardComponent = ({id}) => {
             <p className="grey">
                 {reward.description}
             </p>
-            <p className="grey rewards-includes-title">Includes:</p>
+            <p className="grey rewards-includes-title">INCLUDES:</p>
             <ul className="includes-list">
                 {includes.map((item, i) => {
                     return(
@@ -40,12 +40,32 @@ const RewardComponent = ({id}) => {
                     )
                 })}
             </ul>
-            <p class="grey estimated_delivery_title">
-                Estimated Delivery
-            </p>
-            <p class="estimated-delivery-date">
-                {reward.shipping_date.split(' ').slice(2, 4).join(' ')}
-            </p>
+            <div id="rewards-delivery">
+                <div id="rewards-delivery-left">
+                    <p className="grey rewards-delivery-title">
+                        ESTIMATED DELIVERY
+                    </p>
+                    <p className="rewards-delivery-value">
+                        {reward.shipping_date.split(' ').slice(2, 4).join(' ')}
+                    </p>
+                </div>
+                <div id="rewards-delivery-right">
+                    <p className="grey rewards-delivery-title">
+                        SHIPS TO
+                    </p>
+                    <p className="rewards-delivery-value">
+                        {reward.ships_to}
+                    </p>
+                </div>
+            </div>
+            <div id="rewards-boxen">
+                <p id="rewards-backers-box">{`${reward.users} backer` + (reward.users == 1 ? '' : 's')}</p>
+                {remaining <= 50 && (
+                    <p id="rewards-remaining-box">
+                        {`Limited (${remaining} left out of ${reward.quantity})`}
+                    </p>
+                )}
+            </div>
         </div>
         );
     }
