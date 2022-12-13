@@ -16,7 +16,7 @@ const NavBar = () => {
           <section className='navbar__left-links-container'>
             <div className='navbar__left-links-list'>
                 <div className='navbar__navlink-home'>
-                  <NavLink to='/discover' exact={true} activeClassName='active'>
+                  <NavLink to='/discover' exact={true} className='navlink-helper' activeClassName='active'>
                     Discover
                   </NavLink>
                 </div>

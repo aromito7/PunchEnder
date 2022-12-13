@@ -5,6 +5,7 @@
 @import "FeaturedProduct.css";
 @import "Login.css";
 @import "Signup.css";
+@import "CreateProject.css";
 
 html {
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
@@ -29,3 +30,10 @@ html {
     position: relative;
     min-height: 100vh;
   }
+
+
+nav a{
+        text-decoration:none;
+        color: #282828;
+        margin-left: 2em;
+}

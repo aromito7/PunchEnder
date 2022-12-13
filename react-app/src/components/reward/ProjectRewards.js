@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getRewards } from '../store/reward';
+import { getRewards } from '../../store/reward';
 
-const Reward = () => {
+const ProjectRewards = () => {
     const [rewards, setRewards] = useState([])
     const { projectId } = useParams()
     useEffect(async() => {
@@ -60,4 +60,4 @@ const Reward = () => {
         );
     }
 
-export default Reward;
+export default ProjectRewards;
