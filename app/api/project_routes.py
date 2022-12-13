@@ -50,7 +50,14 @@ def create_backing(reward_id, id):
 
     db.session.commit()
 
-    return {"message": "backing added"}
+    backing_obj = {}
+
+    reward = Reward.query.get(reward_id)
+    project = Project.query.get(id)
+    backing_obj["project_name"] = project.name
+    backing_obj["backing_value"] = reward.price_threshold
+
+    return backing_obj
 
 
 @project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["PUT"])
@@ -64,12 +71,21 @@ def update_backing(reward_id, id):
     for backing in reward.user:
         if backing.id == user.id:
             del reward.user[reward.user.index(backing)]
+        else:
+            return {"Error": "Backing not found"}
 
     user.reward.append(reward)
 
     db.session.commit()
 
-    return {"message": "backing updated"}
+    backing_obj = {}
+
+    reward = Reward.query.get(reward_id)
+    project = Project.query.get(id)
+    backing_obj["project_name"] = project.name
+    backing_obj["backing_value"] = reward.price_threshold
+
+    return {backing_obj}
 
 
 @project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["DELETE"])
@@ -83,10 +99,14 @@ def delete_backing(reward_id, id):
     for backing in reward.user:
         if backing.id == user.id:
             del reward.user[reward.user.index(backing)]
+        else:
+            return {'Error': "Can't delete a backing that's not yours"}
 
     db.session.commit()
 
-    return {"message": "backing deleted"}
+    project = Project.query.get(id)
+
+    return {"message": "backing deleted", "project_name": project.name}
 
 # CREATE a project
 

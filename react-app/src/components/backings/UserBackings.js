@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { thunkGetAllBackings } from '../../store/userBackings'
+import { thunkDeleteBacking, thunkGetAllBackings } from '../../store/userBackings'
 import thunk from 'redux-thunk'
 
 
@@ -13,27 +13,27 @@ function UserBackings() {
 
     useEffect(() => {
         dispatch(thunkGetAllBackings(user.id))
-    }, [dispatch])
+    }, [dispatch, user.id])
+    // TODO:
+    // const deleteBacking = (projectId, rewardId) => {
+    //     dispatch(thunkDeleteBacking(projectId, rewardId))
+    // }
 
+    // Might have to change from displaying data as a table to either a list or divs
     return (
         <>
             <h1>Projects You Back</h1>
             <br></br>
-            <table>
-                <tr>
-                    <th style={{ textAlign: 'left' }}>Project</th>
-                    <th style={{ textAlign: 'left', paddingLeft: 50 }}>Pledge Amount</th>
-                    {/* <th>Reward</th>
-                    <th>Status</th> */}
-                </tr>
-                {Object.values(userBackings).map(backing => (
-                    <tr>
-                        <td>{backing.project_name}</td>
-                        <td style={{ paddingLeft: 50 }}>${backing.backing_value}</td>
-                    </tr>
-                ))}
-            </table>
-
+            <span style={{ fontSize: "larger", fontWeight: "bold" }}>Project</span>
+            <span style={{ paddingLeft: 195, fontSize: "larger", fontWeight: "bold" }}>Pledge Amount</span>
+            {Object.values(userBackings).map(backing => (
+                <div key={backing.id}>
+                    <span key={backing.project_name}>{backing.project_name}</span>
+                    <span style={{ paddingLeft: 70 }} key={backing.backing_value}>{backing.backing_value}</span>
+                    <span style={{ paddingLeft: 110 }}><button>Edit Pledge</button></span>
+                    <span style={{ paddingLeft: 5 }}><button>Delete Pledge</button></span>
+                </div>
+            ))}
         </>
     )
 }
