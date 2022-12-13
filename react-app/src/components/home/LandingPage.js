@@ -10,8 +10,10 @@ const LandingPage = () => {
     return (
         <div>
             <CategoryBar />
-            <div>
+            <div className="landing-title">
                 <h1>Bring a creative project to life.</h1>
+            </div>
+            <div className="landing-subtitle">
                 <h3>ON KICKSTARTER:</h3>
             </div>
             <InfoBar />
