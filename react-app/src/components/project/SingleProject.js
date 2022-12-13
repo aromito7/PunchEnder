@@ -35,11 +35,23 @@ const SingleProject = () => {
                     </div>
                 </div>
                 <div className='pledgeSummary'>
-                    <span>{project.current_amount ? project.current_amount : '10000'} pledged of ${project.goal_amount ? project.goal_amount : '50000'}</span>
-                    <span>{project.end_date ? project.end_date : '12/02/23'}</span>
-                    <button id='singleProjectPledge'>Back this project</button>
-                    <button id='singleProjectReminder'>Remind me</button>
-                    <span id='singleProjectAllNone'>All or nothing. <span>This project will only be funded if it reaches its goal by {project.end_date}</span></span>
+                    <div className='pledgeAmount'>
+                        <span id='pledgeGreen'>${project.current_amount ? project.current_amount : '10000'} {' '}</span>
+                        <span id='pledgeGrey'>pledged of ${project.goal_amount ? project.goal_amount : '50000'} goal</span>
+                    </div>
+                    <div>
+                        <span>{project.end_date ? project.end_date : '12/02/23'}</span>
+                    </div>
+                    <div>
+                        <button id='singleProjectPledge'>Back this project</button>
+                    </div>
+                    <div>
+                        <button id='singleProjectReminder'>Remind me</button>
+                    </div>
+                    <div className='pledgeSummLow'>
+                        <span id='singleProjectAllNone'>All or nothing. {' '}</span>
+                        <span>This project will only be funded if it reaches its goal by {project.end_date}</span>
+                    </div>
                 </div>
             </div>
 
