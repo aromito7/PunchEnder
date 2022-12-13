@@ -19,7 +19,6 @@ def seed_rewards():
         user=[demouser]
     )
 
-
     bike = Reward(
         project_id=1,
         name='bicycle',
@@ -43,20 +42,6 @@ def seed_rewards():
         includes="1 vespa, 1 helmet",
         user=[demouser]
     )
-
-
-    demo2 = Reward(
-        project_id=1,
-        name='test',
-        quantity=10,
-        price_threshold=100,
-        shipping_date=datetime.now(),
-        description="test",
-        user=[demouser]
-    )
-
-    db.session.add(demo, demo2)
-
 
     db.session.add(scooter)
     db.session.add(bike)
