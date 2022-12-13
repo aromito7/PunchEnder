@@ -1,0 +1,50 @@
+.singleProject {
+  display: grid;
+  grid-template-rows: 20% 60% 20%;
+  grid-template-rows: 40px 500px 40px 40px 1fr;
+  grid-template-areas:
+  '. title .'
+  '. image .'
+  '. middle .'
+  '. nav .'
+  '. long side'
+}
+
+.singleProjectTopInfo {
+  display: grid;
+  grid-area: title;
+}
+
+.actualImageBox {
+  width: 10px;
+  height: 50px;
+}
+
+#actualImage {
+  object-fit: cover;
+}
+
+.singleProjectMiddleCards {
+  display: grid;
+  grid-area: image;
+}
+
+.singleProjectLowerMiddleInfo {
+  display: grid;
+  grid-area: middle;
+}
+
+.singleProjectLowerNavBar {
+  display: grid;
+  grid-area: nav;
+}
+
+.singleProjectStory {
+  display: grid;
+  grid-area: long;
+}
+
+.singleProjectSideBar {
+  display: grid;
+  grid-area: side;
+}
