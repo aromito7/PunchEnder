@@ -30,3 +30,27 @@ const actionDeleteBacking = (backing) => {
         payload: backing
     }
 }
+
+export const thunkGetAllBackings = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/backings`, {
+        method: 'GET'
+    })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(actionGetAllBackings(data))
+        return response
+    }
+}
+
+export default function userBackingsReducer(state = {}, action) {
+    let newState;
+    switch (action.type) {
+        case GET_BACKINGS:
+            const backingsObj = { ...state }
+            action.payload.backings.forEach(backing => backingsObj[backing.project_name] = backing)
+            newState = Object.assign({ ...state }, { ...backingsObj })
+            return newState
+        default:
+            return state
+    }
+}

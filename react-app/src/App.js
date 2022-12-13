@@ -10,6 +10,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Reward from './components/Reward';
+import UserBackings from './components/backings/UserBackings';
 import { authenticate } from './store/session';
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -44,13 +45,16 @@ function App() {
           <SingleProject />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
+        </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/backings' exact={true}>
+          <UserBackings />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
         <Route path='/projects/:projectId/rewards' exact={true} >
-          <Reward/>
+          <Reward />
         </Route>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
