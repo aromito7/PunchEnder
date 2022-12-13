@@ -34,10 +34,9 @@ def deleteProject(id):
 # CREATE a project
 @project_routes.route('/create', methods=['POST'])
 def create_project():
-    form = ProjectForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form_data = request.form
     if form.validate_on_submit():
-        print('FORM -------------> ', form.data)
+
         print("USER OBJECT ------> ", current_user.get_id())
         new_project = Project(
             owner_id=current_user.get_id(),

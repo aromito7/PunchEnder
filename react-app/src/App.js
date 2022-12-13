@@ -10,7 +10,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Reward from './components/Reward';
-import { authenticate } from './store/session';
+import * as sessionActions from './store/session';
+import LandingPage from './components/home/LandingPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -18,7 +19,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate());
+      await dispatch(sessionActions.authenticate());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -53,7 +54,7 @@ function App() {
           <Reward/>
         </Route>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <LandingPage />
         </Route>
         <Route path='/'>
           <h1>Error: 404 - page not found</h1>
