@@ -14,7 +14,7 @@ function UserBackings() {
     useEffect(() => {
         dispatch(thunkGetAllBackings(user.id))
     }, [dispatch, user.id])
-    // TODO:
+    // TODO: (most likely need to render another component for deleting and updating backings. Maybe a modal?)
     // const deleteBacking = (projectId, rewardId) => {
     //     dispatch(thunkDeleteBacking(projectId, rewardId))
     // }
