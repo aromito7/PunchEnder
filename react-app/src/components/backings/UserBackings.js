@@ -22,14 +22,14 @@ function UserBackings() {
             <table>
                 <tr>
                     <th style={{ textAlign: 'left' }}>Project</th>
-                    <th style={{ textAlign: 'left' }}>Pledge Amount</th>
-                    <th>Reward</th>
-                    <th>Status</th>
+                    <th style={{ textAlign: 'left', paddingLeft: 50 }}>Pledge Amount</th>
+                    {/* <th>Reward</th>
+                    <th>Status</th> */}
                 </tr>
                 {Object.values(userBackings).map(backing => (
                     <tr>
                         <td>{backing.project_name}</td>
-                        <td>${backing.backing_value}</td>
+                        <td style={{ paddingLeft: 50 }}>${backing.backing_value}</td>
                     </tr>
                 ))}
             </table>
