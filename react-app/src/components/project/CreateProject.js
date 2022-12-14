@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import actionAddProject from '../../store/allProjects'
 import IconBar from "./IconBar";
+
 
 function CreateProject() {
     const [name, setName] = useState("");
@@ -13,27 +16,29 @@ function CreateProject() {
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const history = useHistory();
+    const dispatch = useDispatch()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await fetch("/api/projects/create", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            name,
-            goal_amount,
-            current_amount,
-            end_date,
-            short_description,
-            long_description,
-            preview_image,
-            city,
-            state,
-        }),
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name,
+                goal_amount,
+                current_amount,
+                end_date,
+                short_description,
+                long_description,
+                preview_image,
+                city,
+                state,
+            }),
         });
         const data = await res.json();
+        dispatch(actionAddProject(data))
         window.print("DATA ---------------> ", data)
 
         history.push(`/projects/${data.id}/edit`)

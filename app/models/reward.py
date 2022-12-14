@@ -31,5 +31,6 @@ class Reward(db.Model):
             'shipping_date': self.shipping_date,
             'description': self.description,
             'includes': self.includes,
-            'ships_to': self.ships_to
+            'ships_to': self.ships_to,
+            'users' : len(self.user),
         }

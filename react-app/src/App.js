@@ -15,14 +15,15 @@ import UserBackings from './components/backings/UserBackings';
 import { authenticate } from './store/session';
 import * as sessionActions from './store/session';
 import LandingPage from './components/home/LandingPage';
-
+import AllProjects from './components/project/AllProjects';
+import RewardComponent from './components/reward/RewardComponent';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(sessionActions.authenticate());
       setLoaded(true);
     })();
@@ -42,6 +43,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/projects'>
+              <AllProjects />
+        </Route>
         <Route path='/projects/create' exact={true}>
           <CreateProject />
         </Route>
@@ -51,11 +55,17 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/backings' exact={true} >
+              <UserBackings />
+        </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
         <Route path='/projects/:projectId/rewards' exact={true} >
           <ProjectRewards/>
+        </Route>
+        <Route path='/rewards/:rewardId' exact={true} >
+          <RewardComponent/>
         </Route>
         <Route path='/' exact={true} >
           <LandingPage />

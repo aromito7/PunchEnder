@@ -9,9 +9,11 @@ project_routes = Blueprint('projects', __name__)
 # GET all projects
 
 
-@project_routes.route('/')
+@project_routes.route('/', strict_slashes=False)
 def getAllProjects():
+    print('TEST')
     projects = Project.query.all()
+    print(projects)
     return {'projects': [project.to_dict() for project in projects]}
 
 # GET a single project
@@ -111,7 +113,6 @@ def delete_backing(reward_id, id):
 # CREATE a project
 
 
-
 # @project_routes.route('/', methods=['POST'])
 # def create_project():
 #     form = ProjectForm()
@@ -172,4 +173,4 @@ def update_project(projectid):
         db.session.add(new_project)
         db.session.commit()
 
-        return updated_project.to_dict()
+        return new_project.to_dict()
