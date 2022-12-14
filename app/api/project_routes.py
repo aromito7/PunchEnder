@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from ..models import db, Project, User, Reward, backing_table
-from ..forms import ProjectForm
+from ..forms import ProjectForm, SearchForm
 from datetime import datetime, timedelta
 from flask_login import current_user
 
@@ -11,9 +11,7 @@ project_routes = Blueprint('projects', __name__)
 
 @project_routes.route('/', strict_slashes=False)
 def getAllProjects():
-    print('TEST')
     projects = Project.query.all()
-    print(projects)
     return {'projects': [project.to_dict() for project in projects]}
 
 # GET a single project
@@ -176,6 +174,8 @@ def update_project(projectid):
         return new_project.to_dict()
 
 
-@project_routes.route("/discover")
+@project_routes.route("/search", methods=["POST"])
 def search():
-    pass
+    search = dict(request.get_json())
+    print(search["searchParams"])
+    return {}

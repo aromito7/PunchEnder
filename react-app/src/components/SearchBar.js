@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "../css/NavBar.css"
+
 function SearchBar() {
     const [searchParams, setSearchParams] = useState('')
     const history = useHistory()
@@ -12,9 +13,18 @@ function SearchBar() {
         return queryStr
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         console.log(searchParams)
-        history.push(`/discover/?${queryMaker(searchParams)}`)
+        const response = await fetch(`/api/projects/search`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                searchParams
+            })
+        })
+        history.push(`projects/search?q=${queryMaker(searchParams)}`)
     }
 
     useEffect(() => {
@@ -33,9 +43,10 @@ function SearchBar() {
     console.log(searchParams)
     return (
         <form onSubmit={handleSubmit}>
-            <textarea
+            <input
                 className="search-bar"
                 type="text"
+                name="searchParams"
                 value={searchParams}
                 placeholder="Search by project owner or project name"
                 onChange={e => setSearchParams(e.target.value)}
