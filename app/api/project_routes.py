@@ -176,6 +176,13 @@ def update_project(projectid):
 
 @project_routes.route("/search", methods=["POST"])
 def search():
-    search = dict(request.get_json())
-    print(search["searchParams"])
+    searchParams = dict(request.get_json())
+
+    query = searchParams["searchParams"]
+
+    searchResults = Project.query.filter(
+        Project.name.like(f'%{query}%'),
+    ).all()
+
+    print(searchResults)
     return {}
