@@ -1,0 +1,39 @@
+@import "NavBar.css";
+@import "ProfileButton.css";
+@import "CategoryBar.css";
+@import "InfoBar.css";
+@import "FeaturedProduct.css";
+@import "Login.css";
+@import "Signup.css";
+@import "CreateProject.css";
+
+html {
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+      "Liberation Sans", FreeSans, sans-serif;
+    font-size: 62.5%;
+    font-weight: 400;
+    line-height: 1;
+    max-height: 100%;
+  }
+
+  body {
+
+    max-height: 100vh;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: #282828;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+
+
+nav a{
+        text-decoration:none;
+        color: #282828;
+        margin-left: 2em;
+}

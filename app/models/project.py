@@ -29,11 +29,12 @@ class Project(db.Model):
       'name': self.name,
       'goal_amount': self.goal_amount,
       'current_amount': self.current_amount,
-      'start_date': self.start_date,
-      'end_date': self.end_date,
+      'start_date': self.start_date.isoformat(),
+      'end_date': self.end_date.isoformat(),
       'short_description': self.short_description,
       'long_description': self.long_description,
       'preview_image': self.preview_image,
       'city': self.city,
-      'state': self.state
+      'state': self.state,
+      'rewards': [r.to_dict() for r in self.reward]
     }

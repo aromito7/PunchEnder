@@ -40,7 +40,7 @@ class RewardsForm(FlaskForm):
             raise ValidationError("Ships to is not a valid option")
 
     def validate_contains(self, contains):
-        if not re.search(r"^([0-9]+ [^,]*)?(, [0-9]+ [^,]*)*$", contains):
+        if not re.search(r"^(([0-9]+ )?[^,]*)?(, [0-9]+ [^,]*)*$", contains):
             raise ValidationError("Not valid items to contain")
 
 
