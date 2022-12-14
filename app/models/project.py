@@ -35,5 +35,6 @@ class Project(db.Model):
       'long_description': self.long_description,
       'preview_image': self.preview_image,
       'city': self.city,
-      'state': self.state
+      'state': self.state,
+      'rewards': [r.to_dict() for r in self.reward]
     }
