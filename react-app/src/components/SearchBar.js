@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "../css/NavBar.css"
+import SearchResults from "./SearchResults";
 
 function SearchBar() {
     const [searchParams, setSearchParams] = useState('')
+    const [results, setResults] = useState(null)
+    const [mountResults, setMountResults] = useState(false)
+
     const history = useHistory()
 
     const queryMaker = (searchString) => {
@@ -24,7 +28,11 @@ function SearchBar() {
                 searchParams
             })
         })
-        history.push(`projects/search?q=${queryMaker(searchParams)}`)
+        const data = response.json()
+        console.log(data[0])
+        setResults(data)
+        setMountResults(true)
+
     }
 
     useEffect(() => {
@@ -42,16 +50,24 @@ function SearchBar() {
 
     console.log(searchParams)
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                className="search-bar"
-                type="text"
-                name="searchParams"
-                value={searchParams}
-                placeholder="Search by project owner or project name"
-                onChange={e => setSearchParams(e.target.value)}
-            />
-        </form>
+        <>
+            <form onSubmit={handleSubmit}>
+                <input
+                    className="search-bar"
+                    type="text"
+                    name="searchParams"
+                    value={searchParams}
+                    placeholder="Search by project owner or project name"
+                    onChange={e => setSearchParams(e.target.value)}
+                />
+            </form>
+            {
+                mountResults && (
+                    <SearchResults projects={results} />
+                )
+            }
+        </>
+
     )
 }
 

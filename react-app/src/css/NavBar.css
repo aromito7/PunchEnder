@@ -252,7 +252,9 @@
 
 
 .close-search-button {
-  z-index: 99;
+  z-index: 98;
   border: none;
   background-color: #fff;
 }
+
+.results-container {}
