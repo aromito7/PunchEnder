@@ -61,7 +61,7 @@ const RewardComponent = ({reward}) => {
             </div>
             <div id="rewards-boxen">
                 <p id="rewards-backers-box">{`${reward.users} backer` + (reward.users == 1 ? '' : 's')}</p>
-                {remaining <= 50 && (
+                {remaining <= 50 && remaining < reward.quantity && (
                     <p id="rewards-remaining-box">
                         {`Limited (${remaining} left out of ${reward.quantity})`}
                     </p>
