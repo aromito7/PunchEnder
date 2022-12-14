@@ -1,24 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import '../../css/RewardComponent.css';
+import './RewardComponent.css';
 
-const RewardComponent = ({id}) => {
-    const {rewardId} = useParams()
-    if(!id) id = rewardId
-    const [reward, setReward] = useState(null)
-    useEffect(() => {
-        if (!rewardId) {
-            return;
-            }
-            (async () => {
-            const response = await fetch(`/api/rewards/${id}`);
-            const {rewards} = await response.json();
-            setReward(rewards[0]);
-            })();
+const RewardComponent = ({reward}) => {
+    // const {rewardId} = useParams()
+    // if(!id) id = rewardId
+    // const [reward, setReward] = useState(reward)
+    // useEffect(() => {
+    //     if (!rewardId) {
+    //         return;
+    //         }
+    //         (async () => {
+    //         const response = await fetch(`/api/rewards/${id}`);
+    //         const {rewards} = await response.json();
+    //         console.log(rewards)
+    //         setReward(rewards[0]);
+    //         })();
 
-        }, [rewardId]);
+    //     }, [rewardId]);
 
-    if(!reward) return "Hello, null!"
+    if(!reward) return `Hello, reward`
     const remaining = reward.quantity - reward.users
     const includes = reward.includes.split(', ')
     return (

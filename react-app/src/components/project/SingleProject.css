@@ -77,6 +77,9 @@
   font-size: 1.125rem;
 }
 
+.pledgeComponent{
+}
+
 #singleProjectAllNone {
   text-decoration: underline;
 }
@@ -94,12 +97,18 @@
   grid-area: nav;
 }
 
-.singleProjectStory {
+.singleProjectBottomInfo {
   display: grid;
+  grid-template-columns: 3fr 1fr;
   grid-area: long;
+  column-gap: 50px;
 }
 
 .singleProjectSideBar {
   display: grid;
   grid-area: side;
+}
+
+.ownerBox{
+  border: thin solid black;
 }
