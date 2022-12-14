@@ -7,3 +7,6 @@ backing_table = Table('backings',
                       Column("user_id", ForeignKey(
                           "users.id"), primary_key=True),
                       Column("reward_id", ForeignKey("rewards.id"), primary_key=True))
+
+if environment == "production":
+    backing_table.schema = SCHEMA
