@@ -36,5 +36,6 @@ class Project(db.Model):
       'preview_image': self.preview_image,
       'city': self.city,
       'state': self.state,
-      'rewards': [r.to_dict() for r in self.reward]
+      'rewards': [r.to_dict() for r in self.reward],
+      #'owner': [self.owner.to_dict()],
     }

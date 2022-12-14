@@ -1,5 +1,3 @@
-import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
 import './RewardComponent.css';
 
 const RewardComponent = ({reward}) => {
@@ -60,7 +58,7 @@ const RewardComponent = ({reward}) => {
                 </div>
             </div>
             <div id="rewards-boxen">
-                <p id="rewards-backers-box">{`${reward.users} backer` + (reward.users == 1 ? '' : 's')}</p>
+                <p id="rewards-backers-box">{`${reward.users} backer` + (reward.users === 1 ? '' : 's')}</p>
                 {remaining <= 50 && remaining < reward.quantity && (
                     <p id="rewards-remaining-box">
                         {`Limited (${remaining} left out of ${reward.quantity})`}
