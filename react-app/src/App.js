@@ -4,20 +4,27 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import SingleProject from './components/project/SingleProject';
+import CreateProject from './components/project/CreateProject';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import Reward from './components/Reward';
+import ProjectRewards from './components/reward/ProjectRewards';
+import CreateReward from './components/reward/CreateReward';
+import UserBackings from './components/backings/UserBackings';
 import { authenticate } from './store/session';
+import * as sessionActions from './store/session';
+import LandingPage from './components/home/LandingPage';
+import AllProjects from './components/project/AllProjects';
+import RewardComponent from './components/reward/RewardComponent';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
-      await dispatch(authenticate());
+    (async () => {
+      await dispatch(sessionActions.authenticate());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -39,17 +46,29 @@ function App() {
         <Route path='/projects/:id' exact={true}>
           <SingleProject />
         </Route>
+        <Route path='/projects'>
+              <AllProjects />
+        </Route>
+        <Route path='/projects/create' exact={true}>
+          <CreateProject />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/backings' exact={true} >
+              <UserBackings />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
         <Route path='/projects/:projectId/rewards' exact={true} >
-          <Reward/>
+          <ProjectRewards/>
+        </Route>
+        <Route path='/rewards/:rewardId' exact={true} >
+          <RewardComponent/>
         </Route>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <LandingPage />
         </Route>
         <Route path='/'>
           <h1>Error: 404 - page not found</h1>
