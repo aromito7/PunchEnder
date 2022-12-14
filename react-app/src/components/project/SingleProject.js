@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import './SingleProject.css'
-
+import reminder from '../../images/reminder.png'
+import nav1 from '../../images/nav1.png'
+import nav2 from '../../images/nav2.png'
+import nav3 from '../../images/nav3.png'
 
 const SingleProject = () => {
     const { id } = useParams();
@@ -36,8 +39,8 @@ const SingleProject = () => {
                 </div>
                 <div className='pledgeSummary'>
                     <div className='pledgeAmount'>
-                        <span id='pledgeGreen'>${project.current_amount ? project.current_amount : '10000'} {' '}</span>
-                        <span id='pledgeGrey'>pledged of ${project.goal_amount ? project.goal_amount : '50000'} goal</span>
+                        <span id='pledgeGreen'>${project.current_amount ? project.current_amount : '10000'}</span>
+                        <span id='pledgeGrey'>{' '} pledged of ${project.goal_amount ? project.goal_amount : '50000'} goal</span>
                     </div>
                     <div>
                         <span>{project.end_date ? project.end_date : '12/02/23'}</span>
@@ -45,8 +48,8 @@ const SingleProject = () => {
                     <div>
                         <button id='singleProjectPledge'>Back this project</button>
                     </div>
-                    <div>
-                        <button id='singleProjectReminder'>Remind me</button>
+                    <div id='reminderButtonWrapper'>
+                        <button id='singleProjectReminder'><img id='buttonReminder' src={reminder} />Remind me</button>
                     </div>
                     <div className='pledgeSummLow'>
                         <span id='singleProjectAllNone'>All or nothing. {' '}</span>
@@ -56,28 +59,37 @@ const SingleProject = () => {
             </div>
 
             <div className='singleProjectLowerMiddleInfo'>
-                <p>
-                    Kickstarter connects creators with backers to fund projects.
-                </p>
-                <p>
-                    Rewards aren't guaranteed, but creators must regularly update backers.
-                </p>
-                <p>
-                    You're only charged if the project meets its funding goal by the campaign deadline.
-                </p>
+                <div className='lowerMiddleWrapper'>
+                    <img className='lowerMiddleIcons' src={nav1} />
+                    <p>
+                        Kickstarter connects creators with backers to fund projects.
+                    </p>
+                </div>
+                <div className='lowerMiddleWrapper'>
+                    <img className='lowerMiddleIcons' src={nav2} />
+                    <p>
+                        Rewards aren't guaranteed, but creators must regularly update backers.
+                    </p>
+                </div>
+                <div className='lowerMiddleWrapper'>
+                    <img className='lowerMiddleIcons' src={nav3} />
+                    <p>
+                        You're only charged if the project meets its funding goal by the campaign deadline.
+                    </p>
+                </div>
             </div>
 
             <div className='singleProjectLowerNavBar'>
                 <div className='lowerNavBarTabs'>
-                    <span>Campaign</span>
-                    <span>FAQ</span>
-                    <span>Updates</span>
-                    <span>Comments</span>
-                    <span>Community</span>
+                    <p>Campaign</p>
+                    <p>FAQ</p>
+                    <p>Updates</p>
+                    <p>Comments</p>
+                    <p>Community</p>
                 </div>
                 <div className='lowerNavBarButtons'>
                     <button id='lowerPledgeButton'>Back this project</button>
-                    <button id='lowerRemindButton'>Remind me</button>
+                    <button id='lowerRemindButton'><img id='lowerButtonReminder' src={reminder} />Remind me</button>
                 </div>
             </div>
 
