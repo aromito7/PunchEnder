@@ -7,6 +7,12 @@
     z-index: 1;
   }
 
+  .navlink-helper {
+    text-decoration: none;
+    color: #282828;
+  }
+
+
   .navbar li a {
     color: #282828;
   }
@@ -196,6 +202,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 0rem;
+    margin-right: 6rem;
     text-decoration: none;
     color: #2cf803;
     font-size: 2.5rem;
