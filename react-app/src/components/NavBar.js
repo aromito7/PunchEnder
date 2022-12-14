@@ -46,7 +46,7 @@ const NavBar = () => {
           <section className="navbar__right-links-container">
             <div className="navbar__right-links-list">
               <div className="navbar__navlink-search-container">
-                <button onClick={showSearchBar} className='navbar__navlink-search'>
+                <button className="search-button" onClick={showSearchBar}>
                   Search
                 </button>
                 {showSearch && (

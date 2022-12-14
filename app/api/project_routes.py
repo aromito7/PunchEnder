@@ -174,3 +174,8 @@ def update_project(projectid):
         db.session.commit()
 
         return new_project.to_dict()
+
+
+@project_routes.route("/discover")
+def search():
+    pass
