@@ -5,11 +5,16 @@ function SearchBar() {
     const [searchParams, setSearchParams] = useState('')
     const history = useHistory()
 
-    const handleSubmit = (e) => {
-        history.push({
-            pathname: '/discover',
-            search: `?${searchParams}`
-        })
+    const queryMaker = (searchString) => {
+        const searchArr = searchString.split(' ')
+        const queryStr = searchArr.join('+')
+        console.log(queryStr)
+        return queryStr
+    }
+
+    const handleSubmit = () => {
+        console.log(searchParams)
+        history.push(`/discover/?${queryMaker(searchParams)}`)
     }
 
     useEffect(() => {
@@ -21,7 +26,8 @@ function SearchBar() {
         }
         document.addEventListener('keydown', enterSubmit)
         return () => document.removeEventListener('keydown', enterSubmit)
-    }, [])
+    }, [searchParams])
+
 
 
     console.log(searchParams)
@@ -31,7 +37,7 @@ function SearchBar() {
                 className="search-bar"
                 type="text"
                 value={searchParams}
-                placeholder="Search by user name or project"
+                placeholder="Search by project owner or project name"
                 onChange={e => setSearchParams(e.target.value)}
             />
         </form>
