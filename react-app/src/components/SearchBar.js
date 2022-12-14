@@ -22,6 +22,8 @@ function SearchBar() {
         document.addEventListener('keydown', enterSubmit)
         return () => document.removeEventListener('keydown', enterSubmit)
     }, [])
+
+
     console.log(searchParams)
     return (
         <form onSubmit={handleSubmit}>
