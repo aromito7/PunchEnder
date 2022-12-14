@@ -169,8 +169,8 @@
   height: 3rem;
 }
 .singleProjectStory {
-  display: grid;
-  grid-area: long;
+  width: 80%;
+  margin-top: 2rem;
 }
 
 .singleProjectSideBar {

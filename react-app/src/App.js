@@ -43,14 +43,14 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/projects/:id' exact={true}>
+          <SingleProject />
+        </Route>
         <Route path='/projects'>
               <AllProjects />
         </Route>
         <Route path='/projects/create' exact={true}>
           <CreateProject />
-        </Route>
-        <Route path='/projects/:id' exact={true}>
-          <SingleProject />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
