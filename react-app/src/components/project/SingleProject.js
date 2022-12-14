@@ -5,12 +5,13 @@ import reminder from '../../images/reminder.png'
 import nav1 from '../../images/nav1.png'
 import nav2 from '../../images/nav2.png'
 import nav3 from '../../images/nav3.png'
+import RewardComponent from '../reward/RewardComponent'
 
 const SingleProject = () => {
     const { id } = useParams();
     const history = useHistory();
 
-    const [project, setProject] = useState({});
+    const [project, setProject] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -21,6 +22,7 @@ const SingleProject = () => {
         })();
     }, [id]);
 
+    if(!project) return null
     return (
         <div className='singleProject'>
             <div className='singleProjectTopInfo'>
@@ -93,16 +95,29 @@ const SingleProject = () => {
                 </div>
             </div>
 
-            <div className='singleProjectStory'>
-                <p id='singleProjectLonDesc'>{project.long_description ? project.long_description : "Amazing project"}</p>
-            </div>
-
-            <div className='singleProjectSidebar'>
-                <div className='ownerBox'>
-                    <span>{project.owner ? project.owner : "Bob"}</span>
+            <div className='singleProjectBottomInfo'>
+                <div className=''>
+                    <p id='singleProjectLonDesc'>{project.long_description ? project.long_description : "Amazing project"}</p>
                 </div>
-                <div className='pledgeComponent'>
-                    {/* INSERT PLEDGE COMPONENT HERE */}
+                <div className='singleProjectSidebar'>
+                    <div className='ownerBox'>
+                        <p>
+                            {project.owner ? project.owner : "Bob"}
+                        </p>
+                        <p>
+                            First Created &#x2022; 9 backed
+                        </p>
+                        <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                    <h2>Support</h2>
+                    <div className='pledgeComponent'>
+                        {project.rewards.map(reward => {
+                            return <RewardComponent reward={reward}/>
+                        })}
+                        {false && <RewardComponent reward={project.rewards[0]}/>}
+                    </div>
                 </div>
             </div>
 

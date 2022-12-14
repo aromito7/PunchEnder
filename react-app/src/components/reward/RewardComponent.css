@@ -1,9 +1,9 @@
 .reward-component{
     max-width: 250px;
     border: thin solid grey;
-    margin: 100px 100px auto auto;
     padding: 10px 20px 20px 20px;
     font-size: 16px;
+    margin-top: 20px;
 }
 
 .reward-name{
