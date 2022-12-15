@@ -106,6 +106,7 @@ function UpdateProject() {
                                         value={short_description}
                                         className="short-desc-input"
                                         placeholder="A feature-length documentary film following Suzy Hotrod and the fun, fearless women of Gotham Girls Roller Derby in NYC."
+                                        onChange={(e) => setShortDescription(e.target.value)}
                                         required
                                     />
                                 </label>
