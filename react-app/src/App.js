@@ -17,7 +17,9 @@ import * as sessionActions from './store/session';
 import LandingPage from './components/home/LandingPage';
 import AllProjects from './components/project/AllProjects';
 import RewardComponent from './components/reward/RewardComponent';
+import EditRewards from './components/backings/EditBacking';
 import Update from './components/updates/update';
+import UpdateProject from './components/project/UpdateProject';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,6 +46,12 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/projects/:id/update' exact={true}>
+          <UpdateProject />
+        </Route>
+        <Route path='/projects/:id/rewards/edit' exact={true}>
+          <EditRewards />
+        </Route>
         <Route path='/updates' exact={true}>
           <Update />
         </Route>
@@ -57,22 +65,22 @@ function App() {
           <SingleProject />
         </Route>
         <Route path='/projects' exact={true}>
-              <AllProjects />
+          <AllProjects />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId/backings' exact={true} >
-              <UserBackings />
+          <UserBackings />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
         <Route path='/projects/:projectId/rewards' exact={true} >
-          <ProjectRewards/>
+          <ProjectRewards />
         </Route>
         <Route path='/rewards/:rewardId' exact={true} >
-          <RewardComponent/>
+          <RewardComponent />
         </Route>
         <Route path='/' exact={true} >
           <LandingPage />

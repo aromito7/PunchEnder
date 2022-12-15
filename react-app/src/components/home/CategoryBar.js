@@ -9,7 +9,7 @@ const CategoryBar = () => {
                     <nav className="quick-select__navigation">
                         <ul className="quick-select__navigation-list">
                             <li className="quick-select__navigation-link">
-                                <NavLink to="/projects/categories/art" className="quick-select__navigation-navlink">Arts</NavLink>
+                                <NavLink to="/projects/categories/arts" className="quick-select__navigation-navlink">Arts</NavLink>
                             </li>
                             <li className="quick-select__navigation-link">
                                 <NavLink to="/projects/categories/comicsillustration" className="quick-select__navigation-navlink">Comics & Illustration</NavLink>
