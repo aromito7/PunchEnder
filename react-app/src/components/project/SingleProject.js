@@ -99,7 +99,7 @@ const SingleProject = () => {
                     <p id='singleProjectLonDesc'>{project.long_description ? project.long_description : "Amazing project"}</p>
                 </div>
                 <div className='singleProjectSidebar'>
-                    {true && <div className='ownerBox'>
+                    {false && <div className='ownerBox'>
                         <p>
                             {project.owner ? project.owner : "Bob"}
                         </p>
@@ -112,8 +112,8 @@ const SingleProject = () => {
                     </div>}
                     <h2>Support</h2>
                     <div className='pledgeComponent'>
-                        {project.rewards.map(reward => {
-                            return <RewardComponent reward={reward}/>
+                        {project.rewards.map((reward, i) => {
+                            return <RewardComponent reward={reward} key={i}/>
                         })}
                         {false && <RewardComponent reward={project.rewards[0]}/>}
                     </div>
