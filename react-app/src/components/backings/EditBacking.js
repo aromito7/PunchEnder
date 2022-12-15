@@ -51,7 +51,7 @@ const EditRewards = () => {
                                 {reward.description}
                             </li>
                         </ul>
-                        <button type="submit" id='select-reward'>Select</button>
+                        <button id='select-reward'>Select</button>
                         {/* <button onClick={toggleClick(reward.id)} id='select-reward'>Select</button> */}
                     </div>
                 ))}

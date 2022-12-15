@@ -13,13 +13,12 @@ function UserBackings() {
 
     useEffect(() => {
         dispatch(thunkGetAllBackings(user.id))
-    }, [])
-    // TODO: (most likely need to render another component for deleting and updating backings. Maybe a modal?)
+    }, [dispatch])
+
     // const deleteBacking = (projectId, rewardId) => {
     //     dispatch(thunkDeleteBacking(projectId, rewardId))
     // }
 
-    // Might have to change from displaying data as a table to either a list or divs
     return (
         <>
             <h1 style={{ marginTop: "100px" }}>Projects You Back</h1>
@@ -32,7 +31,7 @@ function UserBackings() {
                         <div id="price" key={backing.backing_value}>${backing.backing_value}</div>
                         <div id="reward" key={backing.reward}>Reward: {backing.reward}</div>
                         <span><Link to={`/projects/${backing.project_id}/rewards/edit`} id='edit'>Edit Pledge</Link></span>
-                        <span><button id='delete'>Delete Pledge</button></span>
+                        {/* <span><button onClick={deleteBacking(backing.project_id, backing.reward_id)} id='delete'>Delete Pledge</button></span> */}
                     </div>
                 ))}
             </div>
