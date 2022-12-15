@@ -10,6 +10,7 @@ def seed_projects():
         current_amount=4500,
         start_date=datetime.now(),
         end_date=datetime.now() + timedelta(days = 365),
+        categories= "Arts, Design & Tech",
         short_description="Hello, seeder files!",
         long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit. Pulvinar sapien et ligula ullamcorper malesuada proin libero nunc. Ac orci phasellus egestas tellus rutrum tellus pellentesque. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi. Facilisi cras fermentum odio eu. Ac odio tempor orci dapibus ultrices in iaculis nunc sed. Molestie nunc non blandit massa enim nec. Tristique magna sit amet purus gravida quis blandit turpis. Est ultricies integer quis auctor elit sed vulputate mi sit. Tellus elementum sagittis vitae et.
 
@@ -31,6 +32,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         current_amount=12345678,
         start_date=datetime.now(),
         end_date=datetime.now() + timedelta(days = 1800),
+        categories= "Film, Design & Tech",
         short_description="Perfect for amphibeous travelling!",
         long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit.""",
         preview_image="https://www.motortrend.com/uploads/sites/5/2020/04/Watercar-Panther-amphibious-car-05.jpg?fit=around%7C875:492",
@@ -44,6 +46,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         current_amount=888888888,
         start_date=datetime.now(),
         end_date=datetime.now() + timedelta(days = 1100),
+        categories= "Film, Design & Tech",
         short_description="Now everyone can enjoy a movie on a roadtrip!",
         long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit. Pulvinar sapien et ligula ullamcorper malesuada proin libero nunc. Ac orci phasellus egestas tellus rutrum tellus pellentesque. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi. Facilisi cras fermentum odio eu. Ac odio tempor orci dapibus ultrices in iaculis nunc sed. Molestie nunc non blandit massa enim nec. Tristique magna sit amet purus gravida quis blandit turpis. Est ultricies integer quis auctor elit sed vulputate mi sit. Tellus elementum sagittis vitae et.
 
@@ -65,6 +68,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         current_amount=845668,
         start_date=datetime.now(),
         end_date=datetime.now() + timedelta(days = 180),
+        categories= "Food & Craft, Design & Tech",
         short_description="Glass interior, a cool insulating exterior, different tops, secret compartment, tea infusion and 5 other features you will love!",
         long_description="""Introducing TMB | The Modular Bottle
 
@@ -121,6 +125,7 @@ Because it's modular you will be able to replace or upgrade any parts without ne
         current_amount=888888888,
         start_date=datetime.now(),
         end_date=datetime.now() + timedelta(days = 1100),
+        categories= "Film, Design & Tech",
         short_description="Long overdue since 2015.",
         long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit. Pulvinar sapien et ligula ullamcorper malesuada proin libero nunc. Ac orci phasellus egestas tellus rutrum tellus pellentesque. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi. Facilisi cras fermentum odio eu. Ac odio tempor orci dapibus ultrices in iaculis nunc sed. Molestie nunc non blandit massa enim nec. Tristique magna sit amet purus gravida quis blandit turpis. Est ultricies integer quis auctor elit sed vulputate mi sit. Tellus elementum sagittis vitae et.
 

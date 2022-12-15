@@ -2,7 +2,7 @@
 
 
 Revision ID: b4c919050186
-Revises: 
+Revises:
 Create Date: 2022-12-12 13:21:53.605240
 
 """
@@ -36,6 +36,7 @@ def upgrade():
     sa.Column('current_amount', sa.Integer(), nullable=False),
     sa.Column('start_date', sa.DateTime(), nullable=False),
     sa.Column('end_date', sa.DateTime(), nullable=False),
+    sa.Column('categories', sa.String(length=500), nullable=False),
     sa.Column('short_description', sa.String(length=250), nullable=False),
     sa.Column('long_description', sa.String(length=50000), nullable=False),
     sa.Column('preview_image', sa.String(length=100), nullable=False),
@@ -52,7 +53,7 @@ def upgrade():
     sa.Column('price_threshold', sa.Integer(), nullable=False),
     sa.Column('shipping_date', sa.DateTime(), nullable=False),
     sa.Column('ships_to', sa.String(length=50), nullable=False),
-    sa.Column('includes', sa.String(length=500), nullable=False),
+    sa.Column('includes', sa.String(length=500)),
     sa.Column('description', sa.String(length=50000), nullable=False),
     sa.ForeignKeyConstraint(['project_id'], ['projects.id'], ),
     sa.PrimaryKeyConstraint('id')

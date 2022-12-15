@@ -122,7 +122,8 @@ def delete_backing(reward_id, id):
 
 @project_routes.route('/create', methods=['POST'])
 def create_project():
-    form_data = request.form
+    form = request.form
+    print(f'Form: {form}')
     if form.validate_on_submit():
         print("USER OBJECT ------> ", current_user.get_id())
         new_project = Project(

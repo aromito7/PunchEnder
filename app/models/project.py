@@ -11,6 +11,7 @@ class Project(db.Model):
   current_amount = db.Column(db.Integer, nullable=False)
   start_date = db.Column(db.DateTime, nullable=False, default=datetime.now())
   end_date = db.Column(db.DateTime, nullable=False)
+  categories = db.Column(db.String(500), nullable=False)
   short_description = db.Column(db.String(250), nullable=False)
   long_description = db.Column(db.String(50000), nullable=False)
   preview_image = db.Column(db.String(100), nullable=False)
