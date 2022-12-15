@@ -3,6 +3,7 @@ from ..models import db, Project, User, Reward, backing_table
 from ..forms import ProjectForm
 from datetime import datetime, timedelta
 from flask_login import current_user
+import json
 
 project_routes = Blueprint('projects', __name__)
 
@@ -122,56 +123,41 @@ def delete_backing(reward_id, id):
 
 @project_routes.route('/create', methods=['POST'])
 def create_project():
-    form = request.form
-    print(f'Form: {form}')
-    if form.validate_on_submit():
-        print("USER OBJECT ------> ", current_user.get_id())
-        new_project = Project(
-            owner_id=current_user.get_id(),
-            name=form.data['name'],
-            goal_amount=form.data['goal_amount'],
-            current_amount=form.data['current_amount'],
-            end_date=(datetime.now() + timedelta(days=30)).isoformat(),
-            short_description=form.data['short_description'],
-            long_description=form.data['long_description'],
-            preview_image=form.data['preview_image'],
-            city=form.data['city'],
-            state=form.data['state']
-        )
-        print("NEW PROJECT --------------> ", new_project)
-        print("END DATE -------------> ", new_project.end_date)
-        db.session.add(new_project)
-        db.session.commit()
-        return new_project.to_dict()
-    print(form.errors)
-    return jsonify(form.errors)
+    data = json.loads(request.data.decode("utf-8"))
+    #for key in data.keys():
+        #form[key] = data[key]
+        #print(key, data[key])
+    new_project = Project(
+        owner_id=current_user.get_id(),
+        name=data['name'],
+        goal_amount=data['goal_amount'],
+        current_amount=data['current_amount'],
+        start_date=datetime.now(),
+        end_date=(datetime.now() + timedelta(days=30)),
+        short_description=data['short_description'],
+        long_description=data['long_description'],
+        preview_image=data['preview_image'],
+        city=data['city'],
+        state=data['state']
+    )
+    print("NEW PROJECT --------------> ", new_project)
+    print("END DATE -------------> ", new_project.end_date)
+    db.session.add(new_project)
+    db.session.commit()
+    return new_project.to_dict()
 
 
 # UPDATE a project
 
 
-@project_routes.route('/<projectid>', methods=['PUT'])
+@project_routes.route('/<projectid>/update', methods=['PUT'])
 def update_project(projectid):
-    form = ProjectForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    updated_project = db.session.query(projectid)
-    if form.validate_on_submit():
-        print('FORM -------------> ', form.data)
-        print("USER OBJECT ------> ", current_user.get_id())
-        new_project = updated_project(
-            name=form.data['name'],
-            goal_amount=form.data['goal_amount'],
-            current_amount=form.data['current_amount'],
-            end_date=form.data['end_date'],
-            short_description=form.data["short_description"],
-            long_description=form.data['long_description'],
-            preview_image=form.data['preview_image'],
-            city=form.data['city'],
-            state=form.data['state']
-        )
-        print("NEW PROJECT --------------> ", new_project)
-        print("END DATE -------------> ", new_project.end_date)
-        db.session.add(new_project)
-        db.session.commit()
+    data = json.loads(request.data.decode("utf-8"))
+    project = Project.query.get_id(projectid)
+    for key in data.keys():
+        print(key, data[key])
+        project[key] = data[key]
 
-        return new_project.to_dict()
+    print("Updated PROJECT --------------> ", project)
+    db.session.commit()
+    return project.to_dict()

@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import actionAddProject from '../../store/allProjects'
 import IconBar from "./IconBar";
-
 
 function CreateProject() {
     const [name, setName] = useState("");
@@ -15,11 +14,30 @@ function CreateProject() {
     const [preview_image, setPreviewImage] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
+    const [errors, setErrors] = useState([]);
+    const [nameError, setNameError] = useState('');
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const history = useHistory();
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        const validationErrors = []
+
+        if(name.length < 2) setNameError("Name must be at least 2 characters")//validationErrors.push("Name must be at least 2 characters")
+        else if(name.length > 50) setNameError("Name must be at most 50 characters")//validationErrors.push("Name must be 50 characters at most")
+        if(goal_amount < 1) validationErrors.push("Goal must be a positive number")
+        if(current_amount < 1) validationErrors.push("Current amount must be a positive number")
+        if(current_amount >= goal_amount) validationErrors.push("Current amount must be less than the goal")
+        if(short_description.length < 50) validationErrors.push("Short description must be at least 50 characters")
+        if(long_description.length < 100) validationErrors.push("Long description must be at least 100 characters")
+        if(!preview_image.match(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)) errors.push("Preview image must be a valid URL")
+        setErrors(errors)
+    },[name, goal_amount, current_amount, short_description, long_description, preview_image, city, state])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setHasSubmitted(true)
+        if(errors.length > 0) return
         const res = await fetch("/api/projects/create", {
             method: "POST",
             headers: {
@@ -41,7 +59,7 @@ function CreateProject() {
         dispatch(actionAddProject(data))
         window.print("DATA ---------------> ", data)
 
-        history.push(`/projects/${data.id}/edit`)
+        history.push(`/projects/${data.id}`)
 
     };
 
@@ -54,7 +72,7 @@ function CreateProject() {
                     <h2 className="h2-help">Make it easy for people to learn about your project.</h2>
                 </div>
                 <div className="create-project-form__header">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} formNoValidate="formNoValidate">
                         <div className="float-container">
                             <div className="float-child">
                                 <h2>
@@ -79,6 +97,7 @@ function CreateProject() {
                                     required
                                     />
                                 </label>
+                                {hasSubmitted && nameError && <p>{nameError}</p>}
                                 <label className="title-label">
                                     Subtitle
                                     <textarea
