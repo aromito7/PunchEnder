@@ -14,23 +14,23 @@ const FeaturedProduct = () => {
     }, []);
 
     return (
-        <div>
-            <div>
-                Featured Product
-            </div>
-        <NavLink to="/projects/1">
-            <img src="https://ksr-ugc.imgix.net/assets/039/359/210/ecde97b50494f1ac56df06ef17a4de10_original.jpg?ixlib=rb-4.0.2&w=680&fit=max&v=16698268
-            19&gif-q=50&q=92&s=91599c28af28e843daae40c20d2f31a2" alt="test" width="600em" height="300em"></img>
-            <div>
-                {project.name}
-            </div>
-            <div>
-                {project.short_description}
-            </div>
-            <div>
-             by {project.owner_id}
-            </div>
-        </NavLink>
+        <div className="featured-wrapper">
+            <NavLink to="/projects/1">
+                <div className="featured-title">
+                    FEATURED PROJECT
+                </div>
+                <img src="https://ksr-ugc.imgix.net/assets/038/978/341/0601b5cc655b7625b2337fe29e8c735e_original.png?ixlib=rb-4.0.2&w=680&fit=max&v=1666301780&gif-q=50&lossless=true&s=1e4e364707870e8edadc887f1f128779"
+                alt="test" width="165%" height="60%"></img>
+                <div className="featured-name">
+                    {project.name}
+                </div>
+                <div>
+                    {project.short_description}
+                </div>
+                <div>
+                by {project.owner_id}
+                </div>
+            </NavLink>
         {/* Need to add name and short description */}
         </div>
     );

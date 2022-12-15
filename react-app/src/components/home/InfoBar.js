@@ -3,7 +3,7 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 
 
 const InfoBar = () => {
-    const [projects, setProjects] = useState({});
+    const [projects, setProjects] = useState([]);
     const [projectsFunded, setProjectsFunded] = useState(0);
     const [total, setTotal] = useState(0);
     const [totalPledges, setTotalPledges] = useState(0);
@@ -14,11 +14,11 @@ const InfoBar = () => {
             const data = await res.json();
             console.log("THE PROJECT DATA ----------> ", data)
             setProjects(data.projects);
-            let total = 0;
-            for (let project of Object.values(projects)) {
-                total += project.current_amount;
+            let total1 = 0;
+            for (let project of projects) {
+                total1 += project.current_amount;
             }
-            setTotal(total);
+            setTotal(total1);
         })();
     }, []);
 
@@ -26,11 +26,13 @@ const InfoBar = () => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
+    if (projects.length < 1) return null;
+
     return (
         <div className='info-bar-wrapper'>
            <div className='info-bar-box'>
                 <div className='green-giant'>
-                    {/* {numberWithCommas(projects.length)} */}
+                    {/* {projects.length.toLocaleString()} */}
                 </div>
                 <div>
                     projects funded
@@ -39,7 +41,7 @@ const InfoBar = () => {
 
            <div className='info-bar-box'>
                 <div className='green-giant'>
-                    ${numberWithCommas(total)}
+                    {/* ${numberWithCommas(total)} */}
                 </div>
                 <div>
                     towards creative work

@@ -195,7 +195,7 @@ function CreateProject() {
                         <div className="float-container">
                     <div className="float-child">
                                 <h2>
-                                    Project Image
+                                    Project Description
                                 </h2>
                                 <h3>
                                     Describe what you're raising funds to do, why you care about it, how you plan to make it happen,
