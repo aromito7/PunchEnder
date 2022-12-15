@@ -94,6 +94,7 @@ export default function projectsReducer(state = {}, action) {
             newState = { ...state }
             delete newState[action.payload.id]
             newState[action.payload.id] = action.payload
+            return newState
         case DELETE_PROJECT:
             newState = { ...state }
             delete newState[action.payload]

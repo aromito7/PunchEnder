@@ -1,10 +1,12 @@
 from app.models import db, Project, environment, SCHEMA
 from datetime import datetime, timedelta
+from .categories import arts, comics, design, film, food, games, music, publishing
 
 # Adds a demo user, you can add other projects here if you want
 def seed_projects():
     demo = Project(
         owner_id= 1,
+        categories=[design, arts],
         name='a/A emotional support group',
         goal_amount=12000,
         current_amount=4500,
@@ -26,6 +28,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
 
     demo1 = Project(
         owner_id= 2,
+        categories=[design],
         name='Research to develop a car-boat',
         goal_amount=55000000,
         current_amount=12345678,
@@ -39,6 +42,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
 
     demo2 = Project(
         owner_id= 3,
+        categories=[design, film],
         name='Self driving car',
         goal_amount=2000000000,
         current_amount=888888888,
@@ -60,6 +64,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
 
     demo3 = Project(
         owner_id= 1,
+        categories=[food, design],
         name='TMB | The Modular Bottle',
         goal_amount=11000,
         current_amount=845668,
@@ -110,12 +115,13 @@ We will keep the packaging as small as possible to be able to ship many items at
 
 Something else
 Because it's modular you will be able to replace or upgrade any parts without needing to replace the entire product.""",
-        preview_image="https://cdn1.epicgames.com/ue/product/Screenshot/HighresScreenshot00006-1920x1080-959e0060137ee1d2d0765272de432338.png?resize=1&w=1920",
+        preview_image="https://ksr-ugc.imgix.net/assets/039/411/533/847ae910f17dce52ca8d089d3ec2c900_original.png?ixlib=rb-4.0.2&crop=faces&w=1024&h=576&fit=crop&v=1670415744&auto=format&frame=1&q=92&s=83851b115d6f774df0415b1cc35d1985",
         city="San Francisco",
         state="CA")
 
     demo4 = Project(
         owner_id= 1,
+        categories=[design, games],
         name='Hoverboard',
         goal_amount=2000000000,
         current_amount=888888888,
