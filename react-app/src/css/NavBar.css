@@ -264,8 +264,9 @@
   flex-direction: column;
   position: fixed;
   margin-left: -88vw;
+  margin-top: 50px;
   width: 100vw;
-  height: 100vh;
+  height: auto;
   z-index: 99;
   background-color: #fff;
 }

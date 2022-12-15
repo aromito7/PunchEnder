@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useHistory, Redirect } from 'react-router-dom';
+import { thunkAddBacking } from '../../store/userBackings';
 import './RewardComponent.css';
 
-const RewardComponent = ({reward}) => {
+const RewardComponent = ({ reward }) => {
     // const {rewardId} = useParams()
     // if(!id) id = rewardId
     // const [reward, setReward] = useState(reward)
@@ -18,8 +20,28 @@ const RewardComponent = ({reward}) => {
     //         })();
 
     //     }, [rewardId]);
+    const { id } = useParams()
+    const user = useSelector(state => state.session.user)
+    const [click, setClick] = useState(false)
+    const dispatch = useDispatch()
+    const history = useHistory()
 
-    if(!reward) return `Hello, reward`
+
+
+    const toggleClick = () => {
+        setClick(true)
+    }
+
+
+
+    useEffect(() => {
+        if (!click) return
+        dispatch(thunkAddBacking(id, reward.id))
+        history.push(`/users/${user.id}/backings`)
+    }, [click])
+
+
+    if (!reward) return `Hello, reward`
     const remaining = reward.quantity - reward.users
     const includes = reward.includes.split(', ')
     return (
@@ -34,7 +56,7 @@ const RewardComponent = ({reward}) => {
             <p className="grey rewards-includes-title">INCLUDES:</p>
             <ul className="includes-list">
                 {includes.map((item, i) => {
-                    return(
+                    return (
                         <li key={i}>
                             {item}
                         </li>
@@ -67,8 +89,9 @@ const RewardComponent = ({reward}) => {
                     </p>
                 )}
             </div>
+            <button onClick={toggleClick} className='choose-reward'>Select this reward!</button>
         </div>
-        );
-    }
+    );
+}
 
 export default RewardComponent;

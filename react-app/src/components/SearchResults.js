@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom"
 import "../css/NavBar.css"
 
 function SearchResults({ projects }) {
-    console.log(projects)
+
     return (
         <div className="results-container">
             {Object.values(projects).map(project => (
@@ -13,6 +13,9 @@ function SearchResults({ projects }) {
                 </div>
             ))
             }
+            {/* {!!projects &&
+                <div>No Results found</div>
+            } */}
         </div >
     )
 
