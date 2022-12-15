@@ -19,7 +19,7 @@ class Project(db.Model):
     end_date = db.Column(db.DateTime, nullable=False)
     short_description = db.Column(db.String(250), nullable=False)
     long_description = db.Column(db.String(50000), nullable=False)
-    preview_image = db.Column(db.String(100), nullable=False)
+    preview_image = db.Column(db.String(500), nullable=False)
     city = db.Column(db.String(50), nullable=False)
     state = db.Column(db.String(2), nullable=False)
 
