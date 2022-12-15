@@ -13,6 +13,18 @@
     display: none;
   }
 
+button.discover-button:visited {
+    text-decoration: none;
+    border:none;
+    outline: none;
+}
+
+button.discover-button:hover {
+    text-decoration: none;
+    border:none;
+    outline: none;
+}
+
 .modal-button {
     position: fixed;
     right: 22vh;
