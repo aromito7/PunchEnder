@@ -229,3 +229,9 @@
     color: #282828;
     cursor: pointer;
   }
+
+  .navbar__navlink-search {
+  display: flex;
+  align-items: center;
+  margin-right: 2em;
+}
