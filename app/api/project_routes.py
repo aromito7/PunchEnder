@@ -85,7 +85,7 @@ def update_backing(reward_id, id):
     backing_obj["project_name"] = project.name
     backing_obj["backing_value"] = reward.price_threshold
 
-    return {backing_obj}
+    return backing_obj
 
 
 @project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["DELETE"])

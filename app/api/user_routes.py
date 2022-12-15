@@ -33,7 +33,8 @@ def get_user_backings(id):
 
         reward = Reward.query.get(backing.id)
         project = Project.query.get(reward.project_id)
-        backing_obj["id"] = reward.project_id
+        backing_obj["id"] = i
+        backing_obj["project_id"] = reward.project_id
         backing_obj["project_name"] = project.name
         backing_obj["backing_value"] = reward.price_threshold
         backing_obj["reward"] = reward.name
