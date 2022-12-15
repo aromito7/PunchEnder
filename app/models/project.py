@@ -1,6 +1,7 @@
 from .db import db
 from datetime import datetime
 from sqlalchemy import ForeignKey
+from .project_categories import category_table
 
 class Project(db.Model):
   __tablename__ = 'projects'
@@ -11,7 +12,6 @@ class Project(db.Model):
   current_amount = db.Column(db.Integer, nullable=False)
   start_date = db.Column(db.DateTime, nullable=False, default=datetime.now())
   end_date = db.Column(db.DateTime, nullable=False)
-  categories = db.Column(db.String(500), nullable=False)
   short_description = db.Column(db.String(250), nullable=False)
   long_description = db.Column(db.String(50000), nullable=False)
   preview_image = db.Column(db.String(100), nullable=False)
@@ -21,12 +21,16 @@ class Project(db.Model):
   owner = db.relationship('User', back_populates='project')
   reward = db.relationship('Reward', back_populates='project', cascade="all, delete")
 
-  # Add relationships for backings
+
+
+  categories = db.relationship('Category', secondary=category_table, back_populates='projects')
+
 
   def to_dict(self):
     return {
       'id': self.id,
       'owner_id': self.owner_id,
+      'categories': [category.name for category in self.categories],
       'name': self.name,
       'goal_amount': self.goal_amount,
       'current_amount': self.current_amount,
