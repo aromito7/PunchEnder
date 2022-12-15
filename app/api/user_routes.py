@@ -39,6 +39,7 @@ def get_user_backings(id):
         backing_obj["backing_value"] = reward.price_threshold
         backing_obj["reward"] = reward.name
         backing_obj["image"] = project.preview_image
+        backing_obj["reward_id"] = reward.id
         print(project.preview_image)
 
         user_backings_list.append(backing_obj)

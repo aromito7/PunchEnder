@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "../css/NavBar.css"
 
 function SearchResults({ projects }) {
@@ -9,13 +9,11 @@ function SearchResults({ projects }) {
         <div className="results-container">
             {Object.values(projects).map(project => (
                 <div key={project.id}>
-                    <div>
-                        {project.name}
-
-                    </div>
+                    <Link to={`/projects/${project.id}`}><div>{project.name}</div></Link>
                 </div>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     )
 
 }
