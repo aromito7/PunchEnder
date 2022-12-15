@@ -1,22 +1,21 @@
 .featured-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    display: grid;
+    justify-content: end;
     margin-top: 4em;
-    margin-left: 4em;
-    margin-right: auto;
-    max-width: 50%;
-    /* align-items: center; */
+    /* vertical-align: middle; */
+    max-width: 100%;
+    margin-right: 4em;
 }
 
 .featured-wrapper2 {
     display: flex;
     flex-direction: column;
     margin-top: 4em;
-    margin-left: 4em;
+    margin-left: 1.5em;
     margin-right: auto;
     max-width: 50%;
-
+    border-left: 0.1rem solid #DCDEDD;
+    padding-left: 6em;
 }
 
 .rec-wrapper {
@@ -36,12 +35,10 @@
 }
 
 .rec-child1 {
-    flex: 1;
     margin-right: 0.5em;
 }
 
 .rec-child2 {
-    flex: 1;
     margin-left: 0.5em;
 }
 
@@ -49,29 +46,78 @@
     white-space: nowrap;
 }
 
+.rec-green-small {
+    color: #417947;
+    font-size: 1.2rem;
+    line-height: 1.22rem;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    white-space: nowrap;
+}
+
+.rec-small {
+    font-size: 1.2rem;
+}
+
+
+nav a{
+    text-decoration:none;
+    color: #282828;
+}
+
+.featured-image {
+    max-width: 100%;
+    /* object-fit: contain; */
+    width: auto;
+    zoom: 2.2;
+}
 
 .featured-title {
     color: #000000;
-    font-size: 1.55rem;
+    font-size: 1.3rem;
     line-height: 2.3rem;
     margin-bottom: 1.2em;
-}
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+    "Liberation Sans", FreeSans, sans-serif;}
 
 .featured-name {
     color: #000000;
-    font-size: 10px;
-    line-height: 2.3rem;
-    margin-bottom: 1.2em;
+    font-size: 3rem;
+    line-height: 3rem;
+    margin-bottom: 0.5em;
+    white-space: nowrap;
 }
+
+.featured-name2 {
+    color: #000000;
+    font-size: 1.75rem;
+    line-height: 2rem;
+    margin-bottom: 0.5em;
+    white-space: nowrap;
+}
+
+.featured-name3 {
+    color: grey;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    margin-bottom: 0.75em;
+    white-space: nowrap;
+}
+
 
 .landing-helper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 0px;
     width: 100%;
     margin-left: 1em;
-}
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+    "Liberation Sans", FreeSans, sans-serif;}
 
 nav a{
     text-decoration:none;
+}
+
+.explore-blue-color {
+    color: #0a5095;
 }
