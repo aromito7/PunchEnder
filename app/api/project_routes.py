@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from ..models import db, Project, User, Reward, backing_table
-from ..forms import ProjectForm
+from ..forms import ProjectForm, SearchForm
 from datetime import datetime, timedelta
 from flask_login import current_user
 
@@ -11,9 +11,7 @@ project_routes = Blueprint('projects', __name__)
 
 @project_routes.route('/', strict_slashes=False)
 def getAllProjects():
-    print('TEST')
     projects = Project.query.all()
-    print(projects)
     return {'projects': [project.to_dict() for project in projects]}
 
 # GET a single project
@@ -87,7 +85,7 @@ def update_backing(reward_id, id):
     backing_obj["project_name"] = project.name
     backing_obj["backing_value"] = reward.price_threshold
 
-    return {backing_obj}
+    return backing_obj
 
 
 @project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["DELETE"])
@@ -175,3 +173,20 @@ def update_project(projectid):
         db.session.commit()
 
         return new_project.to_dict()
+
+
+@project_routes.route("/search", methods=["POST"])
+def search():
+    searchParams = dict(request.get_json())
+
+    query = searchParams["searchParams"]
+
+    searchResults = Project.query.filter(
+        Project.name.like(f'%{query}%'),
+    ).all()
+    # searchResultsOwners = Project.query.
+    results_obj = {}
+    for project in searchResults:
+        results_obj[f'{project.id}'] = project.to_dict()
+    print(results_obj)
+    return results_obj

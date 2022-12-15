@@ -1,4 +1,4 @@
-.reward-component{
+.reward-component {
     max-width: 250px;
     border: thin solid grey;
     padding: 10px 20px 20px 20px;
@@ -7,52 +7,69 @@
 
 }
 
-.reward-name{
+.reward-component:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+.reward-name {
     font-weight: bold;
 }
 
-.grey{
+.grey {
     color: grey;
 }
 
-.rewards-includes-title, .rewards-delivery-title{
-    font-size:10px;
+.rewards-includes-title,
+.rewards-delivery-title {
+    font-size: 10px;
     margin-bottom: 0;
 }
 
-.includes-list{
+.includes-list {
     margin-top: 0;
 }
 
-.rewards-delivery-value{
+.rewards-delivery-value {
     margin-top: 0;
 }
 
-#rewards-boxen *{
+.choose-reward {
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    font-size: large;
+    font-weight: bold;
+}
+
+#rewards-boxen * {
     display: inline-block;
     border-radius: 10px;
     padding: 3px 10px 3px 10px;
     font-size: 12px;
-    margin:2px;
+    margin: 2px;
 }
 
-#rewards-backers-box{
+#rewards-backers-box {
     background-color: rgb(243, 243, 243);
 }
 
-#rewards-remaining-box{
+#rewards-remaining-box {
     background-color: rgb(255, 242, 236);
 }
 
-#rewards-delivery{
-    display:grid;
+#rewards-delivery {
+    display: grid;
     column-gap: 10px;
 }
 
-#rewards-delivery-left{
+#rewards-delivery-left {
     grid-column: 1;
 }
 
-#rewards-delivery-right{
+#rewards-delivery-right {
     grid-column: 2;
 }
