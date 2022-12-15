@@ -49,16 +49,17 @@ function SearchBar() {
     console.log(searchParams)
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <input
-                    className="search-bar"
-                    type="text"
-                    name="searchParams"
-                    value={searchParams}
-                    placeholder="Search by project owner or project name"
-                    onChange={e => setSearchParams(e.target.value)}
-                />
-            </form>
+
+            <textarea
+                onSubmit={handleSubmit}
+                className="search-bar"
+                type="text"
+                name="searchParams"
+                value={searchParams}
+                placeholder="Search for a project"
+                onChange={e => setSearchParams(e.target.value)}
+            />
+
             {
                 mountResults && (
                     <SearchResults projects={results} />

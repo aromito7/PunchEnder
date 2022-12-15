@@ -235,11 +235,11 @@
   border: none;
 }
 
-.search-bar>input {
+.search-bar {
   position: fixed;
   width: 100vw;
   height: 75px;
-  z-index: 0;
+  z-index: 97;
   margin-left: -91vw;
   margin-top: -23px;
   height: 85px;
@@ -252,7 +252,7 @@
 
 
 .close-search-button {
-  z-index: 98;
+  z-index: 99;
   border: none;
   background-color: #fff;
 }
@@ -261,8 +261,9 @@
   display: flex;
   flex-direction: column;
   position: fixed;
+  margin-left: -88vw;
   width: 100vw;
   height: 100vh;
-  z-index: 98;
+  z-index: 99;
   background-color: #fff;
 }

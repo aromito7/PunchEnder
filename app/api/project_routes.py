@@ -183,7 +183,7 @@ def search():
     searchResults = Project.query.filter(
         Project.name.like(f'%{query}%'),
     ).all()
-
+    # searchResultsOwners = Project.query.
     results_obj = {}
     for project in searchResults:
         results_obj[f'{project.id}'] = project.to_dict()
