@@ -200,7 +200,7 @@ function CreateProject() {
                         <div className="float-container">
                     <div className="float-child">
                                 <h2>
-                                    Project Image
+                                    Project Description
                                 </h2>
                                 <h3>
                                     Describe what you're raising funds to do, why you care about it, how you plan to make it happen,
@@ -220,9 +220,9 @@ function CreateProject() {
                                     required
                                     />
                                 </label>
+                                <button className="create-project-form__submit-button2" type="submit">Add Rewards</button>
                             </div>
                         </div>
-                        <button className="create-project-form__submit-button2" type="submit">Add Rewards</button>
                         <button className="create-project-form__submit-button" type="submit">Add Rewards</button>
                     </form>
                 </div>
