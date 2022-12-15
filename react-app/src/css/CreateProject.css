@@ -50,6 +50,16 @@
     margin-left: 2em;
   }
 
+  .h1-helper {
+    margin-left: 1em;
+    margin-bottom: 0;
+  }
+
+  .h2-helper {
+    margin-bottom: 3em;
+    margin-left: 3.5em;
+  }
+
   .h1-help2 {
     margin-left: 3.3em;
     margin-bottom: 0;

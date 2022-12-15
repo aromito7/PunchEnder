@@ -19,6 +19,7 @@ import AllProjects from './components/project/AllProjects';
 import RewardComponent from './components/reward/RewardComponent';
 import EditRewards from './components/backings/EditBacking';
 import Update from './components/updates/update';
+import UpdateProject from './components/project/UpdateProject';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/projects/:id/update' exact={true}>
+          <UpdateProject />
         </Route>
         <Route path='/projects/:id/rewards/edit' exact={true}>
           <EditRewards />

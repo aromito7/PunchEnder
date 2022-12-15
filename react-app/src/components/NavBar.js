@@ -27,9 +27,7 @@ const NavBar = () => {
           <section className='navbar__left-links-container'>
             <div className='navbar__left-links-list'>
               <div className='navbar__navlink-home'>
-                <NavLink to='/discover' exact={true} className='navlink-helper' activeClassName='active'>
-                  Discover
-                </NavLink>
+                  <Discover />
               </div>
               <div className='navbar__navlink-start'>
                 <NavLink to='/projects/create' exact={true} activeClassName='active'>

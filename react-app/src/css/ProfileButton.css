@@ -17,7 +17,7 @@ img.profile-icon {
     justify-content: center;
   align-items: center;
   display: flex;
-  object-fit: cover;
+  /* object-fit: cover; */
   margin-left: 4.66em;
   margin-bottom: 0.033em;
 }

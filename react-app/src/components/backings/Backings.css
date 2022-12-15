@@ -23,9 +23,10 @@ ul {
     list-style: none;
 }
 
-img {
+img.backings-helper {
     max-width: 50px;
 }
+
 
 #rewards-header {
     margin-top: 100px;
