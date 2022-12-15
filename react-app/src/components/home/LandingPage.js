@@ -5,6 +5,7 @@ import FeaturedProduct from "./FeaturedProduct";
 import Recommended from "./Recommended";
 import Updates from "./Updates";
 import Trending from "./Trending";
+import { NavLink } from "react-router-dom";
 
 const LandingPage = () => {
     return (
@@ -14,12 +15,18 @@ const LandingPage = () => {
                 <h1>Bring a creative project to life.</h1>
             </div>
             <div className="landing-subtitle">
-                <h3>ON KICKSTARTER:</h3>
+                <h3>ON PUNCHENDER:</h3>
             </div>
             <InfoBar />
-            <FeaturedProduct />
-            <Recommended />
-            <Updates />
+            <div className="landing-helper">
+                <FeaturedProduct />
+                <Recommended />
+            </div>
+            <div>
+                <NavLink to="/updates">
+                    <Updates />
+                </NavLink>
+            </div>
             <Trending />
         </div>
     );

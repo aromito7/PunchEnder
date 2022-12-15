@@ -20,6 +20,66 @@
     margin-left: 0.4em;
   }
 
+  .update-font-big {
+    font-size: 1.55rem;
+    line-height: 2.3rem;
+    margin-bottom: 1.2em;
+  }
+
+  .update-image-resize {
+    width: 50%;
+    height: auto;
+    margin-left: 3em;
+    margin-right: 1em;
+    margin-top: 2em;
+  }
+
+  .updates-wrapper {
+    margin-top: 4em;
+    border-top: 0.1rem solid #DCDEDD;
+    padding-top: 4em;
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+    "Liberation Sans", FreeSans, sans-serif;
+  }
+
+  .updates-format {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .updates-indent {
+    width: 50%;
+    margin-top: 1.1em;
+    margin-right: 4em;
+    /* padding-left: 1em; */
+  }
+
+  .updates-title {
+    font-size: 2.75rem;
+    line-height: 1rem;
+    margin-bottom: 1.2em;
+    margin-left: 1em;
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+      "Liberation Sans", FreeSans, sans-serif;
+  }
+
+  .updates-paragraph {
+    font-size: 1.55rem;
+    margin-left: 2em;
+  }
+
+  .updates-link {
+    margin-left: 0.5em;
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+      "Liberation Sans", FreeSans, sans-serif;
+  }
+
+  .green-left-border {
+    border-left: 0.6rem solid #53865f;
+    margin-left: 0.5em;
+  }
+
   .quick-select__navigation-list {
     white-space: nowrap;
     display: flex;
@@ -89,7 +149,8 @@
     color: #282828;
     display: flex;
     flex-direction: column;
-    font-family: "Maison Neue Book";
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+      "Liberation Sans", FreeSans, sans-serif;
     align-items: center;
   }
 
@@ -101,7 +162,8 @@
     margin-top: 0;
     color: grey;
     display: flex;
-    font-family: "Maison Neue Book";
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+      "Liberation Sans", FreeSans, sans-serif;
     flex-direction: column;
     align-items: center;
   }
