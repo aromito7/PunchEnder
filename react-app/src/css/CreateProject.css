@@ -95,6 +95,7 @@
         justify-content: space-between;
         margin-bottom: 3em;
         /* text-align: center; */
+        position: relative;
     }
 
     .title-label {
@@ -195,7 +196,7 @@
     font-size: 14px;
     font-weight: 300;
     letter-spacing: 1px;
-    position: absolute;
-    right: 8em;
-    bottom: -168.25%;
+    position: relative;
+    left: 82.5%;
+    top: 3%;
   }

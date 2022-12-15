@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 // import LogoutButton from './auth/LogoutButton';
 import ProfileButton from './ProfileButton';
-
+// import Discover from './Discover';
 
 const NavBar = () => {
   const currentUser = useSelector(state => state.session.user);

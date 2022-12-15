@@ -220,9 +220,9 @@ function CreateProject() {
                                     required
                                     />
                                 </label>
+                                <button className="create-project-form__submit-button2" type="submit">Add Rewards</button>
                             </div>
                         </div>
-                        <button className="create-project-form__submit-button2" type="submit">Add Rewards</button>
                         <button className="create-project-form__submit-button" type="submit">Add Rewards</button>
                     </form>
                 </div>
