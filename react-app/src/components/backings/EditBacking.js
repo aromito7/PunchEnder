@@ -2,27 +2,31 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRewards } from '../../store/reward';
-import "./Backings.css"
 import { thunkUpdateBacking } from '../../store/userBackings';
+import "./Backings.css"
 
 const EditRewards = () => {
     const [rewards, setRewards] = useState([])
+    const [rewardId, setRewardId] = useState(null)
     const user = useSelector(state => state.session.user)
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
 
+    // const getRewardId = (reward_id) => {
+    //     // if (!rewardId) return
+    //     setRewardId(reward_id)
+    // }
+
+    // const handleSubmit = () => {
+    //     dispatch(thunkUpdateBacking(id, rewardId))
+    // }
 
     useEffect(async () => {
         const response = await fetch(`/api/rewards/projects/${id}`);
         const { rewards } = await response.json();
         setRewards(rewards);
     }, []);
-
-    // const handleClick = async (projectId, rewardId) => {
-    //     await dispatch(thunkUpdateBacking(projectId, rewardId))
-    //         .then(history.push(`/users/${user.id}/backings`))
-    // }
 
     return (
         <>
@@ -47,8 +51,8 @@ const EditRewards = () => {
                                 {reward.description}
                             </li>
                         </ul>
-                        <button id='select-reward'>Select</button>
-                        {/* <button onClick={handleClick(id, reward.id)} id='select-reward'>Select</button> */}
+                        <button type="submit" id='select-reward'>Select</button>
+                        {/* <button onClick={toggleClick(reward.id)} id='select-reward'>Select</button> */}
                     </div>
                 ))}
             </div>
