@@ -11,7 +11,7 @@ const SingleProject = () => {
     const { id } = useParams();
     const history = useHistory();
 
-    const [project, setProject] = useState(null);
+    const [project, setProject] = useState({});
 
     useEffect(() => {
         (async () => {
@@ -22,7 +22,7 @@ const SingleProject = () => {
         })();
     }, [id]);
 
-    if(!project) return null
+    if(Object.keys(project).length < 1) return null
     return (
         <div className='singleProject'>
             <div className='singleProjectTopInfo'>

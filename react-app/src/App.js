@@ -18,6 +18,7 @@ import LandingPage from './components/home/LandingPage';
 import AllProjects from './components/project/AllProjects';
 import RewardComponent from './components/reward/RewardComponent';
 import EditRewards from './components/backings/EditBacking';
+import Update from './components/updates/update';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,14 +48,20 @@ function App() {
         <Route path='/projects/:id/rewards' exact={true}>
           <EditRewards />
         </Route>
-        <Route path='/projects/:id' exact={true}>
-          <SingleProject />
+        <Route path='/updates' exact={true}>
+          <Update />
         </Route>
-        <Route path='/projects'>
-          <AllProjects />
+        <Route path='/sign-up' exact={true}>
+          <SignUpForm />
         </Route>
         <Route path='/projects/create' exact={true}>
           <CreateProject />
+        </Route>
+        <Route path='/projects/:id' exact={true}>
+          <SingleProject />
+        </Route>
+        <Route path='/projects' exact={true}>
+          <AllProjects />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
@@ -75,7 +82,7 @@ function App() {
           <LandingPage />
         </Route>
         <Route path='/'>
-          <h1>Error: 404 - page not found</h1>
+          <h1 className='quick-select__container'>Error: 404 - page not found</h1>
         </Route>
       </Switch>
     </BrowserRouter>

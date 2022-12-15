@@ -6,7 +6,7 @@ import LogoutButton from './auth/LogoutButton';
 // import LogoutButton from './auth/LogoutButton';
 import ProfileButton from './ProfileButton';
 import SearchBar from './SearchBar';
-
+// import Discover from './Discover';
 
 const NavBar = () => {
   const currentUser = useSelector(state => state.session.user);
