@@ -71,23 +71,23 @@ function CreateProject() {
                                 <label className="title-label">
                                     Title
                                     <input
-                                    type="text"
-                                    value={name}
-                                    className='title-input'
-                                    placeholder="Queen of Pain: A Roller Derby Documentary"
-                                    onChange={(e) => setName(e.target.value)}
-                                    required
+                                        type="text"
+                                        value={name}
+                                        className='title-input'
+                                        placeholder="Queen of Pain: A Roller Derby Documentary"
+                                        onChange={(e) => setName(e.target.value)}
+                                        required
                                     />
                                 </label>
                                 <label className="title-label">
                                     Subtitle
                                     <textarea
-                                    type="text"
-                                    value={short_description}
-                                    className="short-desc-input"
-                                    placeholder="A feature-length documentary film following Suzy Hotrod and the fun, fearless women of Gotham Girls Roller Derby in NYC."
-                                    onChange={(e) => setShortDescription(e.target.value)}
-                                    required
+                                        type="text"
+                                        value={short_description}
+                                        className="short-desc-input"
+                                        placeholder="A feature-length documentary film following Suzy Hotrod and the fun, fearless women of Gotham Girls Roller Derby in NYC."
+                                        onChange={(e) => setShortDescription(e.target.value)}
+                                        required
                                     />
                                 </label>
                             </div>
@@ -98,36 +98,36 @@ function CreateProject() {
                                     Project Location
                                 </h2>
                                 <h3>
-                                Enter the location that best describes where your project is based.
+                                    Enter the location that best describes where your project is based.
                                 </h3>
                             </div>
                             <div className="float-child">
                                 <label>
-                                City
-                                <input
-                                type="text"
-                                value={city}
-                                className='title-input'
-                                placeholder="App State"
-                                onChange={(e) => setCity(e.target.value)}
-                                required
-                                />
-                            </label>
-                            <label>
-                                State
-                                <input
-                                type="text"
-                                className='title-input'
-                                value={state}
-                                placeholder="Academy Country"
-                                onChange={(e) => setState(e.target.value)}
-                                required
-                                />
-                            </label>
+                                    City
+                                    <input
+                                        type="text"
+                                        value={city}
+                                        className='title-input'
+                                        placeholder="App State"
+                                        onChange={(e) => setCity(e.target.value)}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    State
+                                    <input
+                                        type="text"
+                                        className='title-input'
+                                        value={state}
+                                        placeholder="Academy Country"
+                                        onChange={(e) => setState(e.target.value)}
+                                        required
+                                    />
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="float-container">
-                    <div className="float-child">
+                        <div className="float-container">
+                            <div className="float-child">
                                 <h2>
                                     Project Image
                                 </h2>
@@ -145,12 +145,12 @@ function CreateProject() {
                                 <label>
                                     Preview Image URL
                                     <input
-                                    type="text"
-                                    value={preview_image}
-                                    className='title-input'
-                                    placeholder="https://www.google.com/cute_puppy/photo.jpg"
-                                    onChange={(e) => setPreviewImage(e.target.value)}
-                                    required
+                                        type="text"
+                                        value={preview_image}
+                                        className='title-input'
+                                        placeholder="https://www.google.com/cute_puppy/photo.jpg"
+                                        onChange={(e) => setPreviewImage(e.target.value)}
+                                        required
                                     />
                                 </label>
                             </div>
@@ -172,23 +172,23 @@ function CreateProject() {
                                 <label>
                                     Goal Amount
                                     <input
-                                    type="number"
-                                    value={goal_amount}
-                                    className='title-input'
-                                    placeholder="0"
-                                    onChange={(e) => setGoalAmount(e.target.value)}
-                                    required
+                                        type="number"
+                                        value={goal_amount}
+                                        className='title-input'
+                                        placeholder="0"
+                                        onChange={(e) => setGoalAmount(e.target.value)}
+                                        required
                                     />
                                 </label>
                                 <label>
                                     Current Amount
                                     <input
-                                    type="number"
-                                    value={current_amount}
-                                    className='title-input'
-                                    placeholder="0"
-                                    onChange={(e) => setCurrentAmount(e.target.value)}
-                                    required
+                                        type="number"
+                                        value={current_amount}
+                                        className='title-input'
+                                        placeholder="0"
+                                        onChange={(e) => setCurrentAmount(e.target.value)}
+                                        required
                                     />
                                 </label>
                             </div>
@@ -198,7 +198,7 @@ function CreateProject() {
                             <h2 className="h2-help3">Tell people why they should be excited about your project. Get specific but be clear and be brief.</h2>
                         </div>
                         <div className="float-container">
-                    <div className="float-child">
+                            <div className="float-child">
                                 <h2>
                                     Project Image
                                 </h2>
@@ -212,12 +212,12 @@ function CreateProject() {
                                 <label>
                                     Description
                                     <textarea
-                                    type="text"
-                                    value={long_description}
-                                    className='long-desc-input'
-                                    placeholder="Write about your project like you're explaining it to a friend..."
-                                    onChange={(e) => setLongDescription(e.target.value)}
-                                    required
+                                        type="text"
+                                        value={long_description}
+                                        className='long-desc-input'
+                                        placeholder="Write about your project like you're explaining it to a friend..."
+                                        onChange={(e) => setLongDescription(e.target.value)}
+                                        required
                                     />
                                 </label>
                             </div>

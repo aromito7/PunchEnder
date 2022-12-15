@@ -257,4 +257,11 @@
   background-color: #fff;
 }
 
-.results-container {}
+.results-container {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 98;
+  background-color: #fff;
+}

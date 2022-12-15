@@ -11,7 +11,7 @@ function SearchResults({ projects }) {
                 <div key={project.id}>
                     <div>
                         {project.name}
-                        test
+
                     </div>
                 </div>
             ))}

@@ -28,11 +28,9 @@ function SearchBar() {
                 searchParams
             })
         })
-        const data = response.json()
-        console.log(data[0])
+        const data = await response.json()
         setResults(data)
         setMountResults(true)
-
     }
 
     useEffect(() => {

@@ -16,6 +16,6 @@ const Updates = () => {
             </div>
         </div>
     );
-    }
+}
 
 export default Updates;

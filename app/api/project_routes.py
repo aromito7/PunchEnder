@@ -184,5 +184,8 @@ def search():
         Project.name.like(f'%{query}%'),
     ).all()
 
-    print(searchResults)
-    return {}
+    results_obj = {}
+    for project in searchResults:
+        results_obj[f'{project.id}'] = project.to_dict()
+    print(results_obj)
+    return results_obj

@@ -1,0 +1,38 @@
+.backings-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+img {
+    max-width: 50px;
+}
+
+#project-name {
+    font-size: large;
+    font-weight: bolder;
+}
+
+#price {
+    color: green;
+}
+
+#reward {
+    font-weight: bold;
+}
+
+#backing {
+    margin: 10px;
+    border-left: 1px solid grey;
+    padding-left: 1px;
+}
+
+#edit {
+    background-color: #fff;
+    border: none;
+}
+
+#delete {
+    background-color: #fff;
+    border: none;
+}
