@@ -50,7 +50,7 @@ def upgrade():
                     sa.Column('long_description', sa.String(
                         length=50000), nullable=False),
                     sa.Column('preview_image', sa.String(
-                        length=100), nullable=False),
+                        length=500), nullable=False),
                     sa.Column('city', sa.String(length=50), nullable=False),
                     sa.Column('state', sa.String(length=2), nullable=False),
                     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
