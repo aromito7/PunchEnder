@@ -81,8 +81,10 @@ export default function reducer(state = {}, action) {
   let newState;
   switch (action.type) {
     case GET_REWARDS:
-      const backingsObj = { ...state }
-      return { reward: action.payload }
+      const rewardsObj = { ...state }
+      action.payload.rewards.forEach(reward => rewardsObj[reward.id] = reward)
+      newState = backingsObj
+      return newState
     default:
       return state;
   }

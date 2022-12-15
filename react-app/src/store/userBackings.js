@@ -78,7 +78,6 @@ export default function userBackingsReducer(state = {}, action) {
     switch (action.type) {
         case GET_BACKINGS:
             const backingsObj = { ...state }
-            console.log(action.payload)
             action.payload.backings.forEach(backing => backingsObj[backing.id] = backing)
             newState = backingsObj
             console.log(newState)
