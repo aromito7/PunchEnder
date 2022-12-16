@@ -196,6 +196,7 @@
     position: absolute;
     right: 0px;
     top: 80px;
+    cursor: pointer;
   }
 
   .create-project-form__submit-button2 {
@@ -210,4 +211,9 @@
     position: relative;
     left: 82.5%;
     top: 3%;
+    cursor: pointer;
+  }
+
+  .error-message{
+    color: red;
   }

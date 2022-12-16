@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, NavLink, useHistory } from "react-router-dom";
+import React from 'react'
 
 const Update = () => {
     return (

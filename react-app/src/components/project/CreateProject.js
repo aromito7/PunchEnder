@@ -115,6 +115,7 @@ function CreateProject() {
                             <div className="float-child">
                                 <label className="title-label">
                                     Title
+                                    {hasSubmitted && nameError && <p className="error-message">{nameError}</p>}
                                     <input
                                         type="text"
                                         value={name}
@@ -124,9 +125,9 @@ function CreateProject() {
                                         required
                                     />
                                 </label>
-                                {hasSubmitted && nameError && <p className="error-message">{nameError}</p>}
                                 <label className="title-label">
                                     Subtitle
+                                    {hasSubmitted && shortDescriptionError && <p className="error-message">{shortDescriptionError}</p>}
                                     <textarea
                                         type="text"
                                         value={short_description}
@@ -136,7 +137,6 @@ function CreateProject() {
                                         required
                                     />
                                 </label>
-                                {hasSubmitted && shortDescriptionError && <p className="error-message">{shortDescriptionError}</p>}
                             </div>
                         </div>
                         <div className="float-container2">
@@ -151,6 +151,7 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     City
+                                    {hasSubmitted && cityError && <p className="error-message">{cityError}</p>}
                                     <input
                                         type="text"
                                         value={city}
@@ -160,9 +161,9 @@ function CreateProject() {
                                         required
                                     />
                                 </label>
-                                {hasSubmitted && cityError && <p className="error-message">{cityError}</p>}
                                 <label>
                                     State
+                                    {hasSubmitted && stateError && <p className="error-message">{stateError}</p>}
                                     <input
                                         type="text"
                                         className='title-input'
@@ -172,7 +173,6 @@ function CreateProject() {
                                         required
                                     />
                                 </label>
-                                {hasSubmitted && stateError && <p className="error-message">{stateError}</p>}
                             </div>
                         </div>
                         <div className="float-container">
@@ -193,6 +193,7 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     Preview Image URL
+                                    {hasSubmitted && previewImageError && <p className="error-message">{previewImageError}</p>}
                                     <input
                                         type="text"
                                         value={preview_image}
@@ -202,7 +203,6 @@ function CreateProject() {
                                         required
                                     />
                                 </label>
-                                {hasSubmitted && previewImageError && <p className="error-message">{previewImageError}</p>}
                             </div>
                         </div>
                         <div className="create-project-form__header">
@@ -221,6 +221,7 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     Goal Amount
+                                    {hasSubmitted && goalError && <p className="error-message">{goalError}</p>}
                                     <input
                                         type="number"
                                         value={goal_amount}
@@ -230,9 +231,9 @@ function CreateProject() {
                                         required
                                     />
                                 </label>
-                                {hasSubmitted && goalError && <p className="error-message">{goalError}</p>}
                                 <label>
                                     Current Amount
+                                    {hasSubmitted && currentError && <p className="error-message">{currentError}</p>}
                                     <input
                                         type="number"
                                         value={current_amount}
@@ -242,7 +243,6 @@ function CreateProject() {
                                         required
                                     />
                                 </label>
-                                {hasSubmitted && currentError && <p className="error-message">{currentError}</p>}
                             </div>
                         </div>
                         <div className="create-project-form__header">
@@ -263,6 +263,7 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     Description
+                                    {hasSubmitted && longDescriptionError && <p className="error-message">{longDescriptionError}</p>}
                                     <textarea
                                         type="text"
                                         value={long_description}
@@ -272,7 +273,11 @@ function CreateProject() {
                                         required
                                     />
                                 </label>
-                                {hasSubmitted && longDescriptionError && <p className="error-message">{longDescriptionError}</p>}
+                                {errors.length > 0 && (
+                                    <ul class='error-message'>
+                                        {errors.map(error => (<li>{error}</li>))}
+                                    </ul>
+                                )}
                                 <button className="create-project-form__submit-button2" type="submit">Add Rewards</button>
                             </div>
                         </div>
