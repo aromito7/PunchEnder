@@ -10,7 +10,6 @@ import RewardComponent from '../reward/RewardComponent'
 const SingleProject = () => {
     const { id } = useParams();
     const history = useHistory();
-
     const [project, setProject] = useState({});
 
     useEffect(() => {
@@ -100,7 +99,7 @@ const SingleProject = () => {
                     <p id='singleProjectLonDesc'>{project.long_description ? project.long_description : "Amazing project"}</p>
                 </div>
                 <div className='singleProjectSidebar'>
-                    <div className='ownerBox'>
+                    {false && <div className='ownerBox'>
                         <p>
                             {project.owner ? project.owner : "Bob"}
                         </p>
@@ -110,11 +109,11 @@ const SingleProject = () => {
                         <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
-                    </div>
+                    </div>}
                     <h2>Support</h2>
                     <div className='pledgeComponent'>
-                        {project.rewards.map(reward => {
-                            return <RewardComponent reward={reward}/>
+                        {project.rewards.map((reward, i) => {
+                            return <RewardComponent reward={reward} key={i}/>
                         })}
                         {false && <RewardComponent reward={project.rewards[0]}/>}
                     </div>

@@ -180,12 +180,14 @@
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-area: long;
-  column-gap: 50px;
+  column-gap: 5rem;
 }
 
 .singleProjectSideBar {
   display: grid;
   grid-area: side;
+  height: 100rem;
+  overflow-y: scroll;
 }
 
 .ownerBox{

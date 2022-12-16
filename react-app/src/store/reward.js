@@ -7,9 +7,9 @@ const setReward = (reward) => ({
   payload: reward
 });
 
-const removeReward = () => ({
-  type: REMOVE_REWARD,
-})
+// const removeReward = () => ({
+//   type: REMOVE_REWARD,
+// })
 
 const initialState = { reward: null };
 

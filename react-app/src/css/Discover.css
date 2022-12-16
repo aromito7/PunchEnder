@@ -1,0 +1,86 @@
+.modal {
+    position: fixed; /* position the modal in the center of the screen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* horizontally and vertically center the modal */
+    width: 100%; /* set the width to 100% of the screen */
+    height: 100%; /* set the height to 100% of the screen */
+    z-index: 1; /* set the z-index to 1 to ensure the modal is on top of other elements */
+    background-color: white; /* set the background color to white */
+}
+
+.hidden {
+    display: none;
+  }
+
+button.discover-button:visited {
+    text-decoration: none;
+    border:none;
+    outline: none;
+}
+
+button.discover-button:hover {
+    text-decoration: none;
+    border:none;
+    outline: none;
+}
+
+.modal-button {
+    position: fixed;
+    right: 22vh;
+    top: 0;
+    border: none;
+    background: none;
+    color: #037362;
+}
+
+.button-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+  .visible {
+    display: block;
+}
+
+.discover-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 100%;
+    margin-left: 2em;
+}
+
+.discover-title {
+    color: #037362;
+    font-size: 2vh;
+    border-bottom: 1px solid #037362;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    padding-right: 100%;
+    width: 100%;
+    margin-top: 2em;
+}
+
+
+.discover-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    height: 100%;
+    margin-left: 4em;
+    margin-right: 10vh;
+    width: 100%;
+}
+
+
+.test123 {
+    font-size: 2.8vh;
+    margin-bottom: 1em;
+    margin-right: 10vh;
+}
+
+a.test123:hover {
+    color: #037362;
+}

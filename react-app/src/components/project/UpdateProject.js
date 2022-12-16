@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import actionAddProject from '../../store/allProjects'
 import IconBar from "./IconBar";
 
-function CreateProject() {
+function UpdateProject() {
+    const [project, setProject] = useState({});
     const [name, setName] = useState("");
     const [goal_amount, setGoalAmount] = useState(0);
     const [current_amount, setCurrentAmount] = useState(0);
@@ -14,59 +15,16 @@ function CreateProject() {
     const [preview_image, setPreviewImage] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [errors, setErrors] = useState([]);
-    const [nameError, setNameError] = useState('');
-    const [goalError, setGoalError] = useState('');
-    const [currentError, setCurrentError] = useState('')
-    const [shortDescriptionError, setShortDescriptionError] = useState('');
-    const [longDescriptionError, setLongDescriptionError] = useState('');
-    const [previewImageError, setPreviewImageError] = useState('');
-    const [cityError, setCityError] = useState('');
-    const [stateError, setStateError] = useState('');
 
-    const [hasSubmitted, setHasSubmitted] = useState(false)
+
     const history = useHistory();
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        const validationErrors = []
-
-
-        if(name.length < 2) {setNameError("Name must be at least 2 characters"); validationErrors.push(nameError)}//validationErrors.push("Name must be at least 2 characters")
-        else if(name.length > 50) {setNameError("Name must be at most 50 characters"); validationErrors.push(nameError)}//validationErrors.push("Name must be 50 characters at most")
-        else setNameError('')
-
-        if(Number(goal_amount) < 1) {setGoalError("Goal must be a positive number"); validationErrors.push(goalError)} //validationErrors.push("Goal must be a positive number")
-        else setGoalError('')
-
-        if(Number(current_amount) < 1) {setCurrentError("Current amount must be a positive number"); validationErrors.push(currentError)}//validationErrors.push("Current amount must be a positive number")
-        else if(Number(current_amount) >= Number(goal_amount)) {setCurrentError("Current amount must be less than the goal"); validationErrors.push(currentError)} //validationErrors.push("Current amount must be less than the goal")
-        else setCurrentError('')
-
-        if(short_description.length < 50) {setShortDescriptionError("Short description must be at least 50 characters"); validationErrors.push(shortDescriptionError)}//validationErrors.push("Short description must be at least 50 characters")
-        else setShortDescriptionError('')
-
-        if(long_description.length < 100) {setLongDescriptionError("Long description must be at least 100 characters"); validationErrors.push(longDescriptionError)}//validationErrors.push("Long description must be at least 100 characters")
-        else setLongDescriptionError('')
-
-        if(!preview_image.match(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)) {setPreviewImageError("Preview image must be a valid URL"); validationErrors.push(previewImageError)}//validationErrors.push("Preview image must be a valid URL")
-        else setPreviewImageError('')
-
-        if(!city) {setCityError("Please enter a city"); validationErrors.push(cityError)}
-        else setCityError('')
-
-        if(!state.match(/^[a-zA-Z]{2}$/)) { setStateError("Please enter your state's two letter abbreviation"); validationErrors.push(stateError)}
-        else setStateError('')
-
-        setErrors(validationErrors)
-    },[name, goal_amount, current_amount, short_description, long_description, preview_image, city, state])
+    const { id } = useParams();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setHasSubmitted(true)
-        if(errors.length > 0) return
-        const res = await fetch("/api/projects/create", {
-            method: "POST",
+        const res = await fetch("/api/projects/${id}", {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -79,27 +37,44 @@ function CreateProject() {
                 long_description,
                 preview_image,
                 city,
-                state,
+                state
             }),
         });
         const data = await res.json();
         dispatch(actionAddProject(data))
-        console.log("DATA ---------------> ", data)
+        window.print("DATA ---------------> ", data)
 
         history.push(`/projects/${data.id}`)
 
     };
+
+    useEffect(() => {
+        (async () => {
+        const res = await fetch(`/api/projects/${id}`);
+        const data = await res.json();
+        console.log("THE PROJECT DATA ----------> ", data)
+        setProject(data);
+        setName(data.name);
+        setShortDescription(data.short_description);
+        setCity(data.city);
+        setState(data.state);
+        setPreviewImage(data.preview_image);
+        setGoalAmount(data.goal_amount);
+        setCurrentAmount(data.current_amount);
+        setLongDescription(data.long_description);
+        })();
+    }, [id]);
 
     return (
         <div>
             <IconBar />
             <div className="create-project-page__main-container">
                 <div className="create-project-form__header">
-                    <h1 className="h1-help">Start with the basics</h1>
-                    <h2 className="h2-help">Make it easy for people to learn about your project.</h2>
+                    <h1 className="h1-helper">Need to make changes?</h1>
+                    <h2 className="h2-helper">Make your edits below.</h2>
                 </div>
                 <div className="create-project-form__header">
-                    <form onSubmit={handleSubmit} noValidate>
+                    <form onSubmit={handleSubmit}>
                         <div className="float-container">
                             <div className="float-child">
                                 <h2>
@@ -115,7 +90,6 @@ function CreateProject() {
                             <div className="float-child">
                                 <label className="title-label">
                                     Title
-                                    {hasSubmitted && nameError && <p className="error-message">{nameError}</p>}
                                     <input
                                         type="text"
                                         value={name}
@@ -127,7 +101,6 @@ function CreateProject() {
                                 </label>
                                 <label className="title-label">
                                     Subtitle
-                                    {hasSubmitted && shortDescriptionError && <p className="error-message">{shortDescriptionError}</p>}
                                     <textarea
                                         type="text"
                                         value={short_description}
@@ -151,7 +124,6 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     City
-                                    {hasSubmitted && cityError && <p className="error-message">{cityError}</p>}
                                     <input
                                         type="text"
                                         value={city}
@@ -163,7 +135,6 @@ function CreateProject() {
                                 </label>
                                 <label>
                                     State
-                                    {hasSubmitted && stateError && <p className="error-message">{stateError}</p>}
                                     <input
                                         type="text"
                                         className='title-input'
@@ -193,7 +164,6 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     Preview Image URL
-                                    {hasSubmitted && previewImageError && <p className="error-message">{previewImageError}</p>}
                                     <input
                                         type="text"
                                         value={preview_image}
@@ -221,7 +191,6 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     Goal Amount
-                                    {hasSubmitted && goalError && <p className="error-message">{goalError}</p>}
                                     <input
                                         type="number"
                                         value={goal_amount}
@@ -233,7 +202,6 @@ function CreateProject() {
                                 </label>
                                 <label>
                                     Current Amount
-                                    {hasSubmitted && currentError && <p className="error-message">{currentError}</p>}
                                     <input
                                         type="number"
                                         value={current_amount}
@@ -263,7 +231,6 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     Description
-                                    {hasSubmitted && longDescriptionError && <p className="error-message">{longDescriptionError}</p>}
                                     <textarea
                                         type="text"
                                         value={long_description}
@@ -273,11 +240,6 @@ function CreateProject() {
                                         required
                                     />
                                 </label>
-                                {errors.length > 0 && (
-                                    <ul class='error-message'>
-                                        {errors.map(error => (<li>{error}</li>))}
-                                    </ul>
-                                )}
                                 <button className="create-project-form__submit-button2" type="submit">Add Rewards</button>
                             </div>
                         </div>
@@ -289,4 +251,4 @@ function CreateProject() {
     );
 }
 
-export default CreateProject;
+export default UpdateProject;

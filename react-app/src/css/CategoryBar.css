@@ -5,7 +5,7 @@
   }
 
   .quick-select__container {
-    max-width: 70%;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 6em;
@@ -40,12 +40,15 @@
     padding-top: 4em;
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
     "Liberation Sans", FreeSans, sans-serif;
+    border-bottom: 0.1rem solid #DCDEDD;
+    padding-bottom: 4em;
   }
 
   .updates-format {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-left: 2em;
   }
 
   .updates-indent {
@@ -59,20 +62,88 @@
     font-size: 2.75rem;
     line-height: 1rem;
     margin-bottom: 1.2em;
-    margin-left: 1em;
+    margin-top: 1em;
+    margin-left: 0.5em;
+    padding-top: 0.5em;
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
       "Liberation Sans", FreeSans, sans-serif;
   }
 
   .updates-paragraph {
     font-size: 1.55rem;
-    margin-left: 2em;
+    margin-left: 1em;
+    margin-right: 2em;
   }
 
   .updates-link {
     margin-left: 0.5em;
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
       "Liberation Sans", FreeSans, sans-serif;
+  }
+
+ .updates-link:link {
+    text-decoration: none;
+    color: rgb(52, 52, 183);
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+        "Liberation Sans", FreeSans, sans-serif;
+  }
+
+
+  .updates-link:visited {
+    text-decoration: none;
+    color: blue;
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+        "Liberation Sans", FreeSans, sans-serif;
+  }
+
+
+  .updates-link:hover {
+    text-decoration: none;
+    color: blue;
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+        "Liberation Sans", FreeSans, sans-serif;
+  }
+
+
+  .updates-link:active {
+    text-decoration: none;
+    color: blue;
+    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+    "Liberation Sans", FreeSans, sans-serif;
+  }
+
+  .trending-wrapper {
+    margin-top: 4em;
+    margin-left: 4em;
+    margin-bottom: 4em;
+    padding-bottom: 1em;
+    border-bottom: 0.1rem solid #DCDEDD;
+  }
+
+  .trending-article {
+    margin-top: 1em;
+    margin-bottom: 4em;
+  }
+
+  .trending-rows {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 4em;
+  }
+
+  .trending-spacing {
+    width: 25%;
+  }
+
+  .trending-spacing2 {
+    margin-left: 1em;
+    margin-right: 0.5em;
+  }
+
+  .trending-spacing3 {
+    margin-right: 1em;
+    margin-left: 0.5em;
   }
 
   .green-left-border {
@@ -98,8 +169,8 @@
   }
 
   .quick-select__content-wrapper {
-    margin-left: 2.4rem;
-    margin-right: 2.4rem;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
   }
 
@@ -145,7 +216,7 @@
     line-height: 4.5rem;
     font-weight: 100;
     margin-bottom: 0;
-    margin-top: 0;
+    margin-top: 1em;
     color: #282828;
     display: flex;
     flex-direction: column;
@@ -175,10 +246,11 @@
     text-align: center;
     width: 120px;
     }
+
     .caption {
         display: block;
         font-size: 1.2rem;
-        margin-right: 1em;
+        /* margin-right: 0.5em; */
     }
 
     .quick-select__navigation-link2 {

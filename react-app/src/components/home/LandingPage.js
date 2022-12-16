@@ -23,9 +23,7 @@ const LandingPage = () => {
                 <Recommended />
             </div>
             <div>
-                <NavLink to="/updates">
-                    <Updates />
-                </NavLink>
+                <Updates />
             </div>
             <Trending />
         </div>

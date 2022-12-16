@@ -17,6 +17,9 @@ import * as sessionActions from './store/session';
 import LandingPage from './components/home/LandingPage';
 import AllProjects from './components/project/CategoryProjects';
 import RewardComponent from './components/reward/RewardComponent';
+import EditRewards from './components/backings/EditBacking';
+import Update from './components/updates/update';
+import UpdateProject from './components/project/UpdateProject';
 import Discover from './components/project/DiscoverProjects';
 
 function App() {
@@ -47,35 +50,47 @@ function App() {
         <Route path='/projects/categories/:category'>
               <AllProjects />
         </Route>
-        <Route path='/projects/:id' exact={true}>
-          <SingleProject />
+        <Route path='/projects/:id/update' exact={true}>
+          <UpdateProject />
+        </Route>
+        <Route path='/projects/:id/rewards/edit' exact={true}>
+          <EditRewards />
+        </Route>
+        <Route path='/updates' exact={true}>
+          <Update />
         </Route>
         <Route path='/projects/create' exact={true}>
           <CreateProject />
+        </Route>
+        <Route path='/projects/:id' exact={true}>
+          <SingleProject />
+        </Route>
+        <Route path='/projects' exact={true}>
+          <AllProjects />
         </Route>
         <Route path='/discover'>
           <Discover />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId/backings' exact={true} >
-              <UserBackings />
+          <UserBackings />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
         <Route path='/projects/:projectId/rewards' exact={true} >
-          <ProjectRewards/>
+          <ProjectRewards />
         </Route>
         <Route path='/rewards/:rewardId' exact={true} >
-          <RewardComponent/>
+          <RewardComponent />
         </Route>
         <Route path='/' exact={true} >
           <LandingPage />
         </Route>
         <Route path='/'>
-          <h1>Error: 404 - page not found</h1>
+          <h1 className='quick-select__container'>Error: 404 - page not found</h1>
         </Route>
       </Switch>
     </BrowserRouter>
