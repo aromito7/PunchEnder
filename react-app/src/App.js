@@ -20,8 +20,8 @@ import RewardComponent from './components/reward/RewardComponent';
 import EditRewards from './components/backings/EditBacking';
 import Update from './components/updates/update';
 import UpdateProject from './components/project/UpdateProject';
+import SearchResults from './components/SearchResults';
 import Discover from './components/project/DiscoverProjects';
-
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +47,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/search">
+          <SearchResults />
         </Route>
         <Route path='/projects/categories/:category'>
             <AllProjects />
