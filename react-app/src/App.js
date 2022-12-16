@@ -22,6 +22,7 @@ import Update from './components/updates/update';
 import UpdateProject from './components/project/UpdateProject';
 import Discover from './components/project/DiscoverProjects';
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -48,7 +49,16 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/projects/categories/:category'>
-              <AllProjects />
+            <AllProjects />
+        <Route path='/projects/:id/update' exact={true}>
+          <UpdateProject />
+        </Route>
+        <Route path='/projects/:id/rewards/edit' exact={true}>
+          <EditRewards />
+        </Route>
+        <Route path='/updates' exact={true}>
+          <Update />
+        </Route>
         </Route>
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
