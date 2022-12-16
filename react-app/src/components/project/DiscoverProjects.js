@@ -23,7 +23,7 @@ const Discover = () => {
         {console.log('THIS IS THE project ', typeof project === 'object', project)}
         {project.map(card =>
           <div className='projCard'>
-            <NavLink className='cardLink' to={`/api/projects/${card.id}`}>
+            <NavLink className='cardLink' to={`/projects/${card.id}`}>
               <div id='cardImgWrap'>
                 <img id='cardImg' src={card.preview_image ? card.preview_image : 'https://i.pinimg.com/originals/a5/90/8c/a5908c706c030ef3f94c2ad98e23b286.jpg'} />
               </div>
