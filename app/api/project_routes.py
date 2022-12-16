@@ -175,18 +175,23 @@ def update_project(projectid):
         return new_project.to_dict()
 
 
-@project_routes.route("/search", methods=["POST"])
-def search():
-    searchParams = dict(request.get_json())
+@project_routes.route("/search/<query>")
+def search(query):
+    searchParams = request.args.get()
+    print(searchParams)
 
-    query = searchParams["searchParams"]
-
+    query = searchParams("name")
     searchResults = Project.query.filter(
-        Project.name.like(f'%{query}%'),
-    ).all()
-    # searchResultsOwners = Project.query.
-    results_obj = {}
-    for project in searchResults:
-        results_obj[f'{project.id}'] = project.to_dict()
-    print(results_obj)
-    return results_obj
+        Project.name.ilike(f'%{query}%')
+    )
+    print(searchResults)
+    results = [project.to_dict() for project in searchResults if project is not None ]
+
+    if not results:
+        return {"message": "No search results were found."}
+
+    return {
+        "results": results,
+        "total": searchResults.total,
+        "page": searchResults.page,
+    }
