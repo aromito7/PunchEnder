@@ -192,3 +192,7 @@
 .ownerBox{
   border: thin solid black;
 }
+
+.error-message{
+  color: red;
+}
