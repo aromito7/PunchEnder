@@ -55,83 +55,93 @@ const CreateReward = () => {
     },[name, quantity, price_threshold, price_threshold, includes, description, shipping_date])
 
     return (
-        <form onSubmit={handleSubmit} novalidate>
-            <label>
-                Name
-                <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                />
-            </label>
-            <label>
-                Quantity
-                <input
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-                required
-                />
-            </label>
-            <label>
-                Donation Price
-                <input
-                type="number"
-                value={price_threshold}
-                onChange={(e) => setPriceThreshold(e.target.value)}
-                required
-                />
-            </label>
-            <label>
-                What this includes
-                <input
-                type="text"
-                value={includes}
-                onChange={(e) => setIncludes(e.target.value)}
-                required
-                />
-            </label>
-            <label>
-                Description
-                <input
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-                />
-            </label>
-            <label>
-                Estimated shipping date
-                <input
-                type="date"
-                value={shipping_date}
-                onChange={(e) => setShippingDate(e.target.value)}
-                required
-                />
-            </label>
-            <label>
-                Ships to
-                <select
-                value={ships_to}
-                onChange={(e) => setShipsTo(e.target.value)}
-                required
-                >
-                    <option>United States</option>
-                    <option>Anywhere in the world</option>
-                </select>
-            </label>
-            {hasSubmitted && errors.length > 0 &&
-                <ul>
-                    {errors.map(error => {
-                        return(
-                            <li>{error}</li>
-                        )
-                    })}
-                </ul>
-            }
-        <button type="submit" formnovalidate="formnovalidate">Create Reward</button>
-        </form>
+        <div id="create-project-reward-main-container">
+            <div className="create-project-form-header">
+            </div>
+            <div className="create-project-form-header">
+                <form onSubmit={handleSubmit} noValidate>
+                    <div className="float-container">
+                    <div className="float-child">
+                        <label>
+                            Name
+                            <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                            />
+                        </label>
+                        <label>
+                            Quantity
+                            <input
+                            type="number"
+                            value={quantity}
+                            onChange={(e) => setQuantity(e.target.value)}
+                            required
+                            />
+                        </label>
+                        <label>
+                            Donation Price
+                            <input
+                            type="number"
+                            value={price_threshold}
+                            onChange={(e) => setPriceThreshold(e.target.value)}
+                            required
+                            />
+                        </label>
+                    </div>
+                    <label>
+                        What this includes
+                        <input
+                        type="text"
+                        value={includes}
+                        onChange={(e) => setIncludes(e.target.value)}
+                        required
+                        />
+                    </label>
+                    <label>
+                        Description
+                        <input
+                        type="text"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                        />
+                    </label>
+                    <label>
+                        Estimated shipping date
+                        <input
+                        type="date"
+                        value={shipping_date}
+                        onChange={(e) => setShippingDate(e.target.value)}
+                        required
+                        />
+                    </label>
+                    <label>
+                        Ships to
+                        <select
+                        value={ships_to}
+                        onChange={(e) => setShipsTo(e.target.value)}
+                        required
+                        >
+                            <option>United States</option>
+                            <option>Anywhere in the world</option>
+                        </select>
+                    </label>
+                    {hasSubmitted && errors.length > 0 &&
+                        <ul>
+                            {errors.map(error => {
+                                return(
+                                    <li>{error}</li>
+                                    )
+                                })}
+                        </ul>
+                    }
+                    </div>
+                <button type="submit">Create Reward</button>
+                </form>
+            </div>
+        </div>
     );
 }
 

@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import actionAddProject from '../../store/allProjects'
 import IconBar from "./IconBar";
-
 
 function CreateProject() {
     const [name, setName] = useState("");
@@ -15,11 +14,57 @@ function CreateProject() {
     const [preview_image, setPreviewImage] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
+    const [errors, setErrors] = useState([]);
+    const [nameError, setNameError] = useState('');
+    const [goalError, setGoalError] = useState('');
+    const [currentError, setCurrentError] = useState('')
+    const [shortDescriptionError, setShortDescriptionError] = useState('');
+    const [longDescriptionError, setLongDescriptionError] = useState('');
+    const [previewImageError, setPreviewImageError] = useState('');
+    const [cityError, setCityError] = useState('');
+    const [stateError, setStateError] = useState('');
+
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const history = useHistory();
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        const validationErrors = []
+
+
+        if(name.length < 2) {setNameError("Name must be at least 2 characters"); validationErrors.push(nameError)}//validationErrors.push("Name must be at least 2 characters")
+        else if(name.length > 50) {setNameError("Name must be at most 50 characters"); validationErrors.push(nameError)}//validationErrors.push("Name must be 50 characters at most")
+        else setNameError('')
+
+        if(Number(goal_amount) < 1) {setGoalError("Goal must be a positive number"); validationErrors.push(goalError)} //validationErrors.push("Goal must be a positive number")
+        else setGoalError('')
+
+        if(Number(current_amount) < 1) {setCurrentError("Current amount must be a positive number"); validationErrors.push(currentError)}//validationErrors.push("Current amount must be a positive number")
+        else if(Number(current_amount) >= Number(goal_amount)) {setCurrentError("Current amount must be less than the goal"); validationErrors.push(currentError)} //validationErrors.push("Current amount must be less than the goal")
+        else setCurrentError('')
+
+        if(short_description.length < 50) {setShortDescriptionError("Short description must be at least 50 characters"); validationErrors.push(shortDescriptionError)}//validationErrors.push("Short description must be at least 50 characters")
+        else setShortDescriptionError('')
+
+        if(long_description.length < 100) {setLongDescriptionError("Long description must be at least 100 characters"); validationErrors.push(longDescriptionError)}//validationErrors.push("Long description must be at least 100 characters")
+        else setLongDescriptionError('')
+
+        if(!preview_image.match(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)) {setPreviewImageError("Preview image must be a valid URL"); validationErrors.push(previewImageError)}//validationErrors.push("Preview image must be a valid URL")
+        else setPreviewImageError('')
+
+        if(!city) {setCityError("Please enter a city"); validationErrors.push(cityError)}
+        else setCityError('')
+
+        if(!state.match(/^[a-zA-Z]{2}$/)) { setStateError("Please enter your state's two letter abbreviation"); validationErrors.push(stateError)}
+        else setStateError('')
+
+        setErrors(validationErrors)
+    },[name, goal_amount, current_amount, short_description, long_description, preview_image, city, state])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setHasSubmitted(true)
+        if(errors.length > 0) return
         const res = await fetch("/api/projects/create", {
             method: "POST",
             headers: {
@@ -39,9 +84,9 @@ function CreateProject() {
         });
         const data = await res.json();
         dispatch(actionAddProject(data))
-        window.print("DATA ---------------> ", data)
+        console.log("DATA ---------------> ", data)
 
-        history.push(`/projects/${data.id}/edit`)
+        history.push(`/projects/${data.id}`)
 
     };
 
@@ -54,7 +99,7 @@ function CreateProject() {
                     <h2 className="h2-help">Make it easy for people to learn about your project.</h2>
                 </div>
                 <div className="create-project-form__header">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} noValidate>
                         <div className="float-container">
                             <div className="float-child">
                                 <h2>
@@ -70,24 +115,26 @@ function CreateProject() {
                             <div className="float-child">
                                 <label className="title-label">
                                     Title
+                                    {hasSubmitted && nameError && <p className="error-message">{nameError}</p>}
                                     <input
-                                    type="text"
-                                    value={name}
-                                    className='title-input'
-                                    placeholder="Queen of Pain: A Roller Derby Documentary"
-                                    onChange={(e) => setName(e.target.value)}
-                                    required
+                                        type="text"
+                                        value={name}
+                                        className='title-input'
+                                        placeholder="Queen of Pain: A Roller Derby Documentary"
+                                        onChange={(e) => setName(e.target.value)}
+                                        required
                                     />
                                 </label>
                                 <label className="title-label">
                                     Subtitle
+                                    {hasSubmitted && shortDescriptionError && <p className="error-message">{shortDescriptionError}</p>}
                                     <textarea
-                                    type="text"
-                                    value={short_description}
-                                    className="short-desc-input"
-                                    placeholder="A feature-length documentary film following Suzy Hotrod and the fun, fearless women of Gotham Girls Roller Derby in NYC."
-                                    onChange={(e) => setShortDescription(e.target.value)}
-                                    required
+                                        type="text"
+                                        value={short_description}
+                                        className="short-desc-input"
+                                        placeholder="A feature-length documentary film following Suzy Hotrod and the fun, fearless women of Gotham Girls Roller Derby in NYC."
+                                        onChange={(e) => setShortDescription(e.target.value)}
+                                        required
                                     />
                                 </label>
                             </div>
@@ -98,36 +145,38 @@ function CreateProject() {
                                     Project Location
                                 </h2>
                                 <h3>
-                                Enter the location that best describes where your project is based.
+                                    Enter the location that best describes where your project is based.
                                 </h3>
                             </div>
                             <div className="float-child">
                                 <label>
-                                City
-                                <input
-                                type="text"
-                                value={city}
-                                className='title-input'
-                                placeholder="App State"
-                                onChange={(e) => setCity(e.target.value)}
-                                required
-                                />
-                            </label>
-                            <label>
-                                State
-                                <input
-                                type="text"
-                                className='title-input'
-                                value={state}
-                                placeholder="Academy Country"
-                                onChange={(e) => setState(e.target.value)}
-                                required
-                                />
-                            </label>
+                                    City
+                                    {hasSubmitted && cityError && <p className="error-message">{cityError}</p>}
+                                    <input
+                                        type="text"
+                                        value={city}
+                                        className='title-input'
+                                        placeholder="App State"
+                                        onChange={(e) => setCity(e.target.value)}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    State
+                                    {hasSubmitted && stateError && <p className="error-message">{stateError}</p>}
+                                    <input
+                                        type="text"
+                                        className='title-input'
+                                        value={state}
+                                        placeholder="Academy Country"
+                                        onChange={(e) => setState(e.target.value)}
+                                        required
+                                    />
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="float-container">
-                    <div className="float-child">
+                        <div className="float-container">
+                            <div className="float-child">
                                 <h2>
                                     Project Image
                                 </h2>
@@ -144,13 +193,14 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     Preview Image URL
+                                    {hasSubmitted && previewImageError && <p className="error-message">{previewImageError}</p>}
                                     <input
-                                    type="text"
-                                    value={preview_image}
-                                    className='title-input'
-                                    placeholder="https://www.google.com/cute_puppy/photo.jpg"
-                                    onChange={(e) => setPreviewImage(e.target.value)}
-                                    required
+                                        type="text"
+                                        value={preview_image}
+                                        className='title-input'
+                                        placeholder="https://www.google.com/cute_puppy/photo.jpg"
+                                        onChange={(e) => setPreviewImage(e.target.value)}
+                                        required
                                     />
                                 </label>
                             </div>
@@ -171,24 +221,26 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     Goal Amount
+                                    {hasSubmitted && goalError && <p className="error-message">{goalError}</p>}
                                     <input
-                                    type="number"
-                                    value={goal_amount}
-                                    className='title-input'
-                                    placeholder="0"
-                                    onChange={(e) => setGoalAmount(e.target.value)}
-                                    required
+                                        type="number"
+                                        value={goal_amount}
+                                        className='title-input'
+                                        placeholder="0"
+                                        onChange={(e) => setGoalAmount(e.target.value)}
+                                        required
                                     />
                                 </label>
                                 <label>
                                     Current Amount
+                                    {hasSubmitted && currentError && <p className="error-message">{currentError}</p>}
                                     <input
-                                    type="number"
-                                    value={current_amount}
-                                    className='title-input'
-                                    placeholder="0"
-                                    onChange={(e) => setCurrentAmount(e.target.value)}
-                                    required
+                                        type="number"
+                                        value={current_amount}
+                                        className='title-input'
+                                        placeholder="0"
+                                        onChange={(e) => setCurrentAmount(e.target.value)}
+                                        required
                                     />
                                 </label>
                             </div>
@@ -198,9 +250,9 @@ function CreateProject() {
                             <h2 className="h2-help3">Tell people why they should be excited about your project. Get specific but be clear and be brief.</h2>
                         </div>
                         <div className="float-container">
-                    <div className="float-child">
+                            <div className="float-child">
                                 <h2>
-                                    Project Image
+                                    Project Description
                                 </h2>
                                 <h3>
                                     Describe what you're raising funds to do, why you care about it, how you plan to make it happen,
@@ -211,18 +263,24 @@ function CreateProject() {
                             <div className="float-child">
                                 <label>
                                     Description
+                                    {hasSubmitted && longDescriptionError && <p className="error-message">{longDescriptionError}</p>}
                                     <textarea
-                                    type="text"
-                                    value={long_description}
-                                    className='long-desc-input'
-                                    placeholder="Write about your project like you're explaining it to a friend..."
-                                    onChange={(e) => setLongDescription(e.target.value)}
-                                    required
+                                        type="text"
+                                        value={long_description}
+                                        className='long-desc-input'
+                                        placeholder="Write about your project like you're explaining it to a friend..."
+                                        onChange={(e) => setLongDescription(e.target.value)}
+                                        required
                                     />
                                 </label>
+                                {errors.length > 0 && (
+                                    <ul class='error-message'>
+                                        {errors.map(error => (<li>{error}</li>))}
+                                    </ul>
+                                )}
+                                <button className="create-project-form__submit-button2" type="submit">Add Rewards</button>
                             </div>
                         </div>
-                        <button className="create-project-form__submit-button2" type="submit">Add Rewards</button>
                         <button className="create-project-form__submit-button" type="submit">Add Rewards</button>
                     </form>
                 </div>

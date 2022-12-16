@@ -1,0 +1,78 @@
+.discWrapper {
+  display: flex;
+  justify-content: center;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 9%;
+}
+
+.discCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 4rem;
+  row-gap: 4rem;
+}
+
+.projCard {
+  border: 1px solid #DCDEDD;
+  height: 53rem;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: black;
+}
+
+#cardImgWrap {
+  width: 100%;
+  height: 22rem;
+  display: flex;
+  justify-content: center;
+}
+
+#cardImg {
+  height: 22rem;
+  width: 100%;
+}
+
+.cardDescWrapper {
+  padding-right: 2.3rem;
+  padding-left: 2.3rem;
+  padding-bottom: 2.3rem;
+  padding-top: 1rem;
+}
+
+#cardTitle {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+#cardShoDesc {
+  color: #656969;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1.3rem;
+}
+
+#cardAuthor {
+  padding-bottom: 7rem;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid #037362;
+}
+
+#cardCurrAmount {
+  color: #037362;
+}
+
+#cardEndDate {
+  color: #656969;
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+}
+.cardBotInfo {
+  display: flex;
+  gap: 1rem;
+  color: #656969;
+  margin-top: 0.5rem;
+}

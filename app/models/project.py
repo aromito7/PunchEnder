@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 from sqlalchemy import ForeignKey
-
+from .project_categories import category_table
 
 class Project(db.Model):
     __tablename__ = 'projects'
@@ -27,21 +27,25 @@ class Project(db.Model):
     reward = db.relationship(
         'Reward', back_populates='project', cascade="all, delete")
 
-    # Add relationships for backings
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'owner_id': self.owner_id,
-            'name': self.name,
-            'goal_amount': self.goal_amount,
-            'current_amount': self.current_amount,
-            'start_date': self.start_date.isoformat(),
-            'end_date': self.end_date.isoformat(),
-            'short_description': self.short_description,
-            'long_description': self.long_description,
-            'preview_image': self.preview_image,
-            'city': self.city,
-            'state': self.state,
-            'rewards': [r.to_dict() for r in self.reward]
-        }
+
+  categories = db.relationship('Category', secondary=category_table, back_populates='projects')
+
+
+  def to_dict(self):
+    return {
+      'id': self.id,
+      'owner_id': self.owner_id,
+      'categories': [category.name for category in self.categories],
+      'name': self.name,
+      'goal_amount': self.goal_amount,
+      'current_amount': self.current_amount,
+      'start_date': self.start_date.isoformat(),
+      'end_date': self.end_date.isoformat(),
+      'short_description': self.short_description,
+      'long_description': self.long_description,
+      'preview_image': self.preview_image,
+      'city': self.city,
+      'state': self.state,
+      'rewards': [r.to_dict() for r in self.reward],
+    }

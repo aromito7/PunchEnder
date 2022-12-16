@@ -21,7 +21,7 @@ class Reward(db.Model):
     project = db.relationship('Project', back_populates='reward')
     user = db.relationship(
         'User', secondary=backing_table, back_populates='reward')
-    includes = db.Column(db.String(500), nullable=False)
+    includes = db.Column(db.String(500))
     description = db.Column(db.String(50000), nullable=False)
 
     def to_dict(self):

@@ -6,6 +6,9 @@
 @import "Login.css";
 @import "Signup.css";
 @import "CreateProject.css";
+@import "Updates.css";
+@import "Discover.css";
+@import "CreateReward.css";
 
 html {
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
@@ -36,4 +39,35 @@ nav a{
         text-decoration:none;
         color: #282828;
         margin-left: 2em;
+}
+
+a:link {
+  text-decoration: none;
+  color: #282828;
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+      "Liberation Sans", FreeSans, sans-serif;
+}
+
+
+a:visited {
+  text-decoration: none;
+  color: #282828;
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+      "Liberation Sans", FreeSans, sans-serif;
+}
+
+
+a:hover {
+  text-decoration: none;
+  color: #282828;
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+      "Liberation Sans", FreeSans, sans-serif;
+}
+
+
+a:active {
+  text-decoration: none;
+  color: #282828;
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+  "Liberation Sans", FreeSans, sans-serif;
 }
