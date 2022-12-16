@@ -64,6 +64,9 @@ function App() {
         <Route path='/projects/:id' exact={true}>
           <SingleProject />
         </Route>
+        <ProtectedRoute path='/projects/:projectId/rewards/create' exact={true}>
+          <CreateReward/>
+        </ProtectedRoute>
         <Route path='/projects' exact={true}>
           <AllProjects />
         </Route>
