@@ -35,7 +35,7 @@ export const thunkGetRewards = (projectId) => async (dispatch) => {
   }
 }
 
-export const createReward = (reward) => async (dispatch) => {
+export const actionCreateReward = (reward) => async (dispatch) => {
   const {
     name,
     quantity,

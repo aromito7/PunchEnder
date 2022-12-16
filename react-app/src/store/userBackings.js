@@ -37,7 +37,10 @@ export const thunkGetAllBackings = (userId) => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
+        console.log("DATA FROM BACKEND ----", data)
+        if (data.message) {
+            return
+        }
         dispatch(actionGetAllBackings(data))
         return response
     }
@@ -45,10 +48,17 @@ export const thunkGetAllBackings = (userId) => async (dispatch) => {
 
 export const thunkAddBacking = (projectId, rewardId) => async (dispatch) => {
     const response = await fetch(`/api/projects/${projectId}/rewards/${rewardId}`, {
-        method: 'POST'
+        method: 'POST',
+        body: JSON.stringify({
+            projectId,
+            rewardId
+        })
     })
+    console.log("ADD BACKING RESPONSE---->", await response.json())
     if (response.ok) {
+        console.log("ADD BACKING RESPONSE---->", await response.json())
         const data = await response.json()
+        console.log("ADD BACKING RESPONSE---->", data)
         dispatch(actionAddBacking(data))
     }
 }
@@ -78,21 +88,22 @@ export default function userBackingsReducer(state = {}, action) {
     switch (action.type) {
         case GET_BACKINGS:
             const backingsObj = { ...state }
-            action.payload.backings.forEach(backing => backingsObj[backing.id] = backing)
+            action.payload.backings.forEach(backing => backingsObj[backing.project_id] = backing)
             newState = backingsObj
-            console.log(newState)
             return newState
         case ADD_BACKING:
             newState = { ...state }
-            newState[action.payload.project_name] = action.payload
+            console.log("payload ---->", action.payload)
+            // console.log(newState[action.payload.project_id])
+            newState[action.payload.project_id] = action.payload
             return newState
         case UPDATE_BACKING:
             newState = { ...state }
-            newState[action.payload.project_name] = action.payload
+            newState[action.payload.project_id] = action.payload
             return newState
         case DELETE_BACKING:
             newState = { ...state }
-            delete newState[action.payload.project_name]
+            delete newState[action.payload.project_id]
             return newState
         default:
             return state

@@ -23,7 +23,7 @@ def get_user_backings(id):
     """
     user = User.query.get(id)
     user_backings = user.reward
-    if len(user_backings) == 0:
+    if len(user_backings) < 1:
         return {"message": "no backings found"}
 
     user_backings_list = []

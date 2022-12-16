@@ -43,6 +43,7 @@ def create_backing(reward_id, id):
     """
     Create a backing for a project based on reward_id
     """
+
     user = current_user
     reward = Reward.query.get(reward_id)
 
@@ -54,9 +55,14 @@ def create_backing(reward_id, id):
 
     reward = Reward.query.get(reward_id)
     project = Project.query.get(id)
+    backing_obj["project_id"] = reward.project_id
     backing_obj["project_name"] = project.name
     backing_obj["backing_value"] = reward.price_threshold
+    backing_obj["reward"] = reward.name
+    backing_obj["image"] = project.preview_image
+    backing_obj["reward_id"] = reward.id
 
+    print("ADD BACKING ---->", backing_obj)
     return backing_obj
 
 
@@ -82,8 +88,12 @@ def update_backing(reward_id, id):
 
     reward = Reward.query.get(reward_id)
     project = Project.query.get(id)
+    backing_obj["project_id"] = reward.project_id
     backing_obj["project_name"] = project.name
     backing_obj["backing_value"] = reward.price_threshold
+    backing_obj["reward"] = reward.name
+    backing_obj["image"] = project.preview_image
+    backing_obj["reward_id"] = reward.id
 
     return backing_obj
 
