@@ -19,12 +19,17 @@
     padding-right: 25px;
 }
 
+.backing-img-div {
+    object-fit: cover;
+}
+
 ul {
     list-style: none;
 }
 
 #backing-img {
     max-width: 400px;
+    /* border-radius: 5%; */
 }
 
 
@@ -59,8 +64,11 @@ ul {
 
 #backing {
     margin: 10px;
-    border-left: 1px solid grey;
+    border: 1px solid grey;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
     padding-left: 1px;
+    object-fit: contain;
 }
 
 #edit {
