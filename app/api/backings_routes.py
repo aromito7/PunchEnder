@@ -81,7 +81,8 @@ def update_backing(project_id):
     user = current_user
 
     prev_reward = Reward.query.get(body["prevRewardId"])
-    prev_reward.user = []
+    user.reward.remove(prev_reward)
+    # prev_reward.user.remove("prevRewardId")
 
     new_reward = Reward.query.get(body["newRewardId"])
     user.reward.append(new_reward)
@@ -103,7 +104,7 @@ def delete_backing(project_id):
     # user = User.query.get(user.id)
     # print(user.reward)
     reward = Reward.query.get(body["rewardId"])
-    reward.user = []
+    user.reward.remove(reward)
     print(reward.user)
     # del reward.user
 

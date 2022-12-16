@@ -23,8 +23,8 @@ ul {
     list-style: none;
 }
 
-img.backings-helper {
-    max-width: 50px;
+#backing-img {
+    max-width: 400px;
 }
 
 

@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRewards, thunkGetRewards } from '../../store/reward';
-import { thunkUpdateBacking } from '../../store/userBackings';
-import "./Backings.css"
 import { thunkGetAllProjects } from '../../store/allProjects';
+import "./Backings.css"
 
 const EditRewards = () => {
     const { id } = useParams()
-    const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const project = useSelector(state => state.projects[id])
-    const projectRewards = project.rewards
+    const dispatch = useDispatch()
+    const projectRewards = project?.rewards
     const userRewards = user.rewards
     const userRewardIds = []
     let prevRewardId;
@@ -37,10 +35,11 @@ const EditRewards = () => {
 
     useEffect(() => {
         dispatch(thunkGetAllProjects())
-    }, [dispatch, id, user])
+    }, [dispatch])
 
     if (!project) return null
     if (!user) return null
+    if (!projectRewards) return null
 
     const handleClick = async (newRewardId, prevRewardId) => {
         const response = await fetch(`/api/backings/project/${id}`, {
