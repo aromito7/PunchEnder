@@ -1,6 +1,6 @@
 .backings-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
@@ -65,9 +65,7 @@ ul {
 #backing {
     margin: 10px;
     border: 1px solid grey;
-    border-bottom-left-radius: 5%;
-    border-bottom-right-radius: 5%;
-    padding-left: 1px;
+    padding-left: 10px;
     object-fit: contain;
 }
 

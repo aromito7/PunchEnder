@@ -23,23 +23,25 @@ function UserBackings() {
     })
 
     const deleteBacking = async (projectId, rewardId) => {
-        const response = await fetch(`/api/backings/project/${projectId}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                rewardId
-            })
-        })
-        if (response.ok) {
-            const data = await response.json()
-            console.log(data)
-            return data
-        }
+        // const response = await fetch(`/api/backings/project/${projectId}`, {
+        //     method: "DELETE",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         rewardId
+        //     })
+        // })
+        // if (response.ok) {
+        //     const data = await response.json()
+        //     console.log(data)
+        //     return data
+        // }
+        dispatch(thunkDeleteBacking(projectId, rewardId))
     }
 
     useEffect(() => {
+
     }, [user])
 
     return (

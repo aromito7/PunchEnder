@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllProjects } from '../../store/allProjects';
 import "./Backings.css"
+import { thunkUpdateBacking } from '../../store/userBackings';
 
 const EditRewards = () => {
     const { id } = useParams()
@@ -10,8 +11,10 @@ const EditRewards = () => {
     const user = useSelector(state => state.session.user)
     const project = useSelector(state => state.projects[id])
     const dispatch = useDispatch()
-    const projectRewards = project?.rewards
+
+    const projectRewards = project.rewards
     const userRewards = user.rewards
+
     const userRewardIds = []
     let prevRewardId;
 
@@ -33,6 +36,12 @@ const EditRewards = () => {
         }
     })
 
+
+    const handleClick = async (newRewardId, prevRewardId) => {
+        dispatch(thunkUpdateBacking(id, newRewardId, prevRewardId))
+        history.push(`/users/${user.id}/backings`)
+    }
+
     useEffect(() => {
         dispatch(thunkGetAllProjects())
     }, [dispatch])
@@ -41,26 +50,6 @@ const EditRewards = () => {
     if (!user) return null
     if (!projectRewards) return null
 
-    const handleClick = async (newRewardId, prevRewardId) => {
-        const response = await fetch(`/api/backings/project/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                newRewardId,
-                prevRewardId,
-                id
-            })
-        })
-        if (response.ok) {
-            const data = await response.json()
-            console.log(data)
-            history.push(`/users/${user.id}/backings`)
-            return data
-        }
-
-    }
     return (
         <>
             <h1 id='rewards-header'>Select a different reward:</h1>

@@ -26,23 +26,25 @@ const RewardComponent = ({ reward }) => {
     const history = useHistory()
 
     const addBacking = async (rewardId) => {
-        const response = await fetch(`/api/backings/project/${id}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                rewardId
-            })
-        })
-        if (response.ok) {
-            const data = await response.json()
-            history.push(`/users/${user.id}/backings`)
-            return data
-        }
-        else {
-            return { "Error": "Could not back project" }
-        }
+        // const response = await fetch(`/api/backings/project/${id}`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         rewardId
+        //     })
+        // })
+        // if (response.ok) {
+        //     const data = await response.json()
+        //     history.push(`/users/${user.id}/backings`)
+        //     return data
+        // }
+        // else {
+        //     return { "Error": "Could not back project" }
+        // }
+        dispatch(thunkAddBacking(id, rewardId))
+        history.push(`/users/${user.id}/backings`)
     }
 
 

@@ -54,20 +54,20 @@ def create_backing(project_id):
 
     db.session.commit()
 
-    # backing_obj = {}
+    backing_obj = {}
 
-    # reward = Reward.query.get(reward_id)
-    # project = Project.query.get(id)
-    # backing_obj["project_id"] = reward.project_id
-    # backing_obj["project_name"] = project.name
-    # backing_obj["backing_value"] = reward.price_threshold
-    # backing_obj["reward"] = reward.name
-    # backing_obj["image"] = project.preview_image
-    # backing_obj["reward_id"] = reward.id
+    reward = Reward.query.get(reward_id)
+    project = Project.query.get(id)
+    backing_obj["project_id"] = reward.project_id
+    backing_obj["project_name"] = project.name
+    backing_obj["backing_value"] = reward.price_threshold
+    backing_obj["reward"] = reward.name
+    backing_obj["image"] = project.preview_image
+    backing_obj["reward_id"] = reward.id
 
-    # print("ADD BACKING ---->", backing_obj)
-    # return backing_obj
-    return {"message": "Backing successfully created"}
+    print("ADD BACKING ---->", backing_obj)
+    return backing_obj
+    # return {"message": "Backing successfully created"}
 
 
 @backings_route.route('/project/<int:project_id>', methods=["PUT"])
@@ -101,18 +101,9 @@ def delete_backing(project_id):
     body = request.get_json()
     user = current_user
 
-    # user = User.query.get(user.id)
-    # print(user.reward)
     reward = Reward.query.get(body["rewardId"])
     user.reward.remove(reward)
     print(reward.user)
-    # del reward.user
-
-    # for i, backing in enumerate(reward.user):
-    #     if backing.id == user.id:
-    #         del reward.user[i]
-    #     else:
-    #         return {'Error': "Can't delete a backing that's not yours"}
 
     db.session.commit()
 

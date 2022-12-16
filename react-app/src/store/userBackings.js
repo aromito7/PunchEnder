@@ -32,25 +32,23 @@ const actionDeleteBacking = (backing) => {
 }
 
 export const thunkGetAllBackings = (userId) => async (dispatch) => {
-    const response = await fetch(`/api/users/${userId}/backings`, {
+    const response = await fetch(`/api/backings/${userId}`, {
         method: 'GET'
     })
     if (response.ok) {
         const data = await response.json()
-        console.log("DATA FROM BACKEND ----", data)
-        if (data.message) {
-            return
-        }
         dispatch(actionGetAllBackings(data))
         return response
     }
 }
 
 export const thunkAddBacking = (projectId, rewardId) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/rewards/${rewardId}`, {
+    const response = await fetch(`/api/backings/project/${projectId}`, {
         method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-            projectId,
             rewardId
         })
     })
@@ -61,25 +59,49 @@ export const thunkAddBacking = (projectId, rewardId) => async (dispatch) => {
         console.log("ADD BACKING RESPONSE---->", data)
         dispatch(actionAddBacking(data))
     }
+    else {
+        return { "Error": "Could not back project" }
+    }
 }
 
-export const thunkUpdateBacking = (projectId, rewardId) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/rewards/${rewardId}`, {
-        method: 'PUT'
+export const thunkUpdateBacking = (projectId, newRewardId, prevRewardId) => async (dispatch) => {
+    const response = await fetch(`/api/backings/project/${projectId}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            newRewardId,
+            prevRewardId,
+        })
     })
     if (response.ok) {
         const data = await response.json()
         dispatch(actionUpdateBacking(data))
+        return data
+    }
+    else {
+        return { "Error": "Could not update backing" }
     }
 }
 
 export const thunkDeleteBacking = (projectId, rewardId) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/rewards/${rewardId}`, {
-        method: 'DELETE'
+    const response = await fetch(`/api/backings/project/${projectId}}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            rewardId
+        })
     })
     if (response.ok) {
         const data = await response.json()
         dispatch(actionDeleteBacking(data))
+        return data
+    }
+    else {
+        return { "Error": "Could not delete backing" }
     }
 }
 
