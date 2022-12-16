@@ -15,11 +15,13 @@ import UserBackings from './components/backings/UserBackings';
 import { authenticate } from './store/session';
 import * as sessionActions from './store/session';
 import LandingPage from './components/home/LandingPage';
-import AllProjects from './components/project/AllProjects';
+import AllProjects from './components/project/CategoryProjects';
 import RewardComponent from './components/reward/RewardComponent';
 import EditRewards from './components/backings/EditBacking';
 import Update from './components/updates/update';
 import UpdateProject from './components/project/UpdateProject';
+import Discover from './components/project/DiscoverProjects';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,6 +48,8 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/projects/categories/:category'>
+            <AllProjects />
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
         </Route>
@@ -55,8 +59,15 @@ function App() {
         <Route path='/updates' exact={true}>
           <Update />
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+        </Route>
+        <Route path='/projects/:id/update' exact={true}>
+          <UpdateProject />
+        </Route>
+        <Route path='/projects/:id/rewards/edit' exact={true}>
+          <EditRewards />
+        </Route>
+        <Route path='/updates' exact={true}>
+          <Update />
         </Route>
         <Route path='/projects/create' exact={true}>
           <CreateProject />
@@ -66,6 +77,9 @@ function App() {
         </Route>
         <Route path='/projects' exact={true}>
           <AllProjects />
+        </Route>
+        <Route path='/discover'>
+          <Discover />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
