@@ -8,7 +8,8 @@ import "./Backings.css"
 
 function UserBackings() {
     const user = useSelector(state => state.session.user)
-    console.log(user)
+
+
     let backings = [];
     Object.values(user.rewards).map(reward => {
         const backing = {}
@@ -37,8 +38,8 @@ function UserBackings() {
             return data
         }
     }
-    useEffect(() => {
 
+    useEffect(() => {
     }, [user])
 
     return (
