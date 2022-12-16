@@ -263,10 +263,11 @@
 .results-container {
   display: flex;
   flex-direction: column;
-  /* position: fixed; */
-  /* margin-left: -88vw; */
   align-items: center;
   margin-top: 500px;
+  /* position: fixed; */
+  /* margin-left: -88vw; */
+
   /* width: 100vw;
   height: auto; */
   /* z-index: 99; */
