@@ -1,38 +1,72 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRewards } from '../../store/reward';
+import { getRewards, thunkGetRewards } from '../../store/reward';
 import { thunkUpdateBacking } from '../../store/userBackings';
 import "./Backings.css"
+import { thunkGetAllProjects } from '../../store/allProjects';
 
 const EditRewards = () => {
-    const [rewards, setRewards] = useState([])
-    const [rewardId, setRewardId] = useState(null)
-    const user = useSelector(state => state.session.user)
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+    const user = useSelector(state => state.session.user)
+    const project = useSelector(state => state.projects[id])
+    const projectRewards = project.rewards
+    const userRewards = user.rewards
+    const userRewardIds = []
+    let prevRewardId;
 
-    // const getRewardId = (reward_id) => {
-    //     // if (!rewardId) return
-    //     setRewardId(reward_id)
-    // }
+    Object.values(userRewards).map(reward => {
+        userRewardIds.push(reward.id)
+    })
 
-    // const handleSubmit = () => {
-    //     dispatch(thunkUpdateBacking(id, rewardId))
-    // }
+    Object.values(projectRewards).map(reward => {
+        if (userRewardIds.includes(reward.id)) {
+            prevRewardId = reward.id
+        }
+    })
 
-    useEffect(async () => {
-        const response = await fetch(`/api/rewards/projects/${id}`);
-        const { rewards } = await response.json();
-        setRewards(rewards);
-    }, []);
+    const availableRewards = []
 
+    Object.values(projectRewards).map(reward => {
+        if (!userRewardIds.includes(reward.id)) {
+            availableRewards.push(reward)
+        }
+    })
+
+    useEffect(() => {
+        dispatch(thunkGetAllProjects())
+    }, [dispatch, id, user])
+
+    if (!project) return null
+    if (!user) return null
+
+    const handleClick = async (newRewardId, prevRewardId) => {
+        const response = await fetch(`/api/backings/project/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                newRewardId,
+                prevRewardId,
+                id
+            })
+        })
+        if (response.ok) {
+            const data = await response.json()
+            console.log(data)
+            history.push(`/users/${user.id}/backings`)
+            return data
+        }
+
+    }
     return (
         <>
             <h1 id='rewards-header'>Select a different reward:</h1>
             <div className='edit-rewards-container'>
-                {Object.values(rewards).map(reward => (
+                {Object.values(availableRewards).map(reward => (
                     <div className='reward'>
                         <ul>
                             <li style={{ fontWeight: "bold" }}>
@@ -51,8 +85,7 @@ const EditRewards = () => {
                                 {reward.description}
                             </li>
                         </ul>
-                        <button id='select-reward'>Select</button>
-                        {/* <button onClick={toggleClick(reward.id)} id='select-reward'>Select</button> */}
+                        <button onClick={() => handleClick(reward.id, prevRewardId)} id='select-reward'>Select</button>
                     </div>
                 ))}
             </div>

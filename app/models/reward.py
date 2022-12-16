@@ -32,5 +32,7 @@ class Reward(db.Model):
             'description': self.description,
             'includes': self.includes,
             'ships_to': self.ships_to,
-            'users' : len(self.user),
+            'users': len(self.user),
+            'project': {'name': self.project.name,
+                        'preview_image': self.project.preview_image}
         }

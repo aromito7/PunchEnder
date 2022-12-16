@@ -39,8 +39,7 @@ class User(db.Model, UserMixin):
             'firstname': self.firstname,
             'lastname': self.lastname,
             'email': self.email,
-            #'rewards': self.reward.length,
-            #'projects': self.project,
+            'rewards': [r.to_dict() for r in self.reward],
         }
 
     # @property
