@@ -1,24 +1,20 @@
-
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom"
+import { useLocation } from "react-router-dom";
 import "../css/NavBar.css"
 
-function SearchResults({ projects }) {
-
+function SearchResults(props) {
     return (
-        <div className="results-container">
-            {Object.values(projects).map(project => (
-                <div key={project.id}>
-                    <Link to={`/projects/${project.id}`}><div>{project.name}</div></Link>
-                </div>
-            ))
-            }
-            {/* {!!projects &&
-                <div>No Results found</div>
-            } */}
-        </div >
-    )
+      <div className="results-container">
+        {props.projects && props.projects.map(result => (
+          <div key={result.id}>
+            <a to={`/projects/${result.id}`}>
+              <div>{result.name}</div>
+            </a>
+          </div>
+        ))}
+        {!props.projects && <div>No results found</div>}
+      </div>
+    );
+  }
 
-}
-
-export default SearchResults
+export default SearchResults;
