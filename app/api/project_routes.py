@@ -176,4 +176,4 @@ def search(query):
     if not results:
         return {"message": "No search results were found."}
 
-    return { 'results': results}
+    return { 'results': results }

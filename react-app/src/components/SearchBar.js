@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 import "../css/NavBar.css"
 import SearchResults from "./SearchResults";
 
-function SearchBar(props) {
+function SearchBar() {
   const [searchParams, setSearchParams] = useState('')
   const [results, setResults] = useState(null)
   const [mountResults, setMountResults] = useState(false)
@@ -26,9 +26,7 @@ function SearchBar(props) {
       console.error(error)
     }
     setMountResults(true)
-    console.log(props)
     history.push(`/search?query=${query}`)
-    return <SearchResults projects={results} />
   }
 
   useEffect(() => {
@@ -53,6 +51,7 @@ function SearchBar(props) {
         placeholder="Search for a project"
         onChange={e => setSearchParams(e.target.value)}
       />
+      {mountResults && <SearchResults projects={results} />}
     </>
   )
 }
