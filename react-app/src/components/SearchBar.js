@@ -18,6 +18,7 @@ function SearchBar() {
 
   const handleSubmit = async () => {
     const query = queryMaker(searchParams)
+    history.push(`/search?query=${query}`)
     try {
       const response = await fetch(`/api/projects/search/${query}`)
       const data = await response.json()
@@ -26,7 +27,7 @@ function SearchBar() {
       console.error(error)
     }
     setMountResults(true)
-    history.push(`/search?query=${query}`)
+    console.log('hello test tsetsets tes s')
   }
 
   useEffect(() => {
@@ -51,7 +52,7 @@ function SearchBar() {
         placeholder="Search for a project"
         onChange={e => setSearchParams(e.target.value)}
       />
-      {mountResults && <SearchResults projects={results} />}
+      {/* {mountResults && <SearchResults projects={results} />} */}
     </>
   )
 }
