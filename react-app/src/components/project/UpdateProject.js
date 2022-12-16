@@ -5,6 +5,7 @@ import actionAddProject from '../../store/allProjects'
 import IconBar from "./IconBar";
 
 function UpdateProject() {
+    const [project, setProject] = useState({});
     const [name, setName] = useState("");
     const [goal_amount, setGoalAmount] = useState(0);
     const [current_amount, setCurrentAmount] = useState(0);
@@ -14,7 +15,7 @@ function UpdateProject() {
     const [preview_image, setPreviewImage] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [project, setProject] = useState({});
+
 
     const history = useHistory();
     const dispatch = useDispatch()
@@ -36,7 +37,7 @@ function UpdateProject() {
                 long_description,
                 preview_image,
                 city,
-                state,
+                state
             }),
         });
         const data = await res.json();
@@ -53,6 +54,14 @@ function UpdateProject() {
         const data = await res.json();
         console.log("THE PROJECT DATA ----------> ", data)
         setProject(data);
+        setName(data.name);
+        setShortDescription(data.short_description);
+        setCity(data.city);
+        setState(data.state);
+        setPreviewImage(data.preview_image);
+        setGoalAmount(data.goal_amount);
+        setCurrentAmount(data.current_amount);
+        setLongDescription(data.long_description);
         })();
     }, [id]);
 
@@ -85,7 +94,7 @@ function UpdateProject() {
                                         type="text"
                                         value={name}
                                         className='title-input'
-                                        placeholder={project.name}
+                                        placeholder="Queen of Pain: A Roller Derby Documentary"
                                         onChange={(e) => setName(e.target.value)}
                                         required
                                     />
@@ -96,7 +105,8 @@ function UpdateProject() {
                                         type="text"
                                         value={short_description}
                                         className="short-desc-input"
-                                        placeholder={project.short_description}                                        onChange={(e) => setShortDescription(e.target.value)}
+                                        placeholder="A feature-length documentary film following Suzy Hotrod and the fun, fearless women of Gotham Girls Roller Derby in NYC."
+                                        onChange={(e) => setShortDescription(e.target.value)}
                                         required
                                     />
                                 </label>
@@ -118,7 +128,7 @@ function UpdateProject() {
                                         type="text"
                                         value={city}
                                         className='title-input'
-                                        placeholder={project.city}
+                                        placeholder="App State"
                                         onChange={(e) => setCity(e.target.value)}
                                         required
                                     />
@@ -129,7 +139,7 @@ function UpdateProject() {
                                         type="text"
                                         className='title-input'
                                         value={state}
-                                        placeholder={project.state}
+                                        placeholder="Academy Country"
                                         onChange={(e) => setState(e.target.value)}
                                         required
                                     />
@@ -158,7 +168,7 @@ function UpdateProject() {
                                         type="text"
                                         value={preview_image}
                                         className='title-input'
-                                        placeholder={project.preview_image}
+                                        placeholder="https://www.google.com/cute_puppy/photo.jpg"
                                         onChange={(e) => setPreviewImage(e.target.value)}
                                         required
                                     />
@@ -185,7 +195,7 @@ function UpdateProject() {
                                         type="number"
                                         value={goal_amount}
                                         className='title-input'
-                                        placeholder={project.goal_amount}
+                                        placeholder="0"
                                         onChange={(e) => setGoalAmount(e.target.value)}
                                         required
                                     />
@@ -196,7 +206,7 @@ function UpdateProject() {
                                         type="number"
                                         value={current_amount}
                                         className='title-input'
-                                        placeholder={project.current_amount}
+                                        placeholder="0"
                                         onChange={(e) => setCurrentAmount(e.target.value)}
                                         required
                                     />
@@ -225,7 +235,7 @@ function UpdateProject() {
                                         type="text"
                                         value={long_description}
                                         className='long-desc-input'
-                                        placeholder={project.long_description}
+                                        placeholder="Write about your project like you're explaining it to a friend..."
                                         onChange={(e) => setLongDescription(e.target.value)}
                                         required
                                     />
