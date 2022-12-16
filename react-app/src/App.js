@@ -53,6 +53,7 @@ function App() {
         </Route>
         <Route path='/projects/categories/:category'>
             <AllProjects />
+        </Route>
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
         </Route>
@@ -61,7 +62,6 @@ function App() {
         </Route>
         <Route path='/updates' exact={true}>
           <Update />
-        </Route>
         </Route>
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
