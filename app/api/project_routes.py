@@ -163,21 +163,17 @@ def update_project(projectid):
 
 @project_routes.route("/search/<query>")
 def search(query):
-    searchParams = request.args.get()
-    print(searchParams)
+    print("Hello, api")
+    #searchParams = request.args.get()
+    #print(searchParams)
 
-    query = searchParams("name")
+    #query = searchParams("name")
     searchResults = Project.query.filter(
-        Project.name.ilike(f'%{query}%')
+        Project.name.ilike(f"%{query}%")
     )
-    print(searchResults)
     results = [project.to_dict() for project in searchResults if project is not None ]
 
     if not results:
         return {"message": "No search results were found."}
 
-    return {
-        "results": results,
-        "total": searchResults.total,
-        "page": searchResults.page,
-    }
+    return { 'results': results}

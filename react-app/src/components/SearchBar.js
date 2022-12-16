@@ -19,7 +19,7 @@ function SearchBar() {
   const handleSubmit = async () => {
     const query = queryMaker(searchParams)
     try {
-      const response = await fetch(`/search?query=${query}`)
+      const response = await fetch(`/api/projects/search/${query}`)
       const data = await response.json()
       setResults(data.results)
     } catch (error) {
