@@ -84,6 +84,9 @@ function App() {
         <Route path='/discover'>
           <Discover />
         </Route>
+        <Route path='/rewards/create'>
+          <CreateReward />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
