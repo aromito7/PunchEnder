@@ -1,6 +1,6 @@
-const GET_CATEGORIES = 'catagories/GET_CATEGORIES'
+const GET_CATEGORIES = 'categories/GET_CATEGORIES'
 
-const actionGetAllCatagories = (categories) => {
+const actionGetAllCategories = (categories) => {
     return {
         type: GET_CATEGORIES,
         payload: categories
@@ -13,7 +13,7 @@ export const thunkGetAllCategories = () => async (dispatch) => {
     })
     if (response.ok) {
         const data = response.json()
-        dispatch(actionGetAllCatagories)
+        dispatch(actionGetAllCategories)
     }
 }
 

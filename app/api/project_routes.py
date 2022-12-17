@@ -102,7 +102,7 @@ def search(query):
     return {'results': results}
 
 
-@project_routes.route("/catagories")
+@project_routes.route("/categories")
 def get_categories():
 
     categories = Category.query.get().all
