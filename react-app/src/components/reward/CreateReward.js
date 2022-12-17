@@ -39,7 +39,7 @@ const CreateReward = () => {
         const data = await res.json();
         console.log("DATA ---------------> ", data)
 
-        history.push(`/projects/${projectId}/rewards/`)
+        history.push(`/projects/${projectId}/`)
 
     };
 
