@@ -8,7 +8,7 @@ const FeaturedProduct = () => {
         (async () => {
         const res = await fetch(`/api/projects/1`);
         const data = await res.json();
-        console.log("THE PROJECT DATA ----------> ", data)
+        //console.log("THE PROJECT DATA ----------> ", data)
         setProject(data);
         })();
     }, []);

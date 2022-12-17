@@ -31,8 +31,8 @@ function UserBackings() {
                         <Link to={`/projects/${backing.project_id}`}><div id="project-name" key={backing.project_name}>{backing.project_name}</div></Link>
                         <div id="price" key={backing.backing_value}>${backing.backing_value}</div>
                         <div id="reward" key={backing.reward}>Reward: {backing.reward}</div>
-                        <span><Link to={`/projects/${backing.project_id}/rewards/edit`} id='edit'>Edit Pledge</Link></span>
-                        <span><button id='delete'>Delete Pledge</button></span>
+                        <span className='hover-green'><Link to={`/projects/${backing.project_id}/rewards/edit`} id='edit'>Edit Pledge</Link></span>
+                        <span className='hover-green'><button id='delete'>Delete Pledge</button></span>
                     </div>
                 ))}
             </div>

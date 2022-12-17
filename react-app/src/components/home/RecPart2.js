@@ -9,7 +9,7 @@ const RecPart2 = () => {
         const res = await fetch(`/api/projects/3`);
         const data = await res.json();
         setProject(data);
-        console.log(project)
+        //console.log(project)
         })();
     }, []);
 

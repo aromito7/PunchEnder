@@ -9,7 +9,7 @@ const Discover = () => {
     (async () => {
       const res = await fetch(`/api/projects`);
       const data = await res.json();
-      console.log('THE PROJECT DATA -----------> ', data)
+      //console.log('THE PROJECT DATA -----------> ', data)
       const arr = Object.entries(data)
       setProject(arr[0][1]);
     })();
