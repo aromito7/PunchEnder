@@ -171,7 +171,7 @@ const Discover = () => {
         </section>
 
         <div ref={overlayRef} className={`${modalOpen ? "visible" : "hidden"}`}></div>
-        <button className="discover-button" onClick={openModal}>
+        <button className="discover-button cursor-pointer" onClick={openModal}>
           Discover
         </button>
       </div>
