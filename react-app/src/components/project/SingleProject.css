@@ -16,13 +16,15 @@
 }
 
 #singleProjectTitle {
-  margin-top: 6%;
+  margin-top: 10%;
   margin-bottom: 0px;
+  margin-left: 1em;
 }
 
 #singleProjectShoDesc {
   margin: 0;
   font-weight: lighter;
+  margin-left: 1em;
 }
 
 .singleProjectMiddleCards {
