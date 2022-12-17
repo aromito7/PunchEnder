@@ -9,6 +9,7 @@ const RecPart2 = () => {
         const res = await fetch(`/api/projects/3`);
         const data = await res.json();
         setProject(data);
+        console.log(project)
         })();
     }, []);
 
@@ -29,7 +30,7 @@ const RecPart2 = () => {
                     {(Math.trunc(project.current_amount / project.goal_amount) * 100).toLocaleString('en', {useGrouping:true})}% funded
                 </div>
                 <div className="rec-no-wrap rec-small">
-                    By {project.owner_id}
+                    By Isaac Ki
                 </div>
             </div>
         </div>
