@@ -42,5 +42,5 @@ class Project(db.Model):
       'city': self.city,
       'state': self.state,
       'rewards': [r.to_dict() for r in self.reward],
-      'owner': [self.owner.to_dict()],
+      'owner': self.owner.to_dict(),
     }

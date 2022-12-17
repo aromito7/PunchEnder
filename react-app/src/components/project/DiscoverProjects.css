@@ -6,6 +6,10 @@
   margin-top: 9%;
 }
 
+.projCard:hover{
+  border: 1px solid #037362;
+}
+
 .discCards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
