@@ -32,7 +32,7 @@ const actionDeleteBacking = (backing) => {
 }
 
 export const thunkGetAllBackings = (userId) => async (dispatch) => {
-    const response = await fetch(`/api/backings/${userId}`, {
+    const response = await fetch(`/api/backings/user/${userId}`, {
         method: 'GET'
     })
     if (response.ok) {
@@ -86,7 +86,8 @@ export const thunkUpdateBacking = (projectId, newRewardId, prevRewardId) => asyn
 }
 
 export const thunkDeleteBacking = (projectId, rewardId) => async (dispatch) => {
-    const response = await fetch(`/api/backings/project/${projectId}}`, {
+    console.log(rewardId)
+    const response = await fetch(`/api/backings/project/${projectId}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 const GET_PROJECTS = 'projects/GET_PROJECTS'
 const ADD_PROJECT = 'projects/ADD_PROJECTS'
 const DELETE_PROJECT = 'projects/DELETE_PROJECT'
-const UPDATE_PROJECT = 'projects/DELETE_PROJECT'
+const UPDATE_PROJECT = 'projects/UPDATE_PROJECT'
 const GET_USER_PROJECTS = 'projects/GET_USER_PROJECTS'
 
 const actionGetAllProjects = (projects) => {
@@ -38,6 +38,7 @@ export const thunkGetAllProjects = () => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
+        console.log(data)
         dispatch(actionGetAllProjects(data))
         return response
     }

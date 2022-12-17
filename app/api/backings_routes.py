@@ -89,7 +89,18 @@ def update_backing(project_id):
 
     db.session.commit()
 
-    return {"message": "Backing successfully created"}
+    backing_obj = {}
+
+    reward = Reward.query.get(reward_id)
+    project = Project.query.get(id)
+    backing_obj["project_id"] = reward.project_id
+    backing_obj["project_name"] = project.name
+    backing_obj["backing_value"] = reward.price_threshold
+    backing_obj["reward"] = reward.name
+    backing_obj["image"] = project.preview_image
+    backing_obj["reward_id"] = reward.id
+
+    return backing_obj
 
 
 @backings_route.route('/project/<int:project_id>', methods=["DELETE"])
@@ -100,7 +111,7 @@ def delete_backing(project_id):
 
     body = request.get_json()
     user = current_user
-
+    print(body["rewardId"])
     reward = Reward.query.get(body["rewardId"])
     user.reward.remove(reward)
     print(reward.user)

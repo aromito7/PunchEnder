@@ -6,14 +6,26 @@ import "./Backings.css"
 import { thunkUpdateBacking } from '../../store/userBackings';
 
 const EditRewards = () => {
+    const dispatch = useDispatch()
     const { id } = useParams()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const project = useSelector(state => state.projects[id])
-    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(thunkGetAllProjects())
+    }, [])
+
+    if (!user) return null
+    if (!project) return null
+    console.log("project---->", project)
 
     const projectRewards = project.rewards
+    console.log("projectRewards---->", projectRewards)
+
+    if (!projectRewards) return null
     const userRewards = user.rewards
+    console.log("userRewards---->", userRewards)
 
     const userRewardIds = []
     let prevRewardId;
@@ -21,34 +33,26 @@ const EditRewards = () => {
     Object.values(userRewards).map(reward => {
         userRewardIds.push(reward.id)
     })
-
+    console.log("userRewardIds----->", userRewardIds)
     Object.values(projectRewards).map(reward => {
         if (userRewardIds.includes(reward.id)) {
             prevRewardId = reward.id
         }
     })
-
+    console.log("prevRewardId---->", prevRewardId)
     const availableRewards = []
-
+    console.log(availableRewards)
     Object.values(projectRewards).map(reward => {
         if (!userRewardIds.includes(reward.id)) {
             availableRewards.push(reward)
         }
     })
-
+    console.log("availableRewards---->", availableRewards)
 
     const handleClick = async (newRewardId, prevRewardId) => {
         dispatch(thunkUpdateBacking(id, newRewardId, prevRewardId))
         history.push(`/users/${user.id}/backings`)
     }
-
-    useEffect(() => {
-        dispatch(thunkGetAllProjects())
-    }, [dispatch])
-
-    if (!project) return null
-    if (!user) return null
-    if (!projectRewards) return null
 
     return (
         <>

@@ -7,56 +7,38 @@ import "./Backings.css"
 
 
 function UserBackings() {
+    const [toggleDelete, setToggleDelete] = useState(false)
     const user = useSelector(state => state.session.user)
+    const backings = useSelector(state => state.userBackings)
+    console.log(backings)
+    const dispatch = useDispatch()
 
-
-    let backings = [];
-    Object.values(user.rewards).map(reward => {
-        const backing = {}
-        backing["projectId"] = reward.project_id
-        backing["price"] = reward.price_threshold
-        backing["reward"] = reward.name
-        backing["projectName"] = reward.project.name
-        backing["previewImage"] = reward.project.preview_image
-        backing["rewardId"] = reward.id
-        backings.push(backing)
-    })
-
-    const deleteBacking = async (projectId, rewardId) => {
-        // const response = await fetch(`/api/backings/project/${projectId}`, {
-        //     method: "DELETE",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         rewardId
-        //     })
-        // })
-        // if (response.ok) {
-        //     const data = await response.json()
-        //     console.log(data)
-        //     return data
-        // }
+    const deleteBacking = (projectId, rewardId) => {
         dispatch(thunkDeleteBacking(projectId, rewardId))
+        setToggleDelete(!toggleDelete)
+        // dispatch(thunkGetAllBackings(user.id))
+        console.log(rewardId)
     }
 
     useEffect(() => {
+        dispatch(thunkGetAllBackings(user.id))
+    }, [dispatch, user])
 
-    }, [user])
-
+    if (!user) return null
+    if (!backings) return null
     return (
         <>
             <h1 style={{ marginTop: "100px" }}>Projects You Back</h1>
 
             <div className='backings-container'>
                 {Object.values(backings).map(backing => (
-                    <div id='backing' key={backing.projectId}>
-                        <div className='backing-img-div'><img id='backing-img' src={backing.previewImage}></img></div>
-                        <div><Link to={`/projects/${backing.projectId}`}><div id="project-name" key={backing.projectName}>{backing.projectName}</div></Link></div>
-                        <div id="price" key={backing.price}>${backing.price}</div>
+                    <div id='backing' key={backing.project_id}>
+                        <div className='backing-img-div'><img id='backing-img' src={backing.image}></img></div>
+                        <div><Link to={`/projects/${backing.project_id}`}><div id="project-name" key={backing.projectName}>{backing.project_name}</div></Link></div>
+                        <div id="price" key={backing.price}>${backing.backing_value}</div>
                         <div id="reward" key={backing.reward}>Reward: {backing.reward}</div>
-                        <span><NavLink to={`/projects/${backing.projectId}/rewards/edit`} id='edit'>Edit Pledge</NavLink></span>
-                        <span><button onClick={() => deleteBacking(backing.projectId, backing.rewardId)} id='delete'>Delete Pledge</button></span>
+                        <span><Link to={`/backings/projects/${backing.project_id}/edit`} id='edit'>Edit Pledge</Link></span>
+                        <span><button onClick={() => deleteBacking(backing.project_id, backing.reward_id)} id='delete'>Delete Pledge</button></span>
                     </div>
                 ))}
             </div>
