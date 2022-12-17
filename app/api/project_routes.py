@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..models import db, Project, User, Reward, backing_table
+from ..models import db, Project, User, Reward, backing_table, Category, category_table
 from ..forms import ProjectForm, SearchForm
 from datetime import datetime, timedelta
 from flask_login import current_user
@@ -44,9 +44,9 @@ def deleteProject(id):
 @project_routes.route('/create', methods=['POST'])
 def create_project():
     data = json.loads(request.data.decode("utf-8"))
-    #for key in data.keys():
-        #form[key] = data[key]
-        #print(key, data[key])
+    # for key in data.keys():
+    #form[key] = data[key]
+    #print(key, data[key])
     new_project = Project(
         owner_id=current_user.get_id(),
         name=data['name'],
@@ -87,15 +87,26 @@ def update_project(projectid):
 def search(query):
     print("Hello, api")
     #searchParams = request.args.get()
-    #print(searchParams)
+    # print(searchParams)
 
     #query = searchParams("name")
     searchResults = Project.query.filter(
         Project.name.ilike(f"%{query}%")
     )
-    results = [project.to_dict() for project in searchResults if project is not None ]
+    results = [project.to_dict()
+               for project in searchResults if project is not None]
 
     if not results:
         return {"message": "No search results were found."}
 
-    return { 'results': results }
+    return {'results': results}
+
+
+@project_routes.route("/catagories")
+def get_categories():
+
+    categories = Category.query.get().all
+
+    allCategories = [category.to_dict() for category in categories]
+
+    return {"categories": allCategories}

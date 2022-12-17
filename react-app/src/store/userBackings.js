@@ -116,7 +116,7 @@ export default function userBackingsReducer(state = {}, action) {
             return newState
         case ADD_BACKING:
             newState = { ...state }
-            console.log("payload ---->", action.payload)
+            // console.log("payload ---->", action.payload)
             // console.log(newState[action.payload.project_id])
             newState[action.payload.project_id] = action.payload
             return newState
