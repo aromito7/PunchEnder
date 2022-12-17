@@ -24,6 +24,10 @@ function UserBackings() {
         dispatch(thunkGetAllBackings(user.id))
     }, [dispatch, user])
 
+    useEffect(() => {
+
+    }, [toggleDelete])
+
     if (!user) return null
     if (!backings) return null
     return (
