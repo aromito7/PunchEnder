@@ -1,8 +1,8 @@
-"""New migration with categories table
+"""new migration
 
-Revision ID: b20d9f0b610e
+Revision ID: 8285d31b1501
 Revises:
-Create Date: 2022-12-16 13:58:07.223414
+Create Date: 2022-12-17 03:42:55.728616
 
 """
 from alembic import op
@@ -12,9 +12,8 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-
 # revision identifiers, used by Alembic.
-revision = 'ffdc0a98111c'
+revision = '8285d31b1501'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,9 +26,9 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
 
+    if environment == "production":
+            op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
 
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -40,6 +39,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
+
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
