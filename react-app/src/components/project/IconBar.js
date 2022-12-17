@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const IconBar = () => {
     return (
@@ -25,7 +26,7 @@ const IconBar = () => {
                                 />
                                 <span class="caption">Funding</span>
                             </div>
-                            <div className="quick-select__navigation-link2 item">
+                            <NavLink to='/rewards/create' className="quick-select__navigation-link2 item">
                                 <img
                                     src="https://www.pngrepo.com/png/46433/180/present.png"
                                     alt="self logo123"
@@ -33,7 +34,7 @@ const IconBar = () => {
                                     style={{ height: '39px', width: '39px' , padding: '0px 0px 0px 0px'}}
                                 />
                                 <span class="caption">Rewards</span>
-                            </div>
+                            </NavLink>
                             <div className="quick-select__navigation-link2 item">
                                 <img
                                     src="https://www.pngrepo.com/png/14436/180/book.png"

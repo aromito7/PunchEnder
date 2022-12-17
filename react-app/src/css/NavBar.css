@@ -243,7 +243,7 @@
   width: 100vw;
   height: 3em;
   z-index: 97;
-  margin-left: -88vw;
+  margin-left: -90%;
   margin-top: 0em;
   padding-left: 2em;
   padding-top: 1em;
@@ -262,9 +262,10 @@
 
 .results-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  margin-top: 500px;
+  margin-top: 8em;
+  flex-wrap: wrap;
   /* position: fixed; */
   /* margin-left: -88vw; */
 
