@@ -37,7 +37,7 @@ const CreateReward = () => {
         }),
         });
         const data = await res.json();
-        window.print("DATA ---------------> ", data)
+        console.log("DATA ---------------> ", data)
 
         history.push(`/projects/${projectId}/rewards/`)
 
