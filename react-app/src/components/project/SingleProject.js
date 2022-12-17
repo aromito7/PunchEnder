@@ -51,7 +51,7 @@ const SingleProject = () => {
                         <span id='pledgeGrey'>{' '} pledged of ${project.goal_amount ? project.goal_amount : '50000'} goal</span>
                     </div>
                     <div>
-                        <span>{project.end_date ? project.end_date : '12/02/23'}</span>
+                        <span>{project.end_date ? project.end_date.split('T')[0] : '12/02/23'}</span>
                     </div>
                     <div>
                         {currentUser && currentUser.id == project.owner_id?

@@ -28,7 +28,7 @@ function UserBackings() {
                 {Object.values(userBackings).map(backing => (
                     <div id='backing' key={backing.id}>
                         <img className="backings-helper" src={backing.image}></img>
-                        <Link to={`/projects/${backing.id}`}><div id="project-name" key={backing.project_name}>{backing.project_name}</div></Link>
+                        <Link to={`/projects/${backing.project_id}`}><div id="project-name" key={backing.project_name}>{backing.project_name}</div></Link>
                         <div id="price" key={backing.backing_value}>${backing.backing_value}</div>
                         <div id="reward" key={backing.reward}>Reward: {backing.reward}</div>
                         <span><Link to={`/projects/${backing.project_id}/rewards/edit`} id='edit'>Edit Pledge</Link></span>

@@ -89,7 +89,7 @@ const RewardComponent = ({ reward }) => {
                     </p>
                 )}
             </div>
-            <button onClick={toggleClick} className='choose-reward'>Select this reward!</button>
+            <button onClick={toggleClick} className='choose-reward cursor-pointer'>Select this reward!</button>
         </div>
     );
 }
