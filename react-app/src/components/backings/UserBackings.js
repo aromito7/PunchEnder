@@ -22,7 +22,7 @@ function UserBackings() {
 
     useEffect(() => {
         dispatch(thunkGetAllBackings(user.id))
-    }, [dispatch, user])
+    }, [dispatch, toggleDelete, user])
 
     if (!user) return null
     if (!backings) return null
