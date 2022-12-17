@@ -1,24 +1,34 @@
-
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom"
+import { useLocation } from "react-router-dom";
 import "../css/NavBar.css"
 
-function SearchResults({ projects }) {
+function SearchResults() {
+  const [results, setResults] = useState(null)
 
-    return (
-        <div className="results-container">
-            {Object.values(projects).map(project => (
-                <div key={project.id}>
-                    <Link to={`/projects/${project.id}`}><div>{project.name}</div></Link>
-                </div>
-            ))
-            }
-            {/* {!!projects &&
-                <div>No Results found</div>
-            } */}
-        </div >
-    )
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const query = queryParams.get("query");
 
-}
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`/api/projects/search/${query}`);
+      const data = await response.json();
+      setResults(data.results);
+    })();
+  }, [query]);
 
-export default SearchResults
+  return (
+    <div className="results-container">
+      {results && results.map(result => (
+        <div key={result.id}>
+          <a to={`/projects/${result.id}`}>
+            <div>{result.name}</div>
+          </a>
+        </div>
+      ))}
+      {!results && <div>No results found</div>}
+    </div>
+  );
+  }
+
+export default SearchResults;
