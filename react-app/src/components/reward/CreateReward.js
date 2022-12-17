@@ -17,6 +17,7 @@ const CreateReward = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
+        console.log("Hello, create reward!")
         if(errors.length > 1) return
         const res = await fetch(`/api/rewards/projects/${projectId}`, {
         method: "POST",
