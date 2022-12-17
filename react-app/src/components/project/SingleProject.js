@@ -6,11 +6,14 @@ import nav1 from '../../images/nav1.png'
 import nav2 from '../../images/nav2.png'
 import nav3 from '../../images/nav3.png'
 import RewardComponent from '../reward/RewardComponent'
+import { useSelector } from "react-redux";
 
 const SingleProject = () => {
     const { id } = useParams();
     const history = useHistory();
+    const currentUser = useSelector(state => state.session.user);
     const [project, setProject] = useState({});
+
 
     useEffect(() => {
         (async () => {
@@ -20,6 +23,10 @@ const SingleProject = () => {
         setProject(data);
         })();
     }, [id]);
+
+    const toCreateReward = (e) => {
+        history.push(`/projects/${id}/rewards/create`)
+    }
 
     if(Object.keys(project).length < 1) return null
     return (
@@ -47,7 +54,9 @@ const SingleProject = () => {
                         <span>{project.end_date ? project.end_date : '12/02/23'}</span>
                     </div>
                     <div>
-                        <button id='singleProjectPledge'>Back this project</button>
+                        {currentUser && currentUser.id == project.owner_id?
+                        <button id='singleProjectPledge' className="cursor-pointer" onClick={toCreateReward}>Create a new reward</button>:
+                        <button id='singleProjectPledge'>Back this project</button>}
                     </div>
                     <div id='reminderButtonWrapper'>
                         <button id='singleProjectReminder'><img id='buttonReminder' src={reminder} />Remind me</button>

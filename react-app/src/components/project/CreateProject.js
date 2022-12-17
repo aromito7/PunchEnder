@@ -83,7 +83,7 @@ function CreateProject() {
             }),
         });
         const data = await res.json();
-        dispatch(actionAddProject(data))
+        //dispatch(actionAddProject(data))
         console.log("DATA ---------------> ", data)
 
         history.push(`/projects/${data.id}`)
