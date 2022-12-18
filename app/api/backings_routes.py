@@ -16,8 +16,8 @@ def get_user_backings(user_id):
     """
     user = User.query.get(user_id)
     user_backings = user.reward
-    if len(user_backings) < 1:
-        return {"message": "no backings found"}
+    # if len(user_backings) < 1:
+    #     return {"message": "no backings found"}
 
     user_backings_list = []
 
@@ -47,7 +47,7 @@ def create_backing(project_id):
     Create a backing for a project based on reward_id
     """
     body = request.get_json()
-
+    print(body)
     user = current_user
     reward = Reward.query.get(body["rewardId"])
     user.reward.append(reward)
@@ -56,8 +56,8 @@ def create_backing(project_id):
 
     backing_obj = {}
 
-    reward = Reward.query.get(reward_id)
-    project = Project.query.get(id)
+    reward = Reward.query.get(body["rewardId"])
+    project = Project.query.get(project_id)
     backing_obj["project_id"] = reward.project_id
     backing_obj["project_name"] = project.name
     backing_obj["backing_value"] = reward.price_threshold
@@ -65,7 +65,6 @@ def create_backing(project_id):
     backing_obj["image"] = project.preview_image
     backing_obj["reward_id"] = reward.id
 
-    print("ADD BACKING ---->", backing_obj)
     return backing_obj
     # return {"message": "Backing successfully created"}
 
@@ -91,14 +90,14 @@ def update_backing(project_id):
 
     backing_obj = {}
 
-    reward = Reward.query.get(reward_id)
-    project = Project.query.get(id)
-    backing_obj["project_id"] = reward.project_id
+    # reward = Reward.query.get(body["newRewardId"])
+    project = Project.query.get(project_id)
+    backing_obj["project_id"] = new_reward.project_id
     backing_obj["project_name"] = project.name
-    backing_obj["backing_value"] = reward.price_threshold
-    backing_obj["reward"] = reward.name
+    backing_obj["backing_value"] = new_reward.price_threshold
+    backing_obj["reward"] = new_reward.name
     backing_obj["image"] = project.preview_image
-    backing_obj["reward_id"] = reward.id
+    backing_obj["reward_id"] = new_reward.id
 
     return backing_obj
 

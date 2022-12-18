@@ -1,49 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, Redirect } from 'react-router-dom';
-import { thunkAddBacking } from '../../store/userBackings';
+import { thunkAddBacking, thunkGetAllBackings } from '../../store/userBackings';
 import './RewardComponent.css';
 
 const RewardComponent = ({ reward }) => {
-    // const {rewardId} = useParams()
-    // if(!id) id = rewardId
-    // const [reward, setReward] = useState(reward)
-    // useEffect(() => {
-    //     if (!rewardId) {
-    //         return;
-    //         }
-    //         (async () => {
-    //         const response = await fetch(`/api/rewards/${id}`);
-    //         const {rewards} = await response.json();
-    //         console.log(rewards)
-    //         setReward(rewards[0]);
-    //         })();
-
-    //     }, [rewardId]);
     const { id } = useParams()
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const history = useHistory()
 
     const addBacking = async (rewardId) => {
-        // const response = await fetch(`/api/backings/project/${id}`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         rewardId
-        //     })
-        // })
-        // if (response.ok) {
-        //     const data = await response.json()
-        //     history.push(`/users/${user.id}/backings`)
-        //     return data
-        // }
-        // else {
-        //     return { "Error": "Could not back project" }
-        // }
+        console.log(rewardId)
         dispatch(thunkAddBacking(id, rewardId))
+        dispatch(thunkGetAllBackings(user.id))
         history.push(`/users/${user.id}/backings`)
     }
 

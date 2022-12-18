@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllProjects } from '../../store/allProjects';
 import "./Backings.css"
 import { thunkUpdateBacking } from '../../store/userBackings';
+import { authenticate } from '../../store/session';
 
 const EditRewards = () => {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ const EditRewards = () => {
     const project = useSelector(state => state.projects[id])
 
     useEffect(() => {
+        dispatch(authenticate)
         dispatch(thunkGetAllProjects())
     }, [])
 
@@ -36,6 +38,7 @@ const EditRewards = () => {
     console.log("userRewardIds----->", userRewardIds)
     Object.values(projectRewards).map(reward => {
         if (userRewardIds.includes(reward.id)) {
+            console.log(reward.id)
             prevRewardId = reward.id
         }
     })
@@ -51,6 +54,8 @@ const EditRewards = () => {
 
     const handleClick = async (newRewardId, prevRewardId) => {
         dispatch(thunkUpdateBacking(id, newRewardId, prevRewardId))
+        dispatch(thunkGetAllProjects())
+        dispatch(authenticate)
         history.push(`/users/${user.id}/backings`)
     }
 
