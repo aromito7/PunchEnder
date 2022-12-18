@@ -89,10 +89,16 @@ const NavBar = () => {
           <section className="navbar__right-links-container">
             <div className="navbar__right-links-list">
               <div className="navbar__navlink-search-container">
-                <div className='navbar__navlink-search'>
-                  Search
+                  <button className="search-button cursor-pointer" onClick={showSearchBar}>
+                    Search
+                  </button>
+                  {showSearch && (
+                    <>
+                      <SearchBar />
+                      <button onClick={closeSearchBar} className='close-search-button cursor-pointer'>x</button>
+                    </>
+                  )}
                 </div>
-              </div>
               <div>
                 <NavLink to='/login' exact={true} className='navbar__navlink-profile' activeClassName='active'>
                   Log in
