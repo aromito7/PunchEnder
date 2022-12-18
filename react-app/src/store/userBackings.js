@@ -98,6 +98,7 @@ export const thunkDeleteBacking = (projectId, rewardId) => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
+        console.log(data)
         dispatch(actionDeleteBacking(data))
         return data
     }
@@ -126,6 +127,7 @@ export default function userBackingsReducer(state = {}, action) {
             return newState
         case DELETE_BACKING:
             newState = { ...state }
+            console.log(action.payload)
             delete newState[action.payload.project_id]
             return newState
         default:
