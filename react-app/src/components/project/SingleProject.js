@@ -72,7 +72,7 @@ const SingleProject = () => {
                 <div className='lowerMiddleWrapper'>
                     <img className='lowerMiddleIcons' src={nav1} />
                     <p>
-                        Kickstarter connects creators with backers to fund projects.
+                        Punchender connects creators with backers to fund projects.
                     </p>
                 </div>
                 <div className='lowerMiddleWrapper'>
