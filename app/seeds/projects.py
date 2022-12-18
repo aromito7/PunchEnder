@@ -155,7 +155,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         city="San Francisco",
         state="CA")
 
-    demo7 = Project(
+    demo6 = Project(
         owner_id= 2,
         categories=[publishing, music],
         name='Art therapy workshops for at-risk youth',
@@ -169,7 +169,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         city="Chicago",
         state="IL")
 
-    demo8 = Project(
+    demo7 = Project(
         owner_id= 3,
         categories=[film, arts],
         name='Community garden expansion project',
@@ -183,7 +183,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         city="Portland",
         state="OR")
 
-    demo9 = Project(
+    demo8 = Project(
         owner_id= 2,
         categories=[food, film],
         name='Smart home energy management system',
@@ -197,7 +197,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         city="San Francisco",
         state="CA")
 
-    demo10 = Project(
+    demo9 = Project(
         owner_id= 1,
         categories=[design, food],
         name='Virtual reality language learning platform',
@@ -227,7 +227,6 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
     db.session.add(demo7)
     db.session.add(demo8)
     db.session.add(demo9)
-    db.session.add(demo10)
     db.session.commit()
 
 
