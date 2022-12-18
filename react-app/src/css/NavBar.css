@@ -198,7 +198,7 @@
   font-size: 5rem;
   font-weight: 900;
   color: #028858;
-  font-family: "RNS-B";
+  font-family: "RNS-B";;
 }
 
 .navbar__sitename-text {
@@ -241,13 +241,13 @@
 .search-bar {
   position: fixed;
   width: 100vw;
-  height: 75px;
+  height: 3em;
   z-index: 97;
-  margin-left: -91vw;
-  margin-top: -23px;
-  height: 85px;
+  margin-left: -90%;
+  margin-top: 0em;
+  padding-left: 2em;
+  padding-top: 1em;
   border: none;
-  padding: 50px;
   box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.075);
   font-size: larger;
 }
@@ -262,14 +262,17 @@
 
 .results-container {
   display: flex;
-  flex-direction: column;
-  position: fixed;
-  margin-left: -88vw;
-  margin-top: 50px;
-  width: 100vw;
-  height: auto;
-  z-index: 99;
-  background-color: #fff;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 8em;
+  flex-wrap: wrap;
+  /* position: fixed; */
+  /* margin-left: -88vw; */
+
+  /* width: 100vw;
+  height: auto; */
+  /* z-index: 99; */
+  /* background-color: #fff; */
 
   }
 

@@ -9,7 +9,7 @@ const Discover = () => {
     (async () => {
       const res = await fetch(`/api/projects`);
       const data = await res.json();
-      console.log('THE PROJECT DATA -----------> ', data)
+      //console.log('THE PROJECT DATA -----------> ', data)
       const arr = Object.entries(data)
       setProject(arr[0][1]);
     })();
@@ -23,7 +23,7 @@ const Discover = () => {
         {console.log('THIS IS THE project ', typeof project === 'object', project)}
         {project.map(card =>
           <div className='projCard'>
-            <NavLink className='cardLink' to={`/api/projects/${card.id}`}>
+            <NavLink className='cardLink' to={`/projects/${card.id}`}>
               <div id='cardImgWrap'>
                 <img id='cardImg' src={card.preview_image ? card.preview_image : 'https://i.pinimg.com/originals/a5/90/8c/a5908c706c030ef3f94c2ad98e23b286.jpg'} />
               </div>
@@ -38,7 +38,7 @@ const Discover = () => {
                 </div>
 
                 <div id='cardAuthor'>
-                    by {card.owner_name ? card.owner_name : "Bob"}
+                    by {card.owner ? `${card.owner.firstname} ${card.owner.lastname}` : "Bob"}
                 </div>
 
                 <div id='cardCurrAmount'>
@@ -46,7 +46,7 @@ const Discover = () => {
                 </div>
 
                 <div id='cardEndDate'>
-                    {card.end_date ? card.end_date : '12/03/22'}
+                    Ends: {card.end_date ? card.end_date.split('T')[0] : '12/03/22'}
                 </div>
 
                 <div className='cardBotInfo'>

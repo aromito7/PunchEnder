@@ -58,7 +58,7 @@ const RewardComponent = ({ reward }) => {
                 {includes.map((item, i) => {
                     return (
                         <li key={i}>
-                            {item}
+                            &#x2022;{item}
                         </li>
                     )
                 })}
@@ -89,7 +89,7 @@ const RewardComponent = ({ reward }) => {
                     </p>
                 )}
             </div>
-            <button onClick={toggleClick} className='choose-reward'>Select this reward!</button>
+            <button onClick={toggleClick} className='choose-reward cursor-pointer'>Select this reward!</button>
         </div>
     );
 }

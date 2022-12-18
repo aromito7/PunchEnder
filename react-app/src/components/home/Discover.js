@@ -123,7 +123,7 @@ const Discover = () => {
                     </div>
                     <div className="test123">
                         <div>
-                            <NavLink className={"test123"} onClick={closeModal} to="projects/categories/arts" >
+                            <NavLink className={"test123"} onClick={closeModal} to="/projects/categories/arts" >
                                 Arts
                             </NavLink>
                         </div>
@@ -171,7 +171,7 @@ const Discover = () => {
         </section>
 
         <div ref={overlayRef} className={`${modalOpen ? "visible" : "hidden"}`}></div>
-        <button className="discover-button" onClick={openModal}>
+        <button className="discover-button cursor-pointer" onClick={openModal}>
           Discover
         </button>
       </div>

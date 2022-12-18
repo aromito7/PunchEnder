@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import './CreateReward.css';
+import reward from '../../images/reward.png';
 
 const CreateReward = () => {
     const {projectId} = useParams()
@@ -17,6 +19,7 @@ const CreateReward = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
+        console.log("Hello, create reward!")
         if(errors.length > 1) return
         const res = await fetch(`/api/rewards/projects/${projectId}`, {
         method: "POST",
@@ -34,9 +37,9 @@ const CreateReward = () => {
         }),
         });
         const data = await res.json();
-        window.print("DATA ---------------> ", data)
+        console.log("DATA ---------------> ", data)
 
-        history.push(`/projects/${projectId}/rewards/`)
+        history.push(`/projects/${projectId}/`)
 
     };
 
@@ -55,92 +58,103 @@ const CreateReward = () => {
     },[name, quantity, price_threshold, price_threshold, includes, description, shipping_date])
 
     return (
-        <div id="create-project-reward-main-container">
-            <div className="create-project-form-header">
+        <div>
+            <div className='creRewTitleWrap'>
+                <h1 id='creRewTitle'>
+                    Add your rewards
+                </h1>
+                <h2 id='creRewDesc'>
+                Offer simple, meaningful ways to bring backers closer to your project and celebrate it coming to life.
+                </h2>
             </div>
-            <div className="create-project-form-header">
-                <form onSubmit={handleSubmit} noValidate>
-                    <div className="float-container">
-                    <div className="float-child">
-                        <label>
-                            Name
-                            <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                            />
-                        </label>
-                        <label>
-                            Quantity
-                            <input
-                            type="number"
-                            value={quantity}
-                            onChange={(e) => setQuantity(e.target.value)}
-                            required
-                            />
-                        </label>
-                        <label>
-                            Donation Price
-                            <input
-                            type="number"
-                            value={price_threshold}
-                            onChange={(e) => setPriceThreshold(e.target.value)}
-                            required
-                            />
-                        </label>
-                    </div>
-                    <label>
-                        What this includes
-                        <input
-                        type="text"
-                        value={includes}
-                        onChange={(e) => setIncludes(e.target.value)}
-                        required
-                        />
-                    </label>
-                    <label>
-                        Description
-                        <input
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                        />
-                    </label>
-                    <label>
-                        Estimated shipping date
-                        <input
-                        type="date"
-                        value={shipping_date}
-                        onChange={(e) => setShippingDate(e.target.value)}
-                        required
-                        />
-                    </label>
-                    <label>
-                        Ships to
-                        <select
-                        value={ships_to}
-                        onChange={(e) => setShipsTo(e.target.value)}
-                        required
-                        >
-                            <option>United States</option>
-                            <option>Anywhere in the world</option>
-                        </select>
-                    </label>
-                    {hasSubmitted && errors.length > 0 &&
-                        <ul>
-                            {errors.map(error => {
-                                return(
-                                    <li>{error}</li>
-                                    )
-                                })}
-                        </ul>
-                    }
-                    </div>
-                <button type="submit">Create Reward</button>
-                </form>
+            <div className='creRewFormUpper'>
+                <div id='rewardTiers'>
+                    <img id='rewardIcon' src={reward} />
+                    <span id='actualRewardTiers'>
+                        Reward Tiers
+                    </span>
+                </div>
             </div>
+            <div className='creRewUppDesc'>
+                Most creators offer 3-10 reward tiers, which can be physical items or special experiences. Make sure to set reasonable backer expectations.
+            </div>
+            <form className='createRewardWrapper' onSubmit={handleSubmit} noValidate>
+                <label className='creRewLabels'>
+                    Title
+                    <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    />
+                </label>
+                <label className='creRewLabels'>
+                    Quantity
+                    <input
+                    type="number"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    required
+                    />
+                </label>
+                <label className='creRewLabels'>
+                    Donation Price
+                    <input
+                    type="number"
+                    value={price_threshold}
+                    onChange={(e) => setPriceThreshold(e.target.value)}
+                    required
+                    />
+                </label>
+                <label className='creRewLabels'>
+                    What this includes
+                    <input
+                    type="text"
+                    value={includes}
+                    onChange={(e) => setIncludes(e.target.value)}
+                    required
+                    />
+                </label>
+                <label className='creRewLabels'>
+                    Description
+                    <textarea
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                    />
+                </label>
+                <label className='creRewLabels'>
+                    Estimated shipping date
+                    <input className='creRewTextArea'
+                    type="date"
+                    value={shipping_date}
+                    onChange={(e) => setShippingDate(e.target.value)}
+                    required
+                    />
+                </label>
+                <label className='creRewLabels'>
+                    Ships to
+                    <select
+                    value={ships_to}
+                    onChange={(e) => setShipsTo(e.target.value)}
+                    required
+                    >
+                        <option>United States</option>
+                        <option>Anywhere in the world</option>
+                    </select>
+                </label>
+                {hasSubmitted && errors.length > 0 &&
+                    <ul>
+                        {errors.map(error => {
+                            return(
+                                <li>{error}</li>
+                            )
+                        })}
+                    </ul>
+                }
+            <button id='creRewSubmitButton' type="submit" formNoValidate="formnovalidate">Save Reward</button>
+            </form>
+
         </div>
     );
 }

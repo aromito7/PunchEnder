@@ -20,8 +20,8 @@ import RewardComponent from './components/reward/RewardComponent';
 import EditRewards from './components/backings/EditBacking';
 import Update from './components/updates/update';
 import UpdateProject from './components/project/UpdateProject';
+import SearchResults from './components/SearchResults';
 import Discover from './components/project/DiscoverProjects';
-
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,8 +48,12 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path="/search">
+          <SearchResults />
+        </Route>
         <Route path='/projects/categories/:category'>
             <AllProjects />
+        </Route>
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
         </Route>
@@ -58,7 +62,6 @@ function App() {
         </Route>
         <Route path='/updates' exact={true}>
           <Update />
-        </Route>
         </Route>
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
@@ -84,6 +87,9 @@ function App() {
         <Route path='/discover'>
           <Discover />
         </Route>
+        <Route path='/rewards/create'>
+          <CreateReward />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
@@ -93,9 +99,6 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/projects/:projectId/rewards' exact={true} >
-          <ProjectRewards />
-        </Route>
         <Route path='/rewards/:rewardId' exact={true} >
           <RewardComponent />
         </Route>

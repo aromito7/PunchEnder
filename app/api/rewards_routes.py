@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Reward, db
 from datetime import datetime
 from app.forms import RewardsForm
+import json
 
 reward_routes = Blueprint('rewards', __name__)
 
@@ -36,22 +37,23 @@ def get_reward_by_id(id):
 #Create new reward
 @reward_routes.route('/projects/<int:id>', methods=["POST"])
 def create_new_reward(id):
-    form = RewardsForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        #print('FORM -------------> ', form.data)
-        #print("USER OBJECT ------> ", current_user.get_id())
-        new_reward = Reward(
-            name=form.data['name'],
-            description=form.data['desctiption'],
-            price_threshold=form.data['price_threshold'],
-            shipping_date=form.data['shipping_date'], #(datetime.now() + timedelta(days=30)).isoformat(),
-            includes= form.data['includes'],
-            ships_to=form.data['ships_to'],
-        )
-        print("NEW REWARD --------------> ", new_reward)
-        db.session.add(new_reward)
-        db.session.commit()
+    data = json.loads(request.data.decode("utf-8"))
+    [yyyy, mm, dd] = data['shipping_date'].split('-')
+    data['shipping_date'] = datetime(int(yyyy), int(mm), int(dd))
+    print(data)
+    new_reward = Reward(
+        project_id=id,
+        name=data['name'],
+        description=data['description'],
+        price_threshold=data['price_threshold'],
+        shipping_date=data['shipping_date'], #(datetime.now() + timedelta(days=30)).isoformat(),
+        includes= data['includes'],
+        ships_to=data['ships_to'],
+        quantity=data['quantity'],
+    )
+    print("NEW REWARD --------------> ", new_reward)
+    print(new_reward.shipping_date)
+    db.session.add(new_reward)
+    db.session.commit()
 
-        return new_reward.to_dict()
-    return form.data
+    return {'new reward' : new_reward.to_dict()}
