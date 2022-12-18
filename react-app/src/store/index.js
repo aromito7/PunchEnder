@@ -4,12 +4,15 @@ import session from './session';
 import reward from './reward';
 import userBackingsReducer from './userBackings';
 import projectsReducer from './allProjects';
+import categoriesReducer from './categories';
+
 
 const rootReducer = combineReducers({
   session,
   reward,
   userBackings: userBackingsReducer,
-  projects: projectsReducer
+  projects: projectsReducer,
+  categories: categoriesReducer
 });
 
 

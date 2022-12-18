@@ -22,23 +22,30 @@ const RewardComponent = ({ reward }) => {
     //     }, [rewardId]);
     const { id } = useParams()
     const user = useSelector(state => state.session.user)
-    const [click, setClick] = useState(false)
     const dispatch = useDispatch()
     const history = useHistory()
 
-
-
-    const toggleClick = () => {
-        setClick(true)
-    }
-
-
-
-    useEffect(() => {
-        if (!click) return
-        dispatch(thunkAddBacking(id, reward.id))
+    const addBacking = async (rewardId) => {
+        // const response = await fetch(`/api/backings/project/${id}`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         rewardId
+        //     })
+        // })
+        // if (response.ok) {
+        //     const data = await response.json()
+        //     history.push(`/users/${user.id}/backings`)
+        //     return data
+        // }
+        // else {
+        //     return { "Error": "Could not back project" }
+        // }
+        dispatch(thunkAddBacking(id, rewardId))
         history.push(`/users/${user.id}/backings`)
-    }, [click])
+    }
 
 
     if (!reward) return `Hello, reward`
@@ -89,7 +96,7 @@ const RewardComponent = ({ reward }) => {
                     </p>
                 )}
             </div>
-            <button onClick={toggleClick} className='choose-reward cursor-pointer'>Select this reward!</button>
+            <button onClick={() => addBacking(reward.id)} className='choose-reward'>Select this reward!</button>
         </div>
     );
 }

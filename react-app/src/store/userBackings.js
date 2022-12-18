@@ -32,44 +32,78 @@ const actionDeleteBacking = (backing) => {
 }
 
 export const thunkGetAllBackings = (userId) => async (dispatch) => {
-    const response = await fetch(`/api/users/${userId}/backings`, {
+    const response = await fetch(`/api/backings/user/${userId}`, {
         method: 'GET'
     })
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
         dispatch(actionGetAllBackings(data))
         return response
     }
 }
 
 export const thunkAddBacking = (projectId, rewardId) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/rewards/${rewardId}`, {
-        method: 'POST'
+    const response = await fetch(`/api/backings/project/${projectId}`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            rewardId
+        })
     })
+    console.log("ADD BACKING RESPONSE---->", await response.json())
     if (response.ok) {
+        console.log("ADD BACKING RESPONSE---->", await response.json())
         const data = await response.json()
+        console.log("ADD BACKING RESPONSE---->", data)
         dispatch(actionAddBacking(data))
+    }
+    else {
+        return { "Error": "Could not back project" }
     }
 }
 
-export const thunkUpdateBacking = (projectId, rewardId) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/rewards/${rewardId}`, {
-        method: 'PUT'
+export const thunkUpdateBacking = (projectId, newRewardId, prevRewardId) => async (dispatch) => {
+    const response = await fetch(`/api/backings/project/${projectId}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            newRewardId,
+            prevRewardId,
+        })
     })
     if (response.ok) {
         const data = await response.json()
         dispatch(actionUpdateBacking(data))
+        return data
+    }
+    else {
+        return { "Error": "Could not update backing" }
     }
 }
 
 export const thunkDeleteBacking = (projectId, rewardId) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/rewards/${rewardId}`, {
-        method: 'DELETE'
+    console.log(rewardId)
+    const response = await fetch(`/api/backings/project/${projectId}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            rewardId
+        })
     })
     if (response.ok) {
         const data = await response.json()
+        console.log(data)
         dispatch(actionDeleteBacking(data))
+        return data
+    }
+    else {
+        return { "Error": "Could not delete backing" }
     }
 }
 
@@ -78,22 +112,23 @@ export default function userBackingsReducer(state = {}, action) {
     switch (action.type) {
         case GET_BACKINGS:
             const backingsObj = { ...state }
-            console.log(action.payload)
-            action.payload.backings.forEach(backing => backingsObj[backing.id] = backing)
+            action.payload.backings.forEach(backing => backingsObj[backing.project_id] = backing)
             newState = backingsObj
-            console.log(newState)
             return newState
         case ADD_BACKING:
             newState = { ...state }
-            newState[action.payload.project_name] = action.payload
+            // console.log("payload ---->", action.payload)
+            // console.log(newState[action.payload.project_id])
+            newState[action.payload.project_id] = action.payload
             return newState
         case UPDATE_BACKING:
             newState = { ...state }
-            newState[action.payload.project_name] = action.payload
+            newState[action.payload.project_id] = action.payload
             return newState
         case DELETE_BACKING:
             newState = { ...state }
-            delete newState[action.payload.project_name]
+            console.log(action.payload)
+            delete newState[action.payload.project_id]
             return newState
         default:
             return state

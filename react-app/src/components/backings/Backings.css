@@ -1,6 +1,6 @@
 .backings-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
@@ -19,12 +19,17 @@
     padding-right: 25px;
 }
 
+.backing-img-div {
+    object-fit: cover;
+}
+
 ul {
     list-style: none;
 }
 
-img.backings-helper {
-    max-width: 50px;
+#backing-img {
+    max-width: 400px;
+    /* border-radius: 5%; */
 }
 
 
@@ -59,8 +64,9 @@ img.backings-helper {
 
 #backing {
     margin: 10px;
-    border-left: 1px solid grey;
-    padding-left: 1px;
+    border: 1px solid grey;
+    padding-left: 10px;
+    object-fit: contain;
 }
 
 #edit {

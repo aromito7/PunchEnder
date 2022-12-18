@@ -52,22 +52,16 @@ function App() {
           <SearchResults />
         </Route>
         <Route path='/projects/categories/:category'>
-            <AllProjects />
+          <AllProjects />
         </Route>
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
-        </Route>
-        <Route path='/projects/:id/rewards/edit' exact={true}>
-          <EditRewards />
         </Route>
         <Route path='/updates' exact={true}>
           <Update />
         </Route>
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
-        </Route>
-        <Route path='/projects/:id/rewards/edit' exact={true}>
-          <EditRewards />
         </Route>
         <Route path='/updates' exact={true}>
           <Update />
@@ -87,8 +81,13 @@ function App() {
         <Route path='/discover'>
           <Discover />
         </Route>
+
+        <Route path='/backings/projects/:id/edit' exact={true}>
+          <EditRewards />
+        </Route>
         <Route path='/rewards/create'>
           <CreateReward />
+
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />

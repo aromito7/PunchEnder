@@ -65,7 +65,7 @@ def seed_rewards():
         description="Enjoy theater quality movie experience while stuck in rush hour traffic!",
         ships_to="Anywhere in the world",
         includes="theater car",
-        user=users[-2:]
+        user=users
     )
 
     tmb1 = Reward(
@@ -77,7 +77,7 @@ def seed_rewards():
         description="Choose your fav color after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).",
         ships_to="Anywhere in the world",
         includes="Modular Bottle, 2x Extra Gasket",
-        user=users[:1]
+        user=[users[0]]
     )
 
     tmb2 = Reward(
@@ -90,7 +90,7 @@ def seed_rewards():
 Choose your fav color after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
         ships_to="Anywhere in the world",
         includes="Modular Bottle, 25oz/ 750ml Capacity Glass Cup, Extension Part, Metal Straw, Tea/ Fruit Infuser, 2x Extra Gasket, Cleaning Brush",
-        user=[users[0]]
+        user=[users[1]]
     )
 
     tmb3 = Reward(
@@ -106,7 +106,7 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
 """,
         ships_to="Anywhere in the world",
         includes="2x Modular Bottle, 4x Extra Gasket",
-        user=users
+        user=[users[2]]
     )
 
     tmb4 = Reward(
@@ -119,7 +119,7 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
 Choose your fav color after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
         ships_to="Anywhere in the world",
         includes="2x Modular Bottle, 2x 25ox/ 750ml Capacity Glass Cup, 2x Extension Part, 2x Metal Straw, 2x Tea/ Fruit Infuser, 4x Extra Gasket, 2x Cleaning Brush",
-        user=users[-2:]
+        user=[users[3]]
     )
 
     tmb5 = Reward(
@@ -133,89 +133,7 @@ Choose your fav color after the campaign ends. Check FAQ section for estimated s
 Choose your fav colors after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
         ships_to="Anywhere in the world",
         includes="3x Modular Bottle, 6x Extra Gasket",
-        user=users[::3]
-    )
-
-    tmb6 = Reward(
-        project_id=4,
-        name="4x Modular Bottle - KS Special",
-        quantity=159,
-        price_threshold=199,
-        shipping_date=datetime.now() + timedelta(days=90),
-        description="""$157 OFF Retail Price
-
-Choose your fav colors after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
-        ships_to="Anywhere in the world",
-        includes="4x Modular Bottle, 8x Extra Gasket",
-        user=users[1::3]
-    )
-
-    tmb7 = Reward(
-        project_id=4,
-        name="3x Modular Bottle - Pro",
-        quantity=35,
-        price_threshold=219,
-        shipping_date=datetime.now() + timedelta(days=90),
-        description="""$138 OFF Retail Price
-Choose your fav color after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
-        ships_to="Anywhere in the world",
-        includes="3x Modular Bottle, 3x 25ox/ 750ml Capacity Glass Cup, 3x Extension Part, 3x Metal Straw, 3x Tea/ Fruit Infuser, 6x Extra Gasket, 3x Cleaning Brush",
-        user=users[1::3]
-    )
-
-    tmb8 = Reward(
-        project_id=4,
-        name="5x Modular Bottle - KS",
-        quantity=50,
-        price_threshold=249,
-        shipping_date=datetime.now() + timedelta(days=90),
-        description="""$196 OFF Retail Price
-
-Choose your fav colors after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
-        ships_to="Anywhere in the world",
-        includes="5x Modular Bottle, 10x Extra Gasket",
-        user=users[1::2]
-    )
-
-    tmb9 = Reward(
-        project_id=4,
-        name="4x Modular Bottle - Pro",
-        quantity=35,
-        price_threshold=279,
-        shipping_date=datetime.now() + timedelta(days=90),
-        description="""$197 OFF Retail Price
-Choose your fav color after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
-        ships_to="Anywhere in the world",
-        includes="4x Modular Bottle, 4x 25ox/ 750ml Capacity Glass Cup, 4x Extension Part, 4x Metal Straw, 4x Tea/ Fruit Infuser, 8x Extra Gasket, 4x Cleaning Brush",
-        user=users[::4]
-    )
-
-    tmb10 = Reward(
-        project_id=4,
-        name="10x Modular Bottle - KS",
-        quantity=50,
-        price_threshold=450,
-        shipping_date=datetime.now() + timedelta(days=90),
-        description="""$440 OFF Retail Price
-
-Choose your fav colors after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
-        ships_to="Anywhere in the world",
-        includes="10x Modular Bottle, 20x Extra Gasket",
-        user=users[1::4]
-    )
-
-    tmb10 = Reward(
-        project_id=4,
-        name="20x Modular Bottle - KS",
-        quantity=50,
-        price_threshold=900,
-        shipping_date=datetime.now() + timedelta(days=90),
-        description="""$440 OFF Retail Price
-
-Choose your fav colors after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
-        ships_to="Anywhere in the world",
-        includes="20x Modular Bottle, 40x Extra Gasket",
-        user=users[2::4]
+        user=[users[4]]
     )
 
     hoverboard = Reward(
@@ -227,7 +145,7 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
         description="Just like the one in Back to the Future 2!",
         ships_to="Anywhere in the world",
         includes="hoverboard",
-        user=users[::2]
+        user=users
     )
 
     db.session.add(scooter)
