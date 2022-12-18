@@ -34,7 +34,6 @@ const InfoBar = () => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    if (projects.length < 1) return null;
     return (
         <div className='info-bar-wrapper'>
            <div className='info-bar-box'>
