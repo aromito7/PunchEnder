@@ -1,29 +1,30 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 from sqlalchemy import ForeignKey
 from .project_categories import category_table
 
 class Project(db.Model):
-  __tablename__ = 'projects'
-  id = db.Column(db.Integer, primary_key=True)
-  owner_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
-  name = db.Column(db.String(50), nullable=False)
-  goal_amount = db.Column(db.Integer, nullable=False)
-  current_amount = db.Column(db.Integer, nullable=False)
-  start_date = db.Column(db.DateTime, nullable=False, default=datetime.now())
-  end_date = db.Column(db.DateTime, nullable=False)
-  short_description = db.Column(db.String(250), nullable=False)
-  long_description = db.Column(db.String(50000), nullable=False)
-  preview_image = db.Column(db.String(100), nullable=False)
-  city = db.Column(db.String(50), nullable=False)
-  state = db.Column(db.String(2), nullable=False)
+    __tablename__ = 'projects'
 
-  owner = db.relationship('User', back_populates='project')
-  reward = db.relationship('Reward', back_populates='project', cascade="all, delete")
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
+    id = db.Column(db.Integer, primary_key=True)
+    owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
+    goal_amount = db.Column(db.Integer, nullable=False)
+    current_amount = db.Column(db.Integer, nullable=False)
+    start_date = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    end_date = db.Column(db.DateTime, nullable=False)
+    short_description = db.Column(db.String(250), nullable=False)
+    long_description = db.Column(db.String(50000), nullable=False)
+    preview_image = db.Column(db.String(500), nullable=False)
+    city = db.Column(db.String(50), nullable=False)
+    state = db.Column(db.String(2), nullable=False)
 
-
-  categories = db.relationship('Category', secondary=category_table, back_populates='projects')
+    owner = db.relationship('User', back_populates='project')
+    reward = db.relationship('Reward', back_populates='project', cascade="all, delete")
+    categories = db.relationship('Category', secondary=category_table, back_populates='projects')
 
 
   def to_dict(self):
