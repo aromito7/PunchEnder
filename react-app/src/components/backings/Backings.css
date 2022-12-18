@@ -77,4 +77,16 @@ ul {
 #delete {
     background-color: #fff;
     border: none;
+
+}
+
+#edit:hover {
+    background-color: lightgreen;
+    border: none;
+}
+
+#delete:hover {
+    background-color: red;
+    border: none;
+    cursor: pointer;
 }

@@ -24,10 +24,10 @@ const actionUpdateBacking = (backing) => {
     }
 }
 
-const actionDeleteBacking = (backing) => {
+const actionDeleteBacking = (id) => {
     return {
         type: DELETE_BACKING,
-        payload: backing
+        payload: id
     }
 }
 
@@ -52,11 +52,9 @@ export const thunkAddBacking = (projectId, rewardId) => async (dispatch) => {
             rewardId
         })
     })
-    console.log("ADD BACKING RESPONSE---->", await response.json())
+
     if (response.ok) {
-        console.log("ADD BACKING RESPONSE---->", await response.json())
         const data = await response.json()
-        console.log("ADD BACKING RESPONSE---->", data)
         dispatch(actionAddBacking(data))
     }
     else {
@@ -98,9 +96,7 @@ export const thunkDeleteBacking = (projectId, rewardId) => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
-        dispatch(actionDeleteBacking(data))
-        return data
+        dispatch(actionDeleteBacking(projectId))
     }
     else {
         return { "Error": "Could not delete backing" }
@@ -117,18 +113,16 @@ export default function userBackingsReducer(state = {}, action) {
             return newState
         case ADD_BACKING:
             newState = { ...state }
-            // console.log("payload ---->", action.payload)
-            // console.log(newState[action.payload.project_id])
             newState[action.payload.project_id] = action.payload
             return newState
         case UPDATE_BACKING:
             newState = { ...state }
+            // delete newState[action.payload.project_id]
             newState[action.payload.project_id] = action.payload
             return newState
         case DELETE_BACKING:
             newState = { ...state }
-            console.log(action.payload)
-            delete newState[action.payload.project_id]
+            delete newState[action.payload]
             return newState
         default:
             return state

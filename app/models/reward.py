@@ -11,14 +11,16 @@ class Reward(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    project_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('projects.id')), nullable=False)
+    project_id = db.Column(db.Integer, ForeignKey(
+        add_prefix_for_prod('projects.id')), nullable=False)
     name = db.Column(db.String(50), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price_threshold = db.Column(db.Integer, nullable=False)
     shipping_date = db.Column(db.DateTime, nullable=False)
     ships_to = db.Column(db.String(50), nullable=False)
     project = db.relationship('Project', back_populates='reward')
-    user = db.relationship('User', secondary=backing_table, back_populates='reward')
+    user = db.relationship(
+        'User', secondary=backing_table, back_populates='reward')
     includes = db.Column(db.String(500))
     description = db.Column(db.String(50000), nullable=False)
 
