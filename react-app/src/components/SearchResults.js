@@ -39,7 +39,7 @@ function SearchResults() {
                         {result.short_description}
                     </div>
                     <div className="search-name3">
-                    by {result.owner[0].firstname} {result.owner[0].lastname}
+                    by {result.owner.firstname} {result.owner.lastname}
                     </div>
               </NavLink>
               </div>

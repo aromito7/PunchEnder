@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "../css/NavBar.css"
-import SearchResults from "./SearchResults";
 
 function SearchBar() {
   const [searchParams, setSearchParams] = useState('')
   const [results, setResults] = useState(null)
-  const [mountResults, setMountResults] = useState(false)
 
   const history = useHistory()
 
@@ -19,15 +17,14 @@ function SearchBar() {
   const handleSubmit = async () => {
     const query = queryMaker(searchParams)
     history.push(`/search?query=${query}`)
-    try {
-      const response = await fetch(`/api/projects/search/${query}`)
-      const data = await response.json()
-      setResults(data.results)
-    } catch (error) {
-      console.error(error)
-    }
-    setMountResults(true)
-    console.log('hello test tsetsets tes s')
+    // try {
+    //   const response = await fetch(`/api/projects/search/${query}`)
+    //   const data = await response.json()
+    //   setResults(data.results)
+    // } catch (error) {
+    //   console.error(error)
+    // }
+    // console.log('hello test tsetsets tes s')
   }
 
   useEffect(() => {
@@ -52,7 +49,6 @@ function SearchBar() {
         placeholder="Search for a project"
         onChange={e => setSearchParams(e.target.value)}
       />
-      {/* {mountResults && <SearchResults projects={results} />} */}
     </>
   )
 }
