@@ -15,7 +15,7 @@ import UserBackings from './components/backings/UserBackings';
 import { authenticate } from './store/session';
 import * as sessionActions from './store/session';
 import LandingPage from './components/home/LandingPage';
-import AllProjects from './components/project/CategoryProjects';
+import CategoryProjects from './components/project/CategoryProjects';
 import RewardComponent from './components/reward/RewardComponent';
 import EditRewards from './components/backings/EditBacking';
 import Update from './components/updates/update';
@@ -52,7 +52,7 @@ function App() {
           <SearchResults />
         </Route>
         <Route path='/projects/categories/:category'>
-          <AllProjects />
+          <CategoryProjects />
         </Route>
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
@@ -76,7 +76,7 @@ function App() {
           <CreateReward/>
         </ProtectedRoute>
         <Route path='/projects' exact={true}>
-          <AllProjects />
+          <CategoryProjects />
         </Route>
         <Route path='/discover'>
           <Discover />

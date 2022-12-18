@@ -105,7 +105,7 @@ def search(query):
 @project_routes.route("/categories")
 def get_categories():
 
-    categories = Category.query.get().all
+    categories = Category.query.all()
 
     allCategories = [category.to_dict() for category in categories]
 

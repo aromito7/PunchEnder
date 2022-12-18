@@ -101,6 +101,13 @@
   height: 90px;
 }
 
+#categoryFeaturedImage{
+  width: 800px;
+  height: auto;
+  max-width: 110%;
+  max-height: 100%;
+}
+
 .categoryProjectUpdates {
   margin-top: 4.5rem;
   display: flex;
