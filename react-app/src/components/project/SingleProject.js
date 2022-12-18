@@ -39,7 +39,7 @@ const SingleProject = () => {
             <div className='singleProjectMiddleCards'>
                 <div className='projectImage'>
                     <div className='actualImageBox'>
-                        <img id='actualImage' src={project.preview_img ? project.preview_img : 'https://i.pinimg.com/originals/a5/90/8c/a5908c706c030ef3f94c2ad98e23b286.jpg'} />
+                        <img id='actualImage' src={project.preview_image ? project.preview_image : 'https://i.pinimg.com/originals/a5/90/8c/a5908c706c030ef3f94c2ad98e23b286.jpg'} />
                     </div>
                     <div className='actualImageBoxLower'>
                         <span id='singleProjectLocation'>{project.city ? project.city : "Los Angeles"}, {project.state ? project.state : "CA"}</span>
