@@ -65,7 +65,7 @@ const RewardComponent = ({ reward }) => {
                 {includes.map((item, i) => {
                     return (
                         <li key={i}>
-                            {item}
+                            &#x2022;{item}
                         </li>
                     )
                 })}

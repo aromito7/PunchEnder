@@ -9,7 +9,6 @@
 
 .reward-component:hover {
     background-color: lightgreen;
-    cursor: pointer;
 }
 
 .reward-name {
@@ -72,4 +71,10 @@
 
 #rewards-delivery-right {
     grid-column: 2;
+}
+
+.includes-list{
+    margin:0;
+    padding: 0 0 0 10px;
+    list-style-position: inside;
 }

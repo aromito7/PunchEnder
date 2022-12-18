@@ -27,7 +27,7 @@ function SearchResults() {
         {results && results.map(result => (
           <div key={result.id}>
             <div className="search-width">
-              <NavLink to={`/projects/${result.id}`}>
+              <NavLink to={`/projects/${result.id}`} className={"test1234"}>
                     <div className="search-image">
                         <img src={`${result.preview_image}`}
                         width="200em" height="150em"></img>

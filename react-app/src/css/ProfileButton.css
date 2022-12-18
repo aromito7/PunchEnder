@@ -3,7 +3,6 @@
     height: 40px;
     /* padding: 0 7px; */
     font-size: 30px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,10 +48,11 @@ img.profile-icon2 {
 }
 
 
-.logged-in {
+.logged-in, .log-out {
     font-size: 14px;
     text-align: left;
     margin: 10px;
+    color: grey;
 }
 
 
@@ -114,7 +114,7 @@ img.profile-icon2 {
     position: fixed;
     transform: translateX(-70%);
     background-color: white;
-    height: 100px;
+    height: 150px;
     width: 150px;
     list-style-type: none;
     font-size: 1rem;
@@ -132,12 +132,16 @@ img.profile-icon2 {
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    cursor: pointer;
     margin: 10px;
+
 }
 
-.log-out:hover {
+.commented-out{
     background-color: rgba(128, 128, 128, 0.075);
+}
+.log-out:hover, .logged-in:hover{
+    text-decoration: underline;
+    color:rgb(0, 81, 0)
 }
 
 .test-nav {

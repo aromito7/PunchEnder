@@ -71,3 +71,11 @@ a:active {
   font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
   "Liberation Sans", FreeSans, sans-serif;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hover-green:hover{
+  border: 1px solid #037362;
+}

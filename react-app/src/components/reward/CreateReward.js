@@ -39,7 +39,7 @@ const CreateReward = () => {
         const data = await res.json();
         console.log("DATA ---------------> ", data)
 
-        history.push(`/projects/${projectId}/rewards/`)
+        history.push(`/projects/${projectId}/`)
 
     };
 
@@ -117,8 +117,7 @@ const CreateReward = () => {
                 </label>
                 <label className='creRewLabels'>
                     Description
-                    <input
-                    type="text"
+                    <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     required
@@ -126,7 +125,7 @@ const CreateReward = () => {
                 </label>
                 <label className='creRewLabels'>
                     Estimated shipping date
-                    <input
+                    <input className='creRewTextArea'
                     type="date"
                     value={shipping_date}
                     onChange={(e) => setShippingDate(e.target.value)}

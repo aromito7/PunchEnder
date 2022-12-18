@@ -52,7 +52,7 @@ function UpdateProject() {
         (async () => {
         const res = await fetch(`/api/projects/${id}`);
         const data = await res.json();
-        console.log("THE PROJECT DATA ----------> ", data)
+        //console.log("THE PROJECT DATA ----------> ", data)
         setProject(data);
         setName(data.name);
         setShortDescription(data.short_description);
