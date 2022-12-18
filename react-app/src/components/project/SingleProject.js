@@ -6,20 +6,27 @@ import nav1 from '../../images/nav1.png'
 import nav2 from '../../images/nav2.png'
 import nav3 from '../../images/nav3.png'
 import RewardComponent from '../reward/RewardComponent'
+import { useSelector } from "react-redux";
 
 const SingleProject = () => {
     const { id } = useParams();
     const history = useHistory();
+    const currentUser = useSelector(state => state.session.user);
     const [project, setProject] = useState({});
+
 
     useEffect(() => {
         (async () => {
         const res = await fetch(`/api/projects/${id}`);
         const data = await res.json();
-        console.log("THE PROJECT DATA ----------> ", data)
+        //console.log("THE PROJECT DATA ----------> ", data)
         setProject(data);
         })();
     }, [id]);
+
+    const toCreateReward = (e) => {
+        history.push(`/projects/${id}/rewards/create`)
+    }
 
     if(Object.keys(project).length < 1) return null
     return (
@@ -32,7 +39,7 @@ const SingleProject = () => {
             <div className='singleProjectMiddleCards'>
                 <div className='projectImage'>
                     <div className='actualImageBox'>
-                        <img id='actualImage' src={project.preview_img ? project.preview_img : 'https://i.pinimg.com/originals/a5/90/8c/a5908c706c030ef3f94c2ad98e23b286.jpg'} />
+                        <img id='actualImage' src={project.preview_image ? project.preview_image : 'https://i.pinimg.com/originals/a5/90/8c/a5908c706c030ef3f94c2ad98e23b286.jpg'} />
                     </div>
                     <div className='actualImageBoxLower'>
                         <span id='singleProjectLocation'>{project.city ? project.city : "Los Angeles"}, {project.state ? project.state : "CA"}</span>
@@ -44,10 +51,12 @@ const SingleProject = () => {
                         <span id='pledgeGrey'>{' '} pledged of ${project.goal_amount ? project.goal_amount : '50000'} goal</span>
                     </div>
                     <div>
-                        <span>{project.end_date ? project.end_date : '12/02/23'}</span>
+                        <span>Ends: {project.end_date ? project.end_date.split('T')[0] : '12/02/23'}</span>
                     </div>
                     <div>
-                        <button id='singleProjectPledge'>Back this project</button>
+                        {currentUser && currentUser.id == project.owner_id?
+                        <button id='singleProjectPledge' className="cursor-pointer" onClick={toCreateReward}>Create a new reward</button>:
+                        <button id='singleProjectPledge'>Back this project</button>}
                     </div>
                     <div id='reminderButtonWrapper'>
                         <button id='singleProjectReminder'><img id='buttonReminder' src={reminder} />Remind me</button>

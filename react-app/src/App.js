@@ -98,9 +98,6 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/projects/:projectId/rewards' exact={true} >
-          <ProjectRewards />
-        </Route>
         <Route path='/rewards/:rewardId' exact={true} >
           <RewardComponent />
         </Route>

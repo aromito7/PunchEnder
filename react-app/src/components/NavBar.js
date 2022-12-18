@@ -44,13 +44,13 @@ const NavBar = () => {
           <section className="navbar__right-links-container">
             <div className="navbar__right-links-list">
               <div className="navbar__navlink-search-container">
-                <button className="search-button" onClick={showSearchBar}>
+                <button className="search-button cursor-pointer" onClick={showSearchBar}>
                   Search
                 </button>
                 {showSearch && (
                   <>
                     <SearchBar />
-                    <button onClick={closeSearchBar} className='close-search-button'>x</button>
+                    <button onClick={closeSearchBar} className='close-search-button cursor-pointer'>x</button>
                   </>
                 )}
               </div>

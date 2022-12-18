@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 
@@ -27,7 +27,7 @@ const ProfileButton = () => {
                 <img
                     src="https://www.pngrepo.com/png/34340/180/avatar.png"
                     alt="self logo123"
-                    className='profile-icon'
+                    className='profile-icon cursor-pointer'
                     style={{ height: '39px', width: '39px', padding: '0px 0px 0px 0px', marginRight: '14rem' }}
                 />
                 {showMenu && (
@@ -35,9 +35,13 @@ const ProfileButton = () => {
                         <div className="logged-in test-nav">
                             <span>Welcome,  {' '}{' '}{' '} </span> {' '} {user.firstname}
                         </div>
+                        <hr width="100%" />
                         <div>
-                            <NavLink className="link-to-backings" to={`/users/${user.id}/backings`}>Projects you back.</NavLink>
+                            <Link to="/users/1/backings">
+                                <span className="logged-in test-nav">My Backings</span>
+                            </Link>
                         </div>
+                        <hr width="100%" />
                         <div className="log-out">
                             <LogoutButton />
                         </div>
