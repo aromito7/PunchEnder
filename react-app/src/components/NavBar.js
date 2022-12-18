@@ -69,10 +69,8 @@ const NavBar = () => {
         <div className='navbar__wrapper'>
           <section className='navbar__left-links-container'>
             <div className='navbar__left-links-list'>
-              <div className='navbar__navlink-home'>
-                <NavLink to='/discover' exact={true} activeClassName='active'>
-                  Discover
-                </NavLink>
+            <div className='navbar__navlink-home'>
+                  <Discover />
               </div>
               <div className='navbar__navlink-start'>
                 <NavLink to='/projects/create' exact={true} activeClassName='active'>

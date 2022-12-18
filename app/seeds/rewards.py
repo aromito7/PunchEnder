@@ -148,6 +148,116 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
         user=users
     )
 
+    cookbook = Reward(
+        project_id=5,
+        name='Delicious Recipes Cookbook',
+        quantity=500,
+        price_threshold=50,
+        shipping_date=datetime.now() + timedelta(days=30),
+        description="A collection of over 100 tasty and easy-to-follow recipes.",
+        ships_to="United States",
+        includes="Hardcover cookbook",
+        user=[users[0]]
+    )
+
+    concert_tickets = Reward(
+        project_id=6,
+        name='Concert Tickets',
+        quantity=100,
+        price_threshold=200,
+        shipping_date=datetime.now() + timedelta(days=60),
+        description="Two tickets to see your favorite band live in concert.",
+        ships_to="United States",
+        includes="2 concert tickets",
+        user=[users[1]]
+    )
+
+    smart_watch = Reward(
+        project_id=7,
+        name='Smart Watch',
+        quantity=250,
+        price_threshold=300,
+        shipping_date=datetime.now() + timedelta(days=90),
+        description="A high-tech watch with fitness tracking, messaging, and more.",
+        ships_to="Anywhere in the world",
+        includes="Smart watch, charging cable",
+        user=[users[2]]
+    )
+
+    vacation_package = Reward(
+        project_id=8,
+        name='Vacation Package',
+        quantity=50,
+        price_threshold=1000,
+        shipping_date=datetime.now() + timedelta(days=120),
+        description="A week-long all-inclusive vacation at a luxury resort.",
+        ships_to="Anywhere in the world",
+        includes="7 nights accommodation, meals and drinks, activities",
+        user=[users[0], users[1]]
+    )
+
+    hiking_gear = Reward(
+        project_id=9,
+        name='Hiking Gear Package',
+        quantity=100,
+        price_threshold=100,
+        shipping_date=datetime.now() + timedelta(days=45),
+        description="Everything you need for a day on the trails.",
+        ships_to="United States",
+        includes="Hiking boots, backpack, water bottle, trail map",
+        user=[users[0]]
+    )
+
+    yoga_retreat = Reward(
+        project_id=9,
+        name='Yoga Retreat',
+        quantity=20,
+        price_threshold=500,
+        shipping_date=datetime.now() + timedelta(days=90),
+        description="A weekend of yoga and relaxation at a beautiful retreat center.",
+        ships_to="United States",
+        includes="2 nights accommodation, yoga classes, meals",
+        user=[users[1]]
+    )
+
+    movie_poster = Reward(
+        project_id=9,
+        name='Signed Movie Poster',
+        quantity=100,
+        price_threshold=50,
+        shipping_date=datetime.now() + timedelta(days=30),
+        description="A signed poster from the film, autographed by the cast and crew.",
+        ships_to="United States",
+        includes="Signed movie poster",
+        user=[users[2]]
+    )
+
+    painting = Reward(
+        project_id=9,
+        name='Original Painting',
+        quantity=10,
+        price_threshold=500,
+        shipping_date=datetime.now() + timedelta(days=60),
+        description="An original painting by the artist, created specifically for this project.",
+        ships_to="Anywhere in the world",
+        includes="Original painting",
+        user=[users[0]]
+    )
+
+
+    book_club = Reward(
+        project_id=9,
+        name='Book Club Membership',
+        quantity=50,
+        price_threshold=100,
+        shipping_date=datetime.now() + timedelta(days=90),
+        description="Access to an exclusive online book club with monthly discussions and guest authors.",
+        ships_to="Anywhere in the world",
+        includes="Book club membership",
+        user=[users[1], users[2]]
+    )
+
+
     db.session.add(scooter)
     db.session.add(bike)
     db.session.add(vespa)
@@ -155,6 +265,16 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
     db.session.add(car_boat)
     db.session.add(car_theater)
     db.session.add(hoverboard)
+    db.session.add(cookbook)
+    db.session.add(concert_tickets)
+    db.session.add(smart_watch)
+    db.session.add(vacation_package)
+    db.session.add(hiking_gear)
+    db.session.add(yoga_retreat)
+    db.session.add(movie_poster)
+    db.session.add(painting)
+    db.session.add(book_club)
+
     db.session.commit()
 
 

@@ -141,11 +141,93 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         city="San Francisco",
         state="CA")
 
+    demo5 = Project(
+        owner_id= 3,
+        categories=[comics, publishing],
+        name='Innovative electric skateboard',
+        goal_amount=250000,
+        current_amount=150000,
+        start_date=datetime.now(),
+        end_date=datetime.now() + timedelta(days = 900),
+        short_description="Revolutionary transportation for the modern age!",
+        long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit.""",
+        preview_image="https://www.electric-skateboard.com/wp-content/uploads/2019/07/electric-skateboard-4.jpg",
+        city="San Francisco",
+        state="CA")
+
+    demo7 = Project(
+        owner_id= 2,
+        categories=[publishing, music],
+        name='Art therapy workshops for at-risk youth',
+        goal_amount=100000,
+        current_amount=80000,
+        start_date=datetime.now(),
+        end_date=datetime.now() + timedelta(days = 365),
+        short_description="Helping young people express themselves through art!",
+        long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit.""",
+        preview_image="https://www.arttherapy.org/wp-content/uploads/2018/09/kids-painting.jpg",
+        city="Chicago",
+        state="IL")
+
+    demo8 = Project(
+        owner_id= 3,
+        categories=[film, arts],
+        name='Community garden expansion project',
+        goal_amount=250000,
+        current_amount=176540,
+        start_date=datetime.now(),
+        end_date=datetime.now() + timedelta(days = 1200),
+        short_description="Help us grow more fresh produce for our community!",
+        long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit.""",
+        preview_image="https://www.gardendesign.com/pictures/images/768x512Exact/site_2/community-garden-expansion-project_garden_design.jpg",
+        city="Portland",
+        state="OR")
+
+    demo9 = Project(
+        owner_id= 2,
+        categories=[food, film],
+        name='Smart home energy management system',
+        goal_amount=400000,
+        current_amount=267890,
+        start_date=datetime.now(),
+        end_date=datetime.now() + timedelta(days = 1500),
+        short_description="Save money and reduce your carbon footprint with our innovative system!",
+        long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit.""",
+        preview_image="https://www.thespruce.com/thmb/GJZ_0b1p0pDd7bJ5k-ntL9XdMDA=/4288x2848/smart/filters:no_upscale()/smart-home-energy-management-system-5c73ef5ec9e77c0001751584.jpg",
+        city="San Francisco",
+        state="CA")
+
+    demo10 = Project(
+        owner_id= 1,
+        categories=[design, food],
+        name='Virtual reality language learning platform',
+        goal_amount=250000,
+        current_amount=150000,
+        start_date=datetime.now(),
+        end_date=datetime.now() + timedelta(days = 365),
+        short_description="Revolutionize language education with immersive VR!",
+        long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Diam quis enim lobortis scelerisque fermentum dui. Eu feugiat pretium nibh ipsum consequat nisl vel. In est ante in nibh mauris cursus. Sed enim ut sem viverra aliquet. In tellus integer feugiat scelerisque varius morbi enim nunc. Nec tincidunt praesent semper feugiat nibh.""",
+        preview_image="https://i.imgur.com/Qr71crq.jpg",
+        city="San Francisco",
+        state="CA")
+
+
+
+
+
+
+
     db.session.add(demo)
     db.session.add(demo1)
     db.session.add(demo2)
     db.session.add(demo3)
     db.session.add(demo4)
+    db.session.add(demo5)
+    db.session.add(demo6)
+    db.session.add(demo7)
+    db.session.add(demo8)
+    db.session.add(demo9)
+    db.session.add(demo10)
     db.session.commit()
 
 
