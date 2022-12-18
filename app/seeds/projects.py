@@ -151,7 +151,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         end_date=datetime.now() + timedelta(days = 900),
         short_description="Revolutionary transportation for the modern age!",
         long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit.""",
-        preview_image="https://www.electric-skateboard.com/wp-content/uploads/2019/07/electric-skateboard-4.jpg",
+        preview_image="https://i5.walmartimages.com/asr/59ca29e9-25f7-4742-af4d-cabb9d4f6eb8.19830abe559bbede038c0a21eaae6a83.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF",
         city="San Francisco",
         state="CA")
 
@@ -165,7 +165,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         end_date=datetime.now() + timedelta(days = 365),
         short_description="Helping young people express themselves through art!",
         long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit.""",
-        preview_image="https://www.arttherapy.org/wp-content/uploads/2018/09/kids-painting.jpg",
+        preview_image="https://images.squarespace-cdn.com/content/v1/566670ecd82d5ed3d73e4802/1660439486712-GKG00L0AQX2OCR1CFQ0Z/LAWS.JPG?format=1500w",
         city="Chicago",
         state="IL")
 
@@ -179,7 +179,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         end_date=datetime.now() + timedelta(days = 1200),
         short_description="Help us grow more fresh produce for our community!",
         long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit.""",
-        preview_image="https://www.gardendesign.com/pictures/images/768x512Exact/site_2/community-garden-expansion-project_garden_design.jpg",
+        preview_image="https://i.guim.co.uk/img/media/ef96c1f2495b60ec83379962d4aec38bfb1ce039/0_187_5600_3363/master/5600.jpg?width=620&quality=85&dpr=1&s=none",
         city="Portland",
         state="OR")
 
@@ -193,7 +193,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         end_date=datetime.now() + timedelta(days = 1500),
         short_description="Save money and reduce your carbon footprint with our innovative system!",
         long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nullam non nisi est. Enim sed faucibus turpis in. Amet volutpat consequat mauris nunc. Enim nulla aliquet porttitor lacus. Velit egestas dui id ornare arcu odio ut sem. Id ornare arcu odio ut sem nulla pharetra diam sit.""",
-        preview_image="https://www.thespruce.com/thmb/GJZ_0b1p0pDd7bJ5k-ntL9XdMDA=/4288x2848/smart/filters:no_upscale()/smart-home-energy-management-system-5c73ef5ec9e77c0001751584.jpg",
+        preview_image="https://corp.smartbrief.com/wp-content/uploads/2018/12/smart-home-2005993_640-600x424.png",
         city="San Francisco",
         state="CA")
 
@@ -207,7 +207,7 @@ Viverra orci sagittis eu volutpat odio facilisis. Sed arcu non odio euismod laci
         end_date=datetime.now() + timedelta(days = 365),
         short_description="Revolutionize language education with immersive VR!",
         long_description="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Diam quis enim lobortis scelerisque fermentum dui. Eu feugiat pretium nibh ipsum consequat nisl vel. In est ante in nibh mauris cursus. Sed enim ut sem viverra aliquet. In tellus integer feugiat scelerisque varius morbi enim nunc. Nec tincidunt praesent semper feugiat nibh.""",
-        preview_image="https://i.imgur.com/Qr71crq.jpg",
+        preview_image="https://cdn.mos.cms.futurecdn.net/MWLF9tpHEo6iNHNj4BW3TS-970-80.jpg.webp",
         city="San Francisco",
         state="CA")
 
