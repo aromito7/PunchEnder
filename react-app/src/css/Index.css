@@ -79,3 +79,8 @@ a:active {
 .hover-green:hover{
   border: 1px solid #037362;
 }
+
+.error-message{
+  color: red;
+  text-align: center;
+}
