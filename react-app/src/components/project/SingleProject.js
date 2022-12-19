@@ -56,11 +56,11 @@ const SingleProject = () => {
                     <div>
                         {currentUser && currentUser.id == project.owner_id?
                         <button id='singleProjectPledge' className="cursor-pointer" onClick={toCreateReward}>Create a new reward</button>:
-                        <button id='singleProjectPledge'>Back this project</button>}
+                        <button id='singleProjectPledge'>Back this project below!</button>}
                     </div>
-                    <div id='reminderButtonWrapper'>
+                    {/* <div id='reminderButtonWrapper'>
                         <button id='singleProjectReminder'><img id='buttonReminder' src={reminder} />Remind me</button>
-                    </div>
+                    </div> */}
                     <div className='pledgeSummLow'>
                         <span id='singleProjectAllNone'>All or nothing. {' '}</span>
                         <span>This project will only be funded if it reaches its goal by {project.end_date}</span>
@@ -89,7 +89,7 @@ const SingleProject = () => {
                 </div>
             </div>
 
-            <div className='singleProjectLowerNavBar'>
+            {/* <div className='singleProjectLowerNavBar'>
                 <div className='lowerNavBarTabs'>
                     <p>Campaign</p>
                     <p>FAQ</p>
@@ -101,7 +101,7 @@ const SingleProject = () => {
                     <button id='lowerPledgeButton'>Back this project</button>
                     <button id='lowerRemindButton'><img id='lowerButtonReminder' src={reminder} />Remind me</button>
                 </div>
-            </div>
+            </div> */}
 
             <div className='singleProjectBottomInfo'>
                 <div className=''>
