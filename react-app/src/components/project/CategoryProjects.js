@@ -45,17 +45,17 @@ function CategoryProjects() {
             setProjects(tempCategory.projects);
             })();
     }, [category])
-    console.log("categories")
-    console.log(categories)
-    console.log("projects")
-    console.log(projects)
+    // console.log("categories")
+    // console.log(categories)
+    // console.log("projects")
+    // console.log(projects)
     if(projects.length == 0) return null
     categories.description = descriptions[categories.id]
     const featuredProject = projects.length > 0 ? projects[0] : fakeProject
     const project1 = projects.length > 1 ? projects[1] : featuredProject
     const project2 = projects.length > 2 ? projects[2] : featuredProject
     const project3 = projects.length > 3 ? projects[3] : featuredProject
-    console.log(featuredProject)
+    //console.log(featuredProject)
 
     if(!categories.name) return null
     return (

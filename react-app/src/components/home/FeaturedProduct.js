@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-const FeaturedProduct = () => {
-    const [project, setProject] = useState({});
+const FeaturedProduct = ({projects}) => {
+    if(projects.length == 0) return null
+    const project = projects[0]
+    // const [project, setProject] = useState({});
 
-    useEffect(() => {
-        (async () => {
-        const res = await fetch(`/api/projects/1`);
-        const data = await res.json();
-        console.log("THE PROJECT DATA ----------> ", data)
-        setProject(data);
-        })();
-    }, []);
+    // useEffect(() => {
+    //     (async () => {
+    //     const res = await fetch(`/api/projects/1`);
+    //     const data = await res.json();
+    //     //console.log("THE PROJECT DATA ----------> ", data)
+    //     setProject(data);
+    //     })();
+    // }, []);
 
-    if(!project.owner) return null
+
     return (
         <div className="featured-wrapper">
-            <NavLink to="/projects/1">
+            <NavLink to={`/projects/${project.id}`}>
                 <div className="featured-title">
                     FEATURED PROJECT
                 </div>

@@ -4,20 +4,20 @@ import RecPart from "./RecPart";
 import RecPart2 from "./RecPart2";
 import RecPart3 from "./RecPart3";
 
-const Recommended = () => {
+const Recommended = ({projects}) => {
     return (
         <div className="featured-wrapper2">
             <div className="featured-title">
                     RECOMMENDED FOR YOU
             </div>
             <div>
-                <RecPart />
+                <RecPart projects={projects}/>
             </div>
             <div>
-                <RecPart2 />
+                <RecPart2 projects={projects}/>
             </div>
             <div>
-                <RecPart3 />
+                <RecPart3 projects={projects}/>
             </div>
         </div>
     );

@@ -21,9 +21,6 @@ function UserProjects() {
         })();
     }, []);
 
-    // console.log(user)
-    // console.log(projects)
-
 
     if (!user) return null
     if (!Object.values(projects).length) return null
@@ -31,7 +28,7 @@ function UserProjects() {
     const deleteProject = (projectId) => {
         dispatch(thunkDeleteProject(projectId))
         setToggleDelete(!toggleDelete)
-        console.log(projects)
+        //console.log(projects)
         setProjects(projects.filter(project => project.id !== projectId))
     }
 

@@ -6,8 +6,20 @@ import Recommended from "./Recommended";
 import Updates from "./Updates";
 import Trending from "./Trending";
 import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const LandingPage = () => {
+    const [projects, setProjects] = useState('');
+
+    useEffect(() => {
+        (async () => {
+            const res = await fetch('/api/projects');
+            const data = await res.json();
+            //console.log("THE PROJECT DATA --> ", data)
+            setProjects(data.projects);
+        })();
+    }, []);
+    if(!projects) return null
     return (
         <div>
             <CategoryBar />
@@ -17,10 +29,10 @@ const LandingPage = () => {
             <div className="landing-subtitle">
                 <h3>ON PUNCHENDER:</h3>
             </div>
-            <InfoBar />
+            <InfoBar projects={projects}/>
             <div className="landing-helper">
-                <FeaturedProduct />
-                <Recommended />
+                <FeaturedProduct projects={projects}/>
+                <Recommended projects={projects}/>
             </div>
             <div>
                 <Updates />
