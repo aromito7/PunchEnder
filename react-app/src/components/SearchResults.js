@@ -14,7 +14,7 @@ function SearchResults() {
       const response = await fetch(`/api/projects/search/${query}`);
       const data = await response.json();
       setResults(data.results);
-      console.log(results)
+      //console.log(results)
     })();
   }, [query]);
 
