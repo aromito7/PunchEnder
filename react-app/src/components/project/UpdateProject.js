@@ -275,7 +275,7 @@ function UpdateProject() {
                                     Project Description
                                 </h2>
                                 <h3>
-                                    Describe what you're raising funto do, why you care about it, how you plan to make it happen,
+                                    Describe what you're raising funds to do, why you care about it, how you plan to make it happen,
                                     and who you are. Your description should tell backers everything they need to know. If possible,
                                     include images to show them what your project is all about and what rewards look like.
                                 </h3>
