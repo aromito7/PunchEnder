@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..models import db, Project, User, Reward, backing_table
+from ..models import db, Project, User, Reward, backing_table, Category, category_table
 from ..forms import ProjectForm, SearchForm
 from datetime import datetime, timedelta
 from flask_login import current_user
@@ -31,6 +31,7 @@ def getProject(id):
 @project_routes.route('/<id>', methods=["DELETE"])
 def deleteProject(id):
     project = Project.query.get(id)
+    print(project)
     if project is not None:
         db.session.delete(project)
         db.session.commit()
@@ -38,93 +39,15 @@ def deleteProject(id):
     else:
         return {"error": f'project id {id} not found'}
 
-
-@project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["POST"])
-def create_backing(reward_id, id):
-    """
-    Create a backing for a project based on reward_id
-    """
-    user = current_user
-    reward = Reward.query.get(reward_id)
-
-    user.reward.append(reward)
-
-    db.session.commit()
-
-    backing_obj = {}
-
-    reward = Reward.query.get(reward_id)
-    project = Project.query.get(id)
-    backing_obj["project_name"] = project.name
-    backing_obj["backing_value"] = reward.price_threshold
-
-    return backing_obj
-
-
-@project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["PUT"])
-def update_backing(reward_id, id):
-    """
-    Update a backing for a project based on the user_id of a backing
-    """
-    user = current_user
-    reward = Reward.query.get(reward_id)
-
-    for backing in reward.user:
-        if backing.id == user.id:
-            del reward.user[reward.user.index(backing)]
-        else:
-            return {"Error": "Backing not found"}
-
-    user.reward.append(reward)
-
-    db.session.commit()
-
-    backing_obj = {}
-
-    reward = Reward.query.get(reward_id)
-    project = Project.query.get(id)
-    backing_obj["project_name"] = project.name
-    backing_obj["backing_value"] = reward.price_threshold
-
-    return backing_obj
-
-
-@project_routes.route('/<int:id>/rewards/<int:reward_id>', methods=["DELETE"])
-def delete_backing(reward_id, id):
-    """
-    Delete a backing for a project based on the user_id of the backing
-    """
-    user = current_user
-    reward = Reward.query.get(reward_id)
-
-    for backing in reward.user:
-        if backing.id == user.id:
-            del reward.user[reward.user.index(backing)]
-        else:
-            return {'Error': "Can't delete a backing that's not yours"}
-
-    db.session.commit()
-
-    project = Project.query.get(id)
-
-    return {"message": "backing deleted", "project_name": project.name}
-
 # CREATE a project
 
-
-# @project_routes.route('/', methods=['POST'])
-# def create_project():
-#     form = ProjectForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         print('FORM -------------> ', form.data)
 
 @project_routes.route('/create', methods=['POST'])
 def create_project():
     data = json.loads(request.data.decode("utf-8"))
-    #for key in data.keys():
-        #form[key] = data[key]
-        #print(key, data[key])
+    # for key in data.keys():
+    #form[key] = data[key]
+    #print(key, data[key])
     new_project = Project(
         owner_id=current_user.get_id(),
         name=data['name'],
@@ -165,15 +88,26 @@ def update_project(projectid):
 def search(query):
     print("Hello, api")
     #searchParams = request.args.get()
-    #print(searchParams)
+    # print(searchParams)
 
     #query = searchParams("name")
     searchResults = Project.query.filter(
         Project.name.ilike(f"%{query}%")
     )
-    results = [project.to_dict() for project in searchResults if project is not None ]
+    results = [project.to_dict()
+               for project in searchResults if project is not None]
 
     if not results:
         return {"message": "No search results were found."}
 
-    return { 'results': results }
+    return {'results': results}
+
+
+@project_routes.route("/categories")
+def get_categories():
+
+    categories = Category.query.all()
+
+    allCategories = [category.to_dict() for category in categories]
+
+    return {"categories": allCategories}

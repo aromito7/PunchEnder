@@ -181,13 +181,13 @@ function CreateProject() {
                                     Project Image
                                 </h2>
                                 <h3>
-                                    Add an image that clearly represents your project. Choose one that looks good at different sizes—it’ll appear on your project page, across the Kickstarter website and mobile apps, and (when shared) on social channels.
+                                    Add an image that clearly represents your project. Choose one that looks good at different sizes—it’ll appear on your project page, across the Punchender website and mobile apps, and (when shared) on social channels.
                                 </h3>
                                 <h3>
                                     Your image should be at least 1024x576 pixels. It will be cropped to a 16:9 ratio.
                                 </h3>
                                 <h3>
-                                    Avoid images with banners, badges, or text—they are illegible at smaller sizes, can be penalized by the Facebook algorithm, and decrease your chances of getting Kickstarter homepage and newsletter features.
+                                    Avoid images with banners, badges, or text—they are illegible at smaller sizes, can be penalized by the Facebook algorithm, and decrease your chances of getting Punchender homepage and newsletter features.
                                 </h3>
                             </div>
                             <div className="float-child">

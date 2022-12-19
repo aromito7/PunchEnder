@@ -61,7 +61,7 @@ const Discover = () => {
 
 
                 <div>
-                    <div className="discover-title">
+                    {/* <div className="discover-title">
                         Collections
                     </div>
                     <div className="test123">
@@ -115,7 +115,7 @@ const Discover = () => {
                                 Everything
                             </NavLink>
                         </div>
-                    </div>
+                    </div> */}
 
 
                     <div className="discover-title">

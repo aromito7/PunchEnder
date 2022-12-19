@@ -15,13 +15,14 @@ import UserBackings from './components/backings/UserBackings';
 import { authenticate } from './store/session';
 import * as sessionActions from './store/session';
 import LandingPage from './components/home/LandingPage';
-import AllProjects from './components/project/CategoryProjects';
+import CategoryProjects from './components/project/CategoryProjects';
 import RewardComponent from './components/reward/RewardComponent';
 import EditRewards from './components/backings/EditBacking';
 import Update from './components/updates/update';
 import UpdateProject from './components/project/UpdateProject';
 import SearchResults from './components/SearchResults';
 import Discover from './components/project/DiscoverProjects';
+import UserProjects from './components/project/UserProjects';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,13 +53,10 @@ function App() {
           <SearchResults />
         </Route>
         <Route path='/projects/categories/:category'>
-            <AllProjects />
+          <CategoryProjects />
         </Route>
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
-        </Route>
-        <Route path='/projects/:id/rewards/edit' exact={true}>
-          <EditRewards />
         </Route>
         <Route path='/updates' exact={true}>
           <Update />
@@ -66,15 +64,12 @@ function App() {
         <Route path='/projects/:id/update' exact={true}>
           <UpdateProject />
         </Route>
-        <Route path='/projects/:id/rewards/edit' exact={true}>
-          <EditRewards />
-        </Route>
         <Route path='/updates' exact={true}>
           <Update />
         </Route>
-        <Route path='/projects/create' exact={true}>
+        <ProtectedRoute path='/projects/create' exact={true}>
           <CreateProject />
-        </Route>
+        </ProtectedRoute>
         <Route path='/projects/:id' exact={true}>
           <SingleProject />
         </Route>
@@ -82,19 +77,26 @@ function App() {
           <CreateReward/>
         </ProtectedRoute>
         <Route path='/projects' exact={true}>
-          <AllProjects />
+          <CategoryProjects />
         </Route>
         <Route path='/discover'>
           <Discover />
         </Route>
-        <Route path='/rewards/create'>
+
+        <ProtectedRoute path='/backings/projects/:id/edit' exact={true}>
+          <EditRewards />
+        </ProtectedRoute>
+        <ProtectedRoute path='/rewards/create'>
           <CreateReward />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId/backings' exact={true} >
           <UserBackings />
+        </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/projects' exact={true} >
+          <UserProjects />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />

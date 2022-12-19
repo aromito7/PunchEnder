@@ -1,44 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, Redirect } from 'react-router-dom';
-import { thunkAddBacking } from '../../store/userBackings';
+import { thunkAddBacking, thunkGetAllBackings } from '../../store/userBackings';
 import './RewardComponent.css';
 
 const RewardComponent = ({ reward }) => {
-    // const {rewardId} = useParams()
-    // if(!id) id = rewardId
-    // const [reward, setReward] = useState(reward)
-    // useEffect(() => {
-    //     if (!rewardId) {
-    //         return;
-    //         }
-    //         (async () => {
-    //         const response = await fetch(`/api/rewards/${id}`);
-    //         const {rewards} = await response.json();
-    //         console.log(rewards)
-    //         setReward(rewards[0]);
-    //         })();
-
-    //     }, [rewardId]);
     const { id } = useParams()
     const user = useSelector(state => state.session.user)
-    const [click, setClick] = useState(false)
     const dispatch = useDispatch()
     const history = useHistory()
 
-
-
-    const toggleClick = () => {
-        setClick(true)
-    }
-
-
-
-    useEffect(() => {
-        if (!click) return
-        dispatch(thunkAddBacking(id, reward.id))
+    const addBacking = async (rewardId) => {
+        console.log(rewardId)
+        dispatch(thunkAddBacking(id, rewardId))
+        dispatch(thunkGetAllBackings(user.id))
         history.push(`/users/${user.id}/backings`)
-    }, [click])
+    }
 
 
     if (!reward) return `Hello, reward`
@@ -89,7 +66,7 @@ const RewardComponent = ({ reward }) => {
                     </p>
                 )}
             </div>
-            <button onClick={toggleClick} className='choose-reward cursor-pointer'>Select this reward!</button>
+            <button onClick={() => addBacking(reward.id)} className='choose-reward cursor-pointer'>Select this reward!</button>
         </div>
     );
 }

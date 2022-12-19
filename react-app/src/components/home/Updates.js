@@ -20,7 +20,7 @@ const Updates = () => {
                         </NavLink>
                         <NavLink to="/updates">
                             <p className="updates-paragraph">
-                                A destination for news, tips, and inspiration, and home to our new monthly video series, Kickstarter Project Updates shares everything you need to know about what’s happening at Kickstarter.
+                                A destination for news, tips, and inspiration, and home to our new monthly video series, Punchender Project Updates shares everything you need to know about what’s happening at Kickstarter.
                             </p>
                         </NavLink>
                     </div>

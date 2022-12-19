@@ -1,4 +1,4 @@
-.backings-container {
+.projects-container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -19,7 +19,7 @@
     padding-right: 25px;
 }
 
-.backing-img-div {
+.project-img-div {
     object-fit: cover;
 }
 
@@ -27,7 +27,7 @@ ul {
     list-style: none;
 }
 
-#backing-img {
+#project-img {
     max-width: 400px;
     /* border-radius: 5%; */
 }
@@ -62,7 +62,7 @@ ul {
     font-weight: bold;
 }
 
-#backing {
+#project {
     margin: 10px;
     border: 1px solid grey;
     padding-left: 10px;
