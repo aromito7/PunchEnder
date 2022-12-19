@@ -78,9 +78,9 @@ function App() {
         <Route path='/projects' exact={true}>
           <AllProjects />
         </Route>
-        {/* <Route path='/discover'>
+        <Route path='/discover'>
           <Discover />
-        </Route> */}
+        </Route>
 
         <ProtectedRoute path='/backings/projects/:id/edit' exact={true}>
           <EditRewards />
