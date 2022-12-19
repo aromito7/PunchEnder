@@ -9,6 +9,7 @@ function UserProjects() {
     const user = useSelector(state => state.session.user)
     const [projects, setProjects] = useState({});
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         (async () => {
@@ -16,12 +17,12 @@ function UserProjects() {
         const data = await res.json();
 
         //console.log("THE PROJECT DATA ----------> ", data)
-        setProjects(data);
+        setProjects(data.projects);
         })();
     }, []);
 
     // console.log(user)
-    console.log(projects)
+    // console.log(projects)
 
 
     if (!user) return null
@@ -30,6 +31,8 @@ function UserProjects() {
     const deleteProject = (projectId) => {
         dispatch(thunkDeleteProject(projectId))
         setToggleDelete(!toggleDelete)
+        console.log(projects)
+        setProjects(projects.filter(project => project.id !== projectId))
     }
 
     return (
@@ -37,10 +40,10 @@ function UserProjects() {
             <h1 style={{ marginTop: "100px" }}>Projects You Own</h1>
 
             <div className='projects-container'>
-                {projects.projects.filter(project => project.owner_id == user.id).map(project => (
+                {projects.filter(project => project.owner_id == user.id).map(project => (
                     <div id='project' key={project.project_id}>
                         <div className='project-img-div'><img id='project-img' src={project.preview_image}></img></div>
-                        <div><Link to={`/projects/${project.id}`}><div id="project-name" key={project.projectName}>{project.name}</div></Link></div>
+                        <div><Link to={`/projects/${project.id}`}><div id="project-name">{project.name}</div></Link></div>
                         <div id="price">${project.current_amount}</div>
                         <span className='hover-green'><Link to={`/projects/${project.id}/update`} id='edit'>Edit Project</Link></span>
                         <span className='hover-green'><button onClick={() => deleteProject(project.id)} id='delete'>Delete Project</button></span>
