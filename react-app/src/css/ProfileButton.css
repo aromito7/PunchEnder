@@ -114,8 +114,8 @@ img.profile-icon2 {
     position: fixed;
     transform: translateX(-70%);
     background-color: white;
-    height: 150px;
-    width: 150px;
+    height: 25em;
+    width: 15em;
     list-style-type: none;
     font-size: 1rem;
     top: 80px;
@@ -149,7 +149,7 @@ img.profile-icon2 {
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 17.5px;
+    height: 1.5em;
     width: 85%;
 }
 

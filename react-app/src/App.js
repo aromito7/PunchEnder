@@ -22,6 +22,7 @@ import Update from './components/updates/update';
 import UpdateProject from './components/project/UpdateProject';
 import SearchResults from './components/SearchResults';
 import Discover from './components/project/DiscoverProjects';
+import UserProjects from './components/project/UserProjects';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -93,6 +94,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId/backings' exact={true} >
           <UserBackings />
+        </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/projects' exact={true} >
+          <UserProjects />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
