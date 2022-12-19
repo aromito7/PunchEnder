@@ -74,10 +74,21 @@ def create_project():
 @project_routes.route('/<projectid>/update', methods=['PUT'])
 def update_project(projectid):
     data = json.loads(request.data.decode("utf-8"))
-    project = Project.query.get_id(projectid)
-    for key in data.keys():
-        #print(key, data[key])
-        project[key] = data[key]
+    project = Project.query.get(projectid)
+    print(data["end_date"])
+    print(data.keys())
+    project.name = data["name"]
+    project.goal_amount = data["goal_amount"]
+    project.current_amount = data["current_amount"]
+    # project.end_date = data["end_date"]
+    project.short_description = data["short_description"]
+    project.long_description = data["long_description"]
+    project.preview_image = data["preview_image"]
+    project.city = data["city"]
+    project.state = data["state"]
+    # for key in data.keys():
+    #     print(key, data[key])
+    #     project[key] = data[key]
 
     print("Updated PROJECT --------------> ", project)
     db.session.commit()
