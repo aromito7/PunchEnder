@@ -38,7 +38,7 @@ export const thunkGetAllProjects = () => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
+        //console.log(data)
         dispatch(actionGetAllProjects(data))
         return response
     }
