@@ -23,7 +23,7 @@ function UpdateProject() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch("/api/projects/${id}", {
+        const res = await fetch(`/api/projects/${id}/update`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -41,8 +41,7 @@ function UpdateProject() {
             }),
         });
         const data = await res.json();
-        dispatch(actionAddProject(data))
-        window.print("DATA ---------------> ", data)
+        // dispatch(actionAddProject(data))
 
         history.push(`/projects/${data.id}`)
 
@@ -50,18 +49,18 @@ function UpdateProject() {
 
     useEffect(() => {
         (async () => {
-        const res = await fetch(`/api/projects/${id}`);
-        const data = await res.json();
-        //console.log("THE PROJECT DATA ----------> ", data)
-        setProject(data);
-        setName(data.name);
-        setShortDescription(data.short_description);
-        setCity(data.city);
-        setState(data.state);
-        setPreviewImage(data.preview_image);
-        setGoalAmount(data.goal_amount);
-        setCurrentAmount(data.current_amount);
-        setLongDescription(data.long_description);
+            const res = await fetch(`/api/projects/${id}`);
+            const data = await res.json();
+            //console.log("THE PROJECT DATA ----------> ", data)
+            setProject(data);
+            setName(data.name);
+            setShortDescription(data.short_description);
+            setCity(data.city);
+            setState(data.state);
+            setPreviewImage(data.preview_image);
+            setGoalAmount(data.goal_amount);
+            setCurrentAmount(data.current_amount);
+            setLongDescription(data.long_description);
         })();
     }, [id]);
 
