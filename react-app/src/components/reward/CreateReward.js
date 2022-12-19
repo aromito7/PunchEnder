@@ -145,9 +145,9 @@ const CreateReward = () => {
                 </label>
                 {hasSubmitted && errors.length > 0 &&
                     <ul>
-                        {errors.map(error => {
+                        {errors.map((error, i) => {
                             return(
-                                <li>{error}</li>
+                                <li key={i} className="error-message">{error}</li>
                             )
                         })}
                     </ul>
