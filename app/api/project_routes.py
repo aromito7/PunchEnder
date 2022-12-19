@@ -31,6 +31,7 @@ def getProject(id):
 @project_routes.route('/<id>', methods=["DELETE"])
 def deleteProject(id):
     project = Project.query.get(id)
+    print(project)
     if project is not None:
         db.session.delete(project)
         db.session.commit()

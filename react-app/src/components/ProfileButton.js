@@ -37,6 +37,12 @@ const ProfileButton = () => {
                         </div>
                         <hr width="100%" />
                         <div>
+                            <Link to="/users/1/projects">
+                                <span className="logged-in test-nav">My Projects</span>
+                            </Link>
+                        </div>
+                        <hr width="100%" />
+                        <div>
                             <Link to="/users/1/backings">
                                 <span className="logged-in test-nav">My Backings</span>
                             </Link>

@@ -1,0 +1,92 @@
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.edit-rewards-container {
+    display: flex;
+    margin-top: 15vh;
+    margin-left: 20vw;
+}
+
+.reward {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding-right: 25px;
+}
+
+.project-img-div {
+    object-fit: cover;
+}
+
+ul {
+    list-style: none;
+}
+
+#project-img {
+    max-width: 400px;
+    /* border-radius: 5%; */
+}
+
+
+#rewards-header {
+    margin-top: 100px;
+    margin-left: 38vw;
+}
+
+#select-reward {
+    background-color: #fff;
+    width: 55px;
+    margin-left: 45%;
+    border: none;
+}
+
+#select-reward:hover {
+    background-color: greenyellow;
+}
+
+#project-name {
+    font-size: large;
+    font-weight: bolder;
+}
+
+#price {
+    color: green;
+}
+
+#reward {
+    font-weight: bold;
+}
+
+#project {
+    margin: 10px;
+    border: 1px solid grey;
+    padding-left: 10px;
+    object-fit: contain;
+}
+
+#edit {
+    background-color: #fff;
+    border: none;
+}
+
+#delete {
+    background-color: #fff;
+    border: none;
+
+}
+
+#edit:hover {
+    background-color: lightgreen;
+    border: none;
+}
+
+#delete:hover {
+    background-color: red;
+    border: none;
+    cursor: pointer;
+}
