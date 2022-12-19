@@ -6,10 +6,15 @@
 }
 .categoryTopInfo {
   margin-top: 10%;
+  align-content: center;
+  text-align: center;
 }
 
 #categoryTopTitle {
   margin-bottom: 0.5rem;
+  font-size: 48px;
+  color: rgb(0, 81, 0);
+  text-decoration: underline;
 }
 
 #categoryTopDesc {

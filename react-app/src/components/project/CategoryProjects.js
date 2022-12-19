@@ -8,6 +8,17 @@ import { NavLink, useParams, useHistory } from 'react-router-dom'
 
 function CategoryProjects() {
     const {category} = useParams()
+    const descriptions = {
+    1: "Discover the artists and organizations using Kickstarter to realize ambitious projects in visual art and performance.",
+    2: "Explore fantastical worlds and original characters from Kickstarter’s community of comics creators and illustrators.",
+    3: "From fine design to innovative tech, discover projects from creators working to build a more beautiful future.",
+    4: "Join forces with the intrepid filmmakers and festival creators changing the way stories get told on screen.",
+    5: "See how artisans and entrepreneurs are using Kickstarter to break new ground in food, fashion, and crafts.",
+    6: "From tabletop adventures to beloved revivals, discover the projects forging the future of gameplay.",
+    7: "Discover new albums, performances, and independent venues from creators using Kickstarter to shape the future of sound.",
+    8: "Explore how writers and publishers are using Kickstarter to bring new literature, periodicals, podcasts, and more to life."
+    }
+
     const history = useHistory()
     const [categories, setCategories] = useState({})
     const [projects, setProjects] = useState([])
@@ -26,7 +37,6 @@ function CategoryProjects() {
 
     useEffect(() => {
         (async () => {
-            console.log("Hello, dispatch")
             const res = await fetch(`/api/projects/categories`);
             const data = await res.json();
             //console.log("THE PROJECT DATA ----------> ", data)
@@ -40,6 +50,7 @@ function CategoryProjects() {
     console.log("projects")
     console.log(projects)
     if(projects.length == 0) return null
+    categories.description = descriptions[categories.id]
     const featuredProject = projects.length > 0 ? projects[0] : fakeProject
     const project1 = projects.length > 1 ? projects[1] : featuredProject
     const project2 = projects.length > 2 ? projects[2] : featuredProject
@@ -51,7 +62,7 @@ function CategoryProjects() {
         <div className='categoryPage'>
             <div className='categoryTopInfo'>
                 <h1 id='categoryTopTitle'>{categories.name ? categories.name : "Comics & Illustration"}</h1>
-                {false && <h2 id='categoryTopDesc'>{projects.category?.description ? projects.category.description : "Explore fantasical worlds and original characters from Punchender's community of comics and illustrators."}</h2>}
+                {true && <h2 id='categoryTopDesc'>{categories?.description ? categories.description : "Explore fantasical worlds and original characters from Punchender's community of comics and illustrators."}</h2>}
             </div>
 
             <div id='categoryMiddleInfo'>
