@@ -39,7 +39,7 @@ function CreateProject() {
         if(Number(goal_amount) < 1) {setGoalError("Goal must be a positive number"); validationErrors.push(goalError)} //validationErrors.push("Goal must be a positive number")
         else setGoalError('')
 
-        if(Number(current_amount) < 1) {setCurrentError("Current amount must be a positive number"); validationErrors.push(currentError)}//validationErrors.push("Current amount must be a positive number")
+        if(Number(current_amount) < 0) {setCurrentError("Current amount cannot be negative"); validationErrors.push(currentError)}//validationErrors.push("Current amount must be a positive number")
         else if(Number(current_amount) >= Number(goal_amount)) {setCurrentError("Current amount must be less than the goal"); validationErrors.push(currentError)} //validationErrors.push("Current amount must be less than the goal")
         else setCurrentError('')
 

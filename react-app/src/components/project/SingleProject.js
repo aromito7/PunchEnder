@@ -47,7 +47,7 @@ const SingleProject = () => {
                 </div>
                 <div className='pledgeSummary'>
                     <div className='pledgeAmount'>
-                        <span id='pledgeGreen'>${project.current_amount ? project.current_amount : '10000'}</span>
+                        <span id='pledgeGreen'>${project.current_amount ? project.current_amount : '0'}</span>
                         <span id='pledgeGrey'>{' '} pledged of ${project.goal_amount ? project.goal_amount : '50000'} goal</span>
                     </div>
                     <div>
