@@ -23,6 +23,7 @@ import SearchResults from './components/SearchResults';
 import Discover from './components/project/DiscoverProjects';
 import UserProjects from './components/project/UserProjects';
 import SelectRewards from './components/backings/SelectReward';
+import EditBacking from './components/backings/EditBacking';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -82,7 +83,9 @@ function App() {
         <Route path='/discover'>
           <Discover />
         </Route>
-
+        <ProtectedRoute path='/backings/projects/:projectId/edit' exact={true}>
+          <EditBacking />
+        </ProtectedRoute>
         <ProtectedRoute path='/backings/projects/:projectId/' exact={true}>
           <SelectRewards />
         </ProtectedRoute>

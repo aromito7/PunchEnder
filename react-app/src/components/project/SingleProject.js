@@ -29,6 +29,7 @@ const SingleProject = () => {
     }
 
     if (Object.keys(project).length < 1) return null
+    if (!project) return null
     return (
         <div className='singleProject'>
             <div className='singleProjectTopInfo'>
@@ -56,7 +57,7 @@ const SingleProject = () => {
                     <div>
                         {currentUser && currentUser.id == project.owner_id ?
                             <button id='singleProjectPledge' className="cursor-pointer" onClick={toCreateReward}>Create a new reward</button> :
-                            <Link to={`/backings/projects/${id}`} id='singleProjectPledge'>Back this project</Link>}
+                            <Link to={`/backings/projects/${id}`} ><button id='singleProjectPledge'>Back this project</button></Link>}
                     </div>
                     <div id='reminderButtonWrapper'>
                         <button id='singleProjectReminder'><img id='buttonReminder' src={reminder} />Remind me</button>
@@ -98,7 +99,9 @@ const SingleProject = () => {
                     <p>Community</p>
                 </div>
                 <div className='lowerNavBarButtons'>
-                    <button id='lowerPledgeButton'>Back this project</button>
+                    {currentUser && currentUser.id !== project.owner_id &&
+                        <Link to={`/backings/projects/${id}`}><button id='lowerPledgeButton'>Back this project</button></Link>
+                    }
                     <button id='lowerRemindButton'><img id='lowerButtonReminder' src={reminder} />Remind me</button>
                 </div>
             </div>

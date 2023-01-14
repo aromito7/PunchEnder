@@ -1,19 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { thunkAddBacking, thunkGetAllBackings } from "../../store/userBackings";
+import { thunkUpdateBacking } from "../../store/userBackings";
+import { thunkGetAllProjects } from "../../store/allProjects";
 
 
-const SingleReward = ({ reward }) => {
+const EditSingleReward = ({ reward, currentRewardId }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const { projectId } = useParams()
 
-    const addBacking = async (rewardId) => {
-        console.log(rewardId)
-        dispatch(thunkAddBacking(projectId, rewardId))
-        dispatch(thunkGetAllBackings(user.id))
+    const handleClick = (newRewardId) => {
+        dispatch(thunkUpdateBacking(projectId, newRewardId, currentRewardId))
+        dispatch(thunkGetAllProjects())
         history.push(`/users/${user.id}/backings`)
     }
 
@@ -39,9 +39,9 @@ const SingleReward = ({ reward }) => {
                     <p id="shipping-date">{reward.shipping_date.split(' ').slice(2, 4).join(' ')}</p>
                 </div>
             </div>
-            <button onClick={() => addBacking(reward.id)} className='choose-reward cursor-pointer'>Pledge ${reward.price_threshold}</button>
+            <button onClick={() => handleClick(reward.id)} className='choose-reward cursor-pointer'>Pledge ${reward.price_threshold}</button>
         </div>
     )
 }
 
-export default SingleReward
+export default EditSingleReward

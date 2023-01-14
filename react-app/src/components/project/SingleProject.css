@@ -82,6 +82,7 @@
   height: 5rem;
   font-size: 1.725rem;
   border: 0;
+  cursor: pointer;
 }
 
 #singleProjectReminder {
@@ -102,8 +103,7 @@
   font-size: 1.125rem;
 }
 
-.pledgeComponent{
-}
+.pledgeComponent {}
 
 #singleProjectAllNone {
   text-decoration: underline;
@@ -156,9 +156,10 @@
   font-size: 1.5rem;
   margin-right: 1rem;
   border: none;
+  cursor: pointer;
 }
 
-#lowerRemindButton{
+#lowerRemindButton {
   border: none;
   display: flex;
   align-items: center;
@@ -178,6 +179,7 @@
   width: 80%;
   margin-top: 2rem;
 }
+
 .singleProjectBottomInfo {
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -192,6 +194,6 @@
   overflow-y: scroll;
 }
 
-.ownerBox{
+.ownerBox {
   border: thin solid black;
 }
