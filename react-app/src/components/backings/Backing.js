@@ -14,8 +14,10 @@ const Backing = ({ backing, deleteBacking }) => {
                 <div><Link to={`/projects/${backing.project_id}`}><div id="project-name" key={backing.projectName}>{backing.project_name}</div></Link></div>
                 <div id="price" key={backing.price}>${backing.backing_value}</div>
                 <div id="reward" key={backing.reward}>Reward: {backing.reward}</div>
-                <span className='hover-green'><Link to={{ pathname: `/backings/projects/${backing.project_id}/edit`, state: { currentRewardId: backing.reward_id } }} id='edit'>Edit Pledge</Link></span>
-                <span className='hover-green'><button onClick={() => deleteBacking(backing.project_id, backing.reward_id)} id='delete'>Delete Pledge</button></span>
+                <div>
+                    <span ><Link to={{ pathname: `/backings/projects/${backing.project_id}/edit`, state: { currentRewardId: backing.reward_id } }} id='edit'><i className="fa-solid fa-pen-to-square"></i></Link></span>
+                    <span ><button onClick={() => deleteBacking(backing.project_id, backing.reward_id)} id='delete'><i className="fa-solid fa-trash"></i></button></span>
+                </div>
             </div>
 
         </>

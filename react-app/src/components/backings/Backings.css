@@ -112,18 +112,19 @@ ul {
 }
 
 #delete {
-    background-color: #fff;
+    background: none;
     border: none;
 
 }
 
+
 #edit:hover {
-    background-color: lightgreen;
+    background: none;
     border: none;
 }
 
 #delete:hover {
-    background-color: red;
+    background: none;
     border: none;
     cursor: pointer;
 }
@@ -167,4 +168,9 @@ ul {
 
 #shipping-date {
     font-size: large;
+}
+
+.fa-trash,
+.fa-pen-to-square {
+    font-size: x-large;
 }

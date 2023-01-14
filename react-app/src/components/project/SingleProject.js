@@ -100,7 +100,7 @@ const SingleProject = () => {
                 </div>
                 <div className='lowerNavBarButtons'>
                     {currentUser && currentUser.id !== project.owner_id &&
-                        <Link to={`/backings/projects/${id}`}><button id='lowerPledgeButton'>Back this project</button></Link>
+                        <button id='lowerPledgeButton'>Back this project</button>
                     }
                     <button id='lowerRemindButton'><img id='lowerButtonReminder' src={reminder} />Remind me</button>
                 </div>
