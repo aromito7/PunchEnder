@@ -17,7 +17,7 @@ def seed_rewards():
         description="Great for going downhill.",
         ships_to="Anywhere in the world",
         includes="1 scooter",
-        user=[users[0]]
+        user=[users[2]]
     )
 
     bike = Reward(
@@ -41,7 +41,7 @@ def seed_rewards():
         description="Perfect for Europeans and/or hipsters.",
         ships_to="Anywhere in the world",
         includes="1 vespa, 1 helmet",
-        user=[users[2]]
+        user=[users[3]]
     )
 
     car_boat = Reward(
@@ -77,7 +77,7 @@ def seed_rewards():
         description="Choose your fav color after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).",
         ships_to="Anywhere in the world",
         includes="Modular Bottle, 2x Extra Gasket",
-        user=[users[0]]
+        user=[users[1]]
     )
 
     tmb2 = Reward(
@@ -90,7 +90,7 @@ def seed_rewards():
 Choose your fav color after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
         ships_to="Anywhere in the world",
         includes="Modular Bottle, 25oz/ 750ml Capacity Glass Cup, Extension Part, Metal Straw, Tea/ Fruit Infuser, 2x Extra Gasket, Cleaning Brush",
-        user=[users[1]]
+        user=[users[2]]
     )
 
     tmb3 = Reward(
@@ -106,7 +106,7 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
 """,
         ships_to="Anywhere in the world",
         includes="2x Modular Bottle, 4x Extra Gasket",
-        user=[users[2]]
+        user=[users[3]]
     )
 
     tmb4 = Reward(
@@ -119,7 +119,7 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
 Choose your fav color after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
         ships_to="Anywhere in the world",
         includes="2x Modular Bottle, 2x 25ox/ 750ml Capacity Glass Cup, 2x Extension Part, 2x Metal Straw, 2x Tea/ Fruit Infuser, 4x Extra Gasket, 2x Cleaning Brush",
-        user=[users[3]]
+        user=[users[4]]
     )
 
     tmb5 = Reward(
@@ -133,7 +133,7 @@ Choose your fav color after the campaign ends. Check FAQ section for estimated s
 Choose your fav colors after the campaign ends. Check FAQ section for estimated shipping costs (charged post campaign).""",
         ships_to="Anywhere in the world",
         includes="3x Modular Bottle, 6x Extra Gasket",
-        user=[users[4]]
+        user=[users[5]]
     )
 
     hoverboard = Reward(
