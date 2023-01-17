@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory, Redirect } from 'react-router-dom';
+import { useParams, useHistory, Redirect, Link } from 'react-router-dom';
 import { thunkAddBacking, thunkGetAllBackings } from '../../store/userBackings';
 import './RewardComponent.css';
 
@@ -66,7 +66,7 @@ const RewardComponent = ({ reward }) => {
                     </p>
                 )}
             </div>
-            <button onClick={() => addBacking(reward.id)} className='choose-reward cursor-pointer'>Select this reward!</button>
+            <Link to={`/backings/projects/${id}`} ><button className='choose-reward cursor-pointer'>Select this reward!</button></Link>
         </div>
     );
 }

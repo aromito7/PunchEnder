@@ -76,8 +76,9 @@ def update_backing(project_id):
     body = request.get_json()
 
     user = current_user
-
+    print(body["prevRewardId"])
     prev_reward = Reward.query.get(body["prevRewardId"])
+    print(user.reward)
     user.reward.remove(prev_reward)
     # prev_reward.user.remove("prevRewardId")
 

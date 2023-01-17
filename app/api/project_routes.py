@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ..models import db, Project, User, Reward, backing_table, Category, category_table
 from ..forms import ProjectForm, SearchForm
+from sqlalchemy import update
 from datetime import datetime, timedelta
 from flask_login import current_user
 import json
@@ -69,29 +70,31 @@ def create_project():
 
 
 # UPDATE a project
-
+# There has to be a better way to do this in the future.
 
 @project_routes.route('/<projectid>/update', methods=['PUT'])
 def update_project(projectid):
     data = json.loads(request.data.decode("utf-8"))
     project = Project.query.get(projectid)
-    print(data["end_date"])
-    print(data.keys())
+    print(data)
+    #for key in data.keys():
+        #print(key, data[key])
+        #project['key'] = data[key]
+        #setattr(project, key, data[key])
+        #project['name'] = 'Hello, api!'
+
     project.name = data["name"]
     project.goal_amount = data["goal_amount"]
     project.current_amount = data["current_amount"]
-    # project.end_date = data["end_date"]
     project.short_description = data["short_description"]
     project.long_description = data["long_description"]
     project.preview_image = data["preview_image"]
     project.city = data["city"]
     project.state = data["state"]
-    # for key in data.keys():
-    #     print(key, data[key])
-    #     project[key] = data[key]
 
     print("Updated PROJECT --------------> ", project)
     db.session.commit()
+
     return project.to_dict()
 
 

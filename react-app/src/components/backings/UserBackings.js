@@ -1,49 +1,54 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useHistory, Link, Redirect, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { thunkDeleteBacking, thunkGetAllBackings } from '../../store/userBackings'
+import { Link } from 'react-router-dom'
+import { actionClearBackings, thunkDeleteBacking, thunkGetAllBackings } from '../../store/userBackings'
+import Backing from './Backing'
 import "./Backings.css"
 
 
 
 function UserBackings() {
-    const [toggleDelete, setToggleDelete] = useState(false)
     const user = useSelector(state => state.session.user)
     const backings = useSelector(state => state.userBackings)
+    const [toggleDelete, setToggleDelete] = useState(false)
     const dispatch = useDispatch()
 
-    console.log(user)
-    console.log(backings)
     useEffect(() => {
         dispatch(thunkGetAllBackings(user.id))
-    }, [user, toggleDelete])
+    }, [dispatch])
 
+    // useEffect(() => {
+    //     dispatch(thunkGetAllBackings(user.id))
+    // }, [])
+
+    // const deleteBacking = (projectId, rewardId) => {
+    //     console.log("projectId", projectId)
+    //     dispatch(thunkDeleteBacking(projectId, rewardId))
+    //     // dispatch(actionClearBackings())
+    //     // dispatch(thunkGetAllBackings(user.id))
+    //     setToggleDelete(!toggleDelete)
+    // }
     if (!user) return null
     if (!backings) return null
 
-    const deleteBacking = (projectId, rewardId) => {
-        dispatch(thunkDeleteBacking(projectId, rewardId))
-        setToggleDelete(!toggleDelete)
-    }
-
-
-
     return (
         <>
-            <h1 style={{ marginTop: "100px" }}>Projects You Back</h1>
+            {Object.keys(backings).length
 
-            <div className='backings-container'>
-                {Object.values(backings).map(backing => (
-                    <div id='backing' key={backing.project_id}>
-                        <div className='backing-img-div'><img id='backing-img' src={backing.image}></img></div>
-                        <div><Link to={`/projects/${backing.project_id}`}><div id="project-name" key={backing.projectName}>{backing.project_name}</div></Link></div>
-                        <div id="price" key={backing.price}>${backing.backing_value}</div>
-                        <div id="reward" key={backing.reward}>Reward: {backing.reward}</div>
-                        <span className='hover-green'><Link to={`/backings/projects/${backing.project_id}/edit`} id='edit'>Edit Pledge</Link></span>
-                        <span className='hover-green'><button onClick={() => deleteBacking(backing.project_id, backing.reward_id)} id='delete'>Delete Pledge</button></span>
+                ? <>
+                    <h1 style={{ marginTop: "100px" }}>Projects You Back</h1>
+
+                    <div className='backings-container'>
+                        {Object.values(backings).map((backing, i) => (
+                            <Backing key={i} backing={backing} toggleDelete={toggleDelete} setToggleDelete={setToggleDelete} />
+                        ))}
                     </div>
-                ))}
-            </div>
+                </>
+                : <>
+                    <h1 style={{ marginTop: "100px" }}>Uh oh! It looks like you haven't backed any projects!</h1>
+                    <Link to={`/discover`}><button id='discover-button'>Browse Projects</button></Link>
+                </>
+            }
         </>
     )
 }

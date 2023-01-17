@@ -2,6 +2,7 @@ const GET_BACKINGS = 'backings/GET_BACKINGS'
 const ADD_BACKING = 'backings/ADD_BACKING'
 const UPDATE_BACKING = 'backings/UPDATE_BACKING'
 const DELETE_BACKING = 'backings/DELETE_BACKING'
+const CLEAR_STATE = 'backings/CLEAR_STATE'
 
 const actionGetAllBackings = (backings) => {
     return {
@@ -31,12 +32,19 @@ const actionDeleteBacking = (id) => {
     }
 }
 
+export const actionClearBackings = () => {
+    return {
+        type: CLEAR_STATE
+    }
+}
+
 export const thunkGetAllBackings = (userId) => async (dispatch) => {
     const response = await fetch(`/api/backings/user/${userId}`, {
         method: 'GET'
     })
     if (response.ok) {
         const data = await response.json()
+        console.log(data)
         dispatch(actionGetAllBackings(data))
         return response
     }
@@ -117,12 +125,16 @@ export default function userBackingsReducer(state = {}, action) {
             return newState
         case UPDATE_BACKING:
             newState = { ...state }
-            // delete newState[action.payload.project_id]
             newState[action.payload.project_id] = action.payload
             return newState
         case DELETE_BACKING:
+            console.log(state)
             newState = { ...state }
             delete newState[action.payload]
+            console.log(newState)
+            return newState
+        case CLEAR_STATE:
+            newState = {}
             return newState
         default:
             return state

@@ -1,15 +1,15 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
-import reward from './reward';
 import userBackingsReducer from './userBackings';
 import projectsReducer from './allProjects';
 import categoriesReducer from './categories';
+import rewardsReducer from './reward';
 
 
 const rootReducer = combineReducers({
   session,
-  reward,
+  rewards: rewardsReducer,
   userBackings: userBackingsReducer,
   projects: projectsReducer,
   categories: categoriesReducer
