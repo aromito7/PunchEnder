@@ -3,20 +3,15 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllProjects } from '../../store/allProjects';
 import { actionClearRewards, thunkGetRewards } from '../../store/reward';
-import { thunkGetAllBackings, thunkUpdateBacking } from '../../store/userBackings';
 import EditSingleReward from './EditSingleReward';
-import Reward from './Reward';
 import "./Backings.css"
 
 const EditBacking = ({ backing, mountEditBacking, setMountEditBacking }) => {
     const dispatch = useDispatch()
     const location = useLocation()
-    // const project = useSelector(state => state.projects[projectId])
-    // const rewards = useSelector(state => state.rewards)
 
     const { projectId } = useParams()
     const { currentRewardId } = location.state
-    console.log(currentRewardId)
     const rewards = useSelector(state => state.rewards)
     const project = useSelector(state => state.projects[projectId])
     const [availableRewards, setAvailableRewards] = useState({})
@@ -34,17 +29,11 @@ const EditBacking = ({ backing, mountEditBacking, setMountEditBacking }) => {
             if (reward.id !== currentRewardId) {
                 availableRewardsObj[reward.id] = reward
             }
-            // return setAvailableRewards(availableRewardsObj)
         })
 
         setAvailableRewards(availableRewardsObj)
     }, [rewards])
 
-    // const handleClick = (newRewardId, prevRewardId) => {
-    //     dispatch(thunkUpdateBacking(projectId, newRewardId, prevRewardId))
-    //     dispatch(thunkGetAllProjects())
-    //     setMountEditBacking(!mountEditBacking)
-    // }
 
     if (!project) return null
     return (
@@ -57,10 +46,20 @@ const EditBacking = ({ backing, mountEditBacking, setMountEditBacking }) => {
             </div>
             <div className="rewards-container">
                 <div className="select-rewards">
-                    <h2>Select a different reward</h2>
-                    {Object.values(availableRewards).map(reward => (
-                        <EditSingleReward reward={reward} currentRewardId={currentRewardId} />
-                    ))
+                    {Object.keys(availableRewards).length
+                        ? <>
+                            <h2>You've already backed this project.</h2>
+                            <h2>Select a different reward:</h2>
+                            {Object.values(availableRewards).map((reward, i) => (
+                                <EditSingleReward key={i} reward={reward} currentRewardId={currentRewardId} />
+                            ))
+                            }
+                        </>
+                        : <>
+                            <h2>You've already backed this project.</h2>
+                            <h2>Unfortunately, this project has no additional rewards to choose from at this time.</h2>
+                            <Link to={`/projects/${projectId}`}><button id='singleProjectPledge'>Back to Project</button></Link>
+                        </>
                     }
                 </div>
                 <div className="rewards-disclaimer">

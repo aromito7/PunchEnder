@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, useHistory, Link, Redirect, NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { thunkDeleteBacking, thunkGetAllBackings } from '../../store/userBackings'
-import EditBacking from './EditBacking'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import "./Backings.css"
 
 const Backing = ({ backing, deleteBacking }) => {

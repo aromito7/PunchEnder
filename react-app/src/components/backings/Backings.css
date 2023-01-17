@@ -174,3 +174,13 @@ ul {
 .fa-pen-to-square {
     font-size: x-large;
 }
+
+#discover-button {
+    background-color: #028858;
+    color: white;
+    width: 200px;
+    height: 5rem;
+    font-size: 1.725rem;
+    border: 0;
+    cursor: pointer;
+}

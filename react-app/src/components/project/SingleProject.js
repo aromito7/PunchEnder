@@ -122,13 +122,17 @@ const SingleProject = () => {
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
                     </div>}
-                    <h2>Support</h2>
-                    <div className='pledgeComponent'>
-                        {project.rewards.map((reward, i) => {
-                            return <RewardComponent reward={reward} key={i} />
-                        })}
-                        {false && <RewardComponent reward={project.rewards[0]} />}
-                    </div>
+                    {currentUser && currentUser.id !== project.owner_id &&
+                        <>
+                            <h2>Support</h2>
+                            <div className='pledgeComponent'>
+                                {project.rewards.map((reward, i) => {
+                                    return <RewardComponent reward={reward} key={i} />
+                                })}
+                                {false && <RewardComponent reward={project.rewards[0]} />}
+                            </div>
+                        </>
+                    }
                 </div>
             </div>
 

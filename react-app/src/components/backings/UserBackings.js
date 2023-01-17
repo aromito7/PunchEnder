@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, useHistory, Link, Redirect, NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { thunkDeleteBacking, thunkGetAllBackings } from '../../store/userBackings'
 import Backing from './Backing'
 import "./Backings.css"
@@ -8,34 +8,40 @@ import "./Backings.css"
 
 
 function UserBackings() {
-    const [toggleDelete, setToggleDelete] = useState(false)
     const user = useSelector(state => state.session.user)
     const backings = useSelector(state => state.userBackings)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(thunkGetAllBackings(user.id))
-    }, [user, toggleDelete])
+    }, [dispatch])
 
     if (!user) return null
     if (!backings) return null
 
     const deleteBacking = (projectId, rewardId) => {
         dispatch(thunkDeleteBacking(projectId, rewardId))
-        setToggleDelete(!toggleDelete)
+        dispatch(thunkGetAllBackings(user.id))
     }
-
-
 
     return (
         <>
-            <h1 style={{ marginTop: "100px" }}>Projects You Back</h1>
+            {Object.keys(backings).length
 
-            <div className='backings-container'>
-                {Object.values(backings).map(backing => (
-                    <Backing backing={backing} deleteBacking={deleteBacking} />
-                ))}
-            </div>
+                ? <>
+                    <h1 style={{ marginTop: "100px" }}>Projects You Back</h1>
+
+                    <div className='backings-container'>
+                        {Object.values(backings).map((backing, i) => (
+                            <Backing key={i} backing={backing} deleteBacking={deleteBacking} />
+                        ))}
+                    </div>
+                </>
+                : <>
+                    <h1 style={{ marginTop: "100px" }}>Uh oh! It looks like you haven't backed any projects!</h1>
+                    <Link to={`/discover`}><button id='discover-button'>Browse Projects</button></Link>
+                </>
+            }
         </>
     )
 }
