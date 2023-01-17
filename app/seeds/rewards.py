@@ -145,7 +145,7 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
         description="Just like the one in Back to the Future 2!",
         ships_to="Anywhere in the world",
         includes="hoverboard",
-        user=users
+        user=[users[1]]
     )
 
     cookbook = Reward(
@@ -157,7 +157,7 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
         description="A collection of over 100 tasty and easy-to-follow recipes.",
         ships_to="United States",
         includes="Hardcover cookbook",
-        user=[users[0]]
+        user=[users[4]]
     )
 
     concert_tickets = Reward(
@@ -217,7 +217,7 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
         description="A weekend of yoga and relaxation at a beautiful retreat center.",
         ships_to="United States",
         includes="2 nights accommodation, yoga classes, meals",
-        user=[users[1]]
+        user=[users[2]]
     )
 
     movie_poster = Reward(
@@ -229,7 +229,7 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
         description="A signed poster from the film, autographed by the cast and crew.",
         ships_to="United States",
         includes="Signed movie poster",
-        user=[users[2]]
+        user=[users[3]]
     )
 
     painting = Reward(
@@ -241,9 +241,8 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
         description="An original painting by the artist, created specifically for this project.",
         ships_to="Anywhere in the world",
         includes="Original painting",
-        user=[users[0]]
+        user=[users[4]]
     )
-
 
     book_club = Reward(
         project_id=9,
@@ -254,9 +253,8 @@ Choose your fav colors after the campaign ends. Check FAQ section for estimated 
         description="Access to an exclusive online book club with monthly discussions and guest authors.",
         ships_to="Anywhere in the world",
         includes="Book club membership",
-        user=[users[1], users[2]]
+        user=[users[5]]
     )
-
 
     db.session.add(scooter)
     db.session.add(bike)

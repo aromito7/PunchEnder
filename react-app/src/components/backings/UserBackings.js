@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { thunkDeleteBacking, thunkGetAllBackings } from '../../store/userBackings'
+import { actionClearBackings, thunkDeleteBacking, thunkGetAllBackings } from '../../store/userBackings'
 import Backing from './Backing'
 import "./Backings.css"
 
@@ -10,19 +10,26 @@ import "./Backings.css"
 function UserBackings() {
     const user = useSelector(state => state.session.user)
     const backings = useSelector(state => state.userBackings)
+    const [toggleDelete, setToggleDelete] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(thunkGetAllBackings(user.id))
     }, [dispatch])
 
+    // useEffect(() => {
+    //     dispatch(thunkGetAllBackings(user.id))
+    // }, [])
+
+    // const deleteBacking = (projectId, rewardId) => {
+    //     console.log("projectId", projectId)
+    //     dispatch(thunkDeleteBacking(projectId, rewardId))
+    //     // dispatch(actionClearBackings())
+    //     // dispatch(thunkGetAllBackings(user.id))
+    //     setToggleDelete(!toggleDelete)
+    // }
     if (!user) return null
     if (!backings) return null
-
-    const deleteBacking = (projectId, rewardId) => {
-        dispatch(thunkDeleteBacking(projectId, rewardId))
-        dispatch(thunkGetAllBackings(user.id))
-    }
 
     return (
         <>
@@ -33,7 +40,7 @@ function UserBackings() {
 
                     <div className='backings-container'>
                         {Object.values(backings).map((backing, i) => (
-                            <Backing key={i} backing={backing} deleteBacking={deleteBacking} />
+                            <Backing key={i} backing={backing} toggleDelete={toggleDelete} setToggleDelete={setToggleDelete} />
                         ))}
                     </div>
                 </>

@@ -1,8 +1,20 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { thunkDeleteBacking } from '../../store/userBackings'
 import "./Backings.css"
 
-const Backing = ({ backing, deleteBacking }) => {
+const Backing = ({ backing, toggleDelete, setToggleDelete }) => {
+
+    const dispatch = useDispatch()
+
+    const deleteBacking = (projectId, rewardId) => {
+        console.log("projectId", projectId)
+        dispatch(thunkDeleteBacking(projectId, rewardId))
+        // dispatch(actionClearBackings())
+        // dispatch(thunkGetAllBackings(user.id))
+        setToggleDelete(!toggleDelete)
+    }
 
     return (
         <>
