@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { actionClearBackings, thunkDeleteBacking, thunkGetAllBackings } from '../../store/userBackings'
+import { actionClearBackings, thunkGetAllBackings } from '../../store/userBackings'
 import Backing from './Backing'
 import "./Backings.css"
 
@@ -14,20 +14,11 @@ function UserBackings() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(actionClearBackings())
         dispatch(thunkGetAllBackings(user.id))
-    }, [dispatch])
+    }, [dispatch, user])
 
-    // useEffect(() => {
-    //     dispatch(thunkGetAllBackings(user.id))
-    // }, [])
 
-    // const deleteBacking = (projectId, rewardId) => {
-    //     console.log("projectId", projectId)
-    //     dispatch(thunkDeleteBacking(projectId, rewardId))
-    //     // dispatch(actionClearBackings())
-    //     // dispatch(thunkGetAllBackings(user.id))
-    //     setToggleDelete(!toggleDelete)
-    // }
     if (!user) return null
     if (!backings) return null
 

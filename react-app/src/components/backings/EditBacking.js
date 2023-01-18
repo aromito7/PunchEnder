@@ -6,7 +6,7 @@ import { actionClearRewards, thunkGetRewards } from '../../store/reward';
 import EditSingleReward from './EditSingleReward';
 import "./Backings.css"
 
-const EditBacking = ({ backing, mountEditBacking, setMountEditBacking }) => {
+const EditBacking = () => {
     const dispatch = useDispatch()
     const location = useLocation()
 
@@ -20,7 +20,7 @@ const EditBacking = ({ backing, mountEditBacking, setMountEditBacking }) => {
         dispatch(actionClearRewards())
         dispatch(thunkGetRewards(projectId))
         dispatch(thunkGetAllProjects())
-    }, [projectId])
+    }, [dispatch, projectId])
 
 
     useEffect(() => {
@@ -29,10 +29,11 @@ const EditBacking = ({ backing, mountEditBacking, setMountEditBacking }) => {
             if (reward.id !== currentRewardId) {
                 availableRewardsObj[reward.id] = reward
             }
+
+            return setAvailableRewards(availableRewardsObj)
         })
 
-        setAvailableRewards(availableRewardsObj)
-    }, [rewards])
+    }, [rewards, currentRewardId])
 
 
     if (!project) return null

@@ -27,7 +27,6 @@ function UpdateProject() {
 
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
-    const [hasSubmitted, setHasSubmitted] = useState(false)
     const history = useHistory();
     const { id } = useParams();
 

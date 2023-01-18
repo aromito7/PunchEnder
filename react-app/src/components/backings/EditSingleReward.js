@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { thunkUpdateBacking } from "../../store/userBackings";
+import { thunkGetAllBackings, thunkUpdateBacking } from "../../store/userBackings";
 import { thunkGetAllProjects } from "../../store/allProjects";
 
 
@@ -14,6 +14,7 @@ const EditSingleReward = ({ reward, currentRewardId }) => {
     const handleClick = (newRewardId) => {
         dispatch(thunkUpdateBacking(projectId, newRewardId, currentRewardId))
         dispatch(thunkGetAllProjects())
+        dispatch(thunkGetAllBackings(user.id))
         history.push(`/users/${user.id}/backings`)
     }
 

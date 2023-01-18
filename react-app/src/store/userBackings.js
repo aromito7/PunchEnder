@@ -105,6 +105,7 @@ export const thunkDeleteBacking = (projectId, rewardId) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(actionDeleteBacking(projectId))
+        return data
     }
     else {
         return { "Error": "Could not delete backing" }

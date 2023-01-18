@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory, Redirect, Link } from 'react-router-dom';
-import { thunkAddBacking, thunkGetAllBackings } from '../../store/userBackings';
+import { useParams, Link } from 'react-router-dom';
+import { thunkGetAllProjects } from '../../store/allProjects';
 import './RewardComponent.css';
 
 const RewardComponent = ({ reward }) => {
     const { id } = useParams()
     const user = useSelector(state => state.session.user)
+    const project = useSelector(state => state.projects[id])
     const dispatch = useDispatch()
-    const history = useHistory()
 
-    const addBacking = async (rewardId) => {
-        console.log(rewardId)
-        dispatch(thunkAddBacking(id, rewardId))
-        dispatch(thunkGetAllBackings(user.id))
-        history.push(`/users/${user.id}/backings`)
-    }
-
+    useEffect(() => {
+        dispatch(thunkGetAllProjects())
+    }, [id, dispatch])
 
     if (!reward) return `Hello, reward`
     const remaining = reward.quantity - reward.users
     const includes = reward.includes.split(', ')
+    if (!project) return null
+    if (!user) return null
     return (
         <div className="reward-component">
             <p>Pledge ${reward.price_threshold}</p>
@@ -66,8 +64,10 @@ const RewardComponent = ({ reward }) => {
                     </p>
                 )}
             </div>
-            <Link to={`/backings/projects/${id}`} ><button className='choose-reward cursor-pointer'>Select this reward!</button></Link>
-        </div>
+            {project && project.owner_id !== user.id &&
+                <Link to={`/backings/projects/${id}`}><button className='choose-reward cursor-pointer'>Select this reward!</button></Link>
+            }
+        </div >
     );
 }
 

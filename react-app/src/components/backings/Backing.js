@@ -19,7 +19,7 @@ const Backing = ({ backing, toggleDelete, setToggleDelete }) => {
     return (
         <>
             <div id='backing' key={backing.project_id}>
-                <div className='backing-img-div'><img id='backing-img' src={backing.image}></img></div>
+                <div className='backing-img-div'><img id='backing-img' src={backing.image} alt='project'></img></div>
                 <div><Link to={`/projects/${backing.project_id}`}><div id="project-name" key={backing.projectName}>{backing.project_name}</div></Link></div>
                 <div id="price" key={backing.price}>${backing.backing_value}</div>
                 <div id="reward" key={backing.reward}>Reward: {backing.reward}</div>

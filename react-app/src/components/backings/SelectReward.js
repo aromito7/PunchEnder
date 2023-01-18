@@ -33,7 +33,7 @@ const SelectRewards = () => {
         dispatch(actionClearRewards())
         dispatch(thunkGetRewards(projectId))
         dispatch(thunkGetAllProjects())
-    }, [projectId])
+    }, [projectId, user.id, dispatch])
 
     if (!project) return null
     return (
