@@ -30,41 +30,6 @@ function UpdateProject() {
     const history = useHistory();
     const { id } = useParams();
 
-    useEffect(() => {
-        const validationErrors = []
-
-
-        if (name.length < 2) { setNameError("Name must be at least 2 characters"); validationErrors.push(nameError) }//validationErrors.push("Name must be at least 2 characters")
-        else if (name.length > 50) { setNameError("Name must be at most 50 characters"); validationErrors.push(nameError) }//validationErrors.push("Name must be 50 characters at most")
-        else setNameError('')
-
-        if (Number(goal_amount) < 1) { setGoalError("Goal must be a positive number"); validationErrors.push(goalError) } //validationErrors.push("Goal must be a positive number")
-        else setGoalError('')
-
-        if (Number(current_amount) < 0) { setCurrentError("Current amount cannot be negative"); validationErrors.push(currentError) }//validationErrors.push("Current amount must be a positive number")
-        else if (Number(current_amount) >= Number(goal_amount)) { setCurrentError("Current amount must be less than the goal"); validationErrors.push(currentError) } //validationErrors.push("Current amount must be less than the goal")
-        else setCurrentError('')
-
-        if (short_description.length < 50) { setShortDescriptionError("Short description must be at least 50 characters"); validationErrors.push(shortDescriptionError) }//validationErrors.push("Short description must be at least 50 characters")
-        else setShortDescriptionError('')
-
-        if (long_description.length < 100) { setLongDescriptionError("Long description must be at least 100 characters"); validationErrors.push(longDescriptionError) }//validationErrors.push("Long description must be at least 100 characters")
-        else setLongDescriptionError('')
-
-        if (!preview_image.match(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)) { setPreviewImageError("Preview image must be a valid URL"); validationErrors.push(previewImageError) }//validationErrors.push("Preview image must be a valid URL")
-        else setPreviewImageError('')
-
-        if (!city) { setCityError("Please enter a city"); validationErrors.push(cityError) }
-        else setCityError('')
-
-        if (!state.match(/^[a-zA-Z]{2}$/)) { setStateError("Please enter your state's two letter abbreviation"); validationErrors.push(stateError) }
-        else setStateError('')
-
-        setErrors(validationErrors)
-    }, [name, goal_amount, current_amount, short_description, long_description, preview_image, city, state])
-
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true)
