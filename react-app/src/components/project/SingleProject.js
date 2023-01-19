@@ -30,6 +30,7 @@ const SingleProject = () => {
 
     if (Object.keys(project).length < 1) return null
     if (!project) return null
+    console.log(project)
     return (
         <div className='singleProject'>
             <div className='singleProjectTopInfo'>

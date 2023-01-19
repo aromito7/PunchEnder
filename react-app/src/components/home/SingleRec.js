@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 
-const RecPart2 = ({projects}) => {
-    if(projects.length < 3) return null
-    const project = projects[2]
-    // const [project, setProject] = useState({});
+const SingleRec = ({project}) => {
 
-    // useEffect(() => {
-    //     (async () => {
-    //     const res = await fetch(`/api/projects/3`);
-    //     const data = await res.json();
-    //     setProject(data);
-    //     //console.log(project)
-    //     })();
-    // }, []);
-
+    if(!project) return null
     return (
         <div className="rec-wrapper">
             <div className="rec-child1">
@@ -29,7 +18,7 @@ const RecPart2 = ({projects}) => {
                     </NavLink>
                 </div>
                 <div className="rec-green-small">
-                    {(Math.trunc(project.current_amount * 100/ project.goal_amount)).toLocaleString('en', {useGrouping:true})}% funded
+                    {(Math.trunc(project.current_amount * 100 / project.goal_amount)).toLocaleString('en', {useGrouping:true})}% funded
                 </div>
                 <div className="rec-no-wrap rec-small">
                         by: {`${project.owner.firstname} ${project.owner.lastname}`}
@@ -42,4 +31,4 @@ const RecPart2 = ({projects}) => {
     );
 }
 
-export default RecPart2;
+export default SingleRec;
