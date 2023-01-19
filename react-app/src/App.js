@@ -23,6 +23,7 @@ import UpdateProject from './components/project/UpdateProject';
 import SearchResults from './components/SearchResults';
 import Discover from './components/project/DiscoverProjects';
 import UserProjects from './components/project/UserProjects';
+import AboutUs from './components/AboutUs';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,6 +52,9 @@ function App() {
         </Route>
         <Route path="/search">
           <SearchResults />
+        </Route>
+        <Route path='/about-us' exact={true}>
+          <AboutUs />
         </Route>
         <Route path='/projects/categories/:category'>
           <CategoryProjects />

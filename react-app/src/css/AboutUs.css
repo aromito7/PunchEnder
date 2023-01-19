@@ -1,0 +1,46 @@
+.about-page {
+    margin-top: 8em;
+    text-align: center;
+}
+
+.about-page h1 {
+margin-bottom: 2rem;
+}
+
+.team-members {
+display: flex;
+flex-wrap: wrap;
+}
+
+.team-member {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+width: 25%;
+margin-bottom: 1rem;
+}
+
+.team-member img {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+margin-right: 1rem;
+}
+
+.team-member h2 {
+margin: 0;
+}
+
+.team-member .links {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: nowrap;
+}
+
+.team-member a {
+color: #000;
+text-decoration: none;
+margin-right: 0.5rem;
+}
