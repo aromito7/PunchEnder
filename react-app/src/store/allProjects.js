@@ -38,7 +38,6 @@ export const thunkGetAllProjects = () => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
-        //console.log(data)
         dispatch(actionGetAllProjects(data))
         return response
     }
@@ -83,7 +82,6 @@ export default function projectsReducer(state = {}, action) {
     switch (action.type) {
         case GET_PROJECTS:
             const projectsObj = { ...state }
-            console.log(action.payload)
             action.payload.projects.forEach(project => projectsObj[project.id] = project)
             newState = projectsObj
             return newState

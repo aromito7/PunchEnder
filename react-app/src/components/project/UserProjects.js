@@ -13,11 +13,11 @@ function UserProjects() {
 
     useEffect(() => {
         (async () => {
-        const res = await fetch(`/api/projects`);
-        const data = await res.json();
+            const res = await fetch(`/api/projects`);
+            const data = await res.json();
 
-        //console.log("THE PROJECT DATA ----------> ", data)
-        setProjects(data.projects);
+            //console.log("THE PROJECT DATA ----------> ", data)
+            setProjects(data.projects);
         })();
     }, []);
 
@@ -37,8 +37,8 @@ function UserProjects() {
             <h1 style={{ marginTop: "100px" }}>Projects You Own</h1>
 
             <div className='projects-container'>
-                {projects.filter(project => project.owner_id == user.id).map(project => (
-                    <div id='project' key={project.project_id}>
+                {projects.filter(project => project.owner_id == user.id).map((project, i) => (
+                    <div id='project' key={i}>
                         <div className='project-img-div'><img id='project-img' src={project.preview_image}></img></div>
                         <div><Link to={`/projects/${project.id}`}><div id="project-name">{project.name}</div></Link></div>
                         <div id="price">${project.current_amount}</div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, NavLink, useHistory } from "react-router-dom";
+import { useParams, NavLink, useHistory, Link } from "react-router-dom";
 import './SingleProject.css'
 import reminder from '../../images/reminder.png'
 import nav1 from '../../images/nav1.png'
@@ -17,10 +17,10 @@ const SingleProject = () => {
 
     useEffect(() => {
         (async () => {
-        const res = await fetch(`/api/projects/${id}`);
-        const data = await res.json();
-        //console.log("THE PROJECT DATA ----------> ", data)
-        setProject(data);
+            const res = await fetch(`/api/projects/${id}`);
+            const data = await res.json();
+            //console.log("THE PROJECT DATA ----------> ", data)
+            setProject(data);
         })();
     }, [id]);
 
@@ -28,7 +28,8 @@ const SingleProject = () => {
         history.push(`/projects/${id}/rewards/create`)
     }
 
-    if(Object.keys(project).length < 1) return null
+    if (Object.keys(project).length < 1) return null
+    if (!project) return null
     return (
         <div className='singleProject'>
             <div className='singleProjectTopInfo'>
@@ -47,20 +48,20 @@ const SingleProject = () => {
                 </div>
                 <div className='pledgeSummary'>
                     <div className='pledgeAmount'>
-                        <span id='pledgeGreen'>${project.current_amount ? project.current_amount : '10000'}</span>
+                        <span id='pledgeGreen'>${project.current_amount ? project.current_amount : '0'}</span>
                         <span id='pledgeGrey'>{' '} pledged of ${project.goal_amount ? project.goal_amount : '50000'} goal</span>
                     </div>
                     <div>
                         <span>Ends: {project.end_date ? project.end_date.split('T')[0] : '12/02/23'}</span>
                     </div>
                     <div>
-                        {currentUser && currentUser.id == project.owner_id?
-                        <button id='singleProjectPledge' className="cursor-pointer" onClick={toCreateReward}>Create a new reward</button>:
-                        <button id='singleProjectPledge'>Back this project</button>}
+                        {currentUser && currentUser.id == project.owner_id ?
+                            <button id='singleProjectPledge' className="cursor-pointer" onClick={toCreateReward}>Create a new reward</button> :
+                            <Link to={`/backings/projects/${id}`} ><button id='singleProjectPledge'>Back this project</button></Link>}
                     </div>
-                    <div id='reminderButtonWrapper'>
+                    {/* <div id='reminderButtonWrapper'>
                         <button id='singleProjectReminder'><img id='buttonReminder' src={reminder} />Remind me</button>
-                    </div>
+                    </div> */}
                     <div className='pledgeSummLow'>
                         <span id='singleProjectAllNone'>All or nothing. {' '}</span>
                         <span>This project will only be funded if it reaches its goal by {project.end_date}</span>
@@ -89,7 +90,7 @@ const SingleProject = () => {
                 </div>
             </div>
 
-            <div className='singleProjectLowerNavBar'>
+            {/* <div className='singleProjectLowerNavBar'>
                 <div className='lowerNavBarTabs'>
                     <p>Campaign</p>
                     <p>FAQ</p>
@@ -98,10 +99,12 @@ const SingleProject = () => {
                     <p>Community</p>
                 </div>
                 <div className='lowerNavBarButtons'>
-                    <button id='lowerPledgeButton'>Back this project</button>
+                    {currentUser && currentUser.id !== project.owner_id &&
+                        <Link to={`/backings/projects/${id}`} ><button id='singleProjectPledge'>Back this project</button></Link>
+                    }
                     <button id='lowerRemindButton'><img id='lowerButtonReminder' src={reminder} />Remind me</button>
                 </div>
-            </div>
+            </div> */}
 
             <div className='singleProjectBottomInfo'>
                 <div className=''>
@@ -116,15 +119,15 @@ const SingleProject = () => {
                             First Created &#x2022; 9 backed
                         </p>
                         <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
                     </div>}
                     <h2>Support</h2>
                     <div className='pledgeComponent'>
                         {project.rewards.map((reward, i) => {
-                            return <RewardComponent reward={reward} key={i}/>
+                            return <RewardComponent reward={reward} key={i} />
                         })}
-                        {false && <RewardComponent reward={project.rewards[0]}/>}
+                        {false && <RewardComponent reward={project.rewards[0]} />}
                     </div>
                 </div>
             </div>

@@ -31,7 +31,6 @@ def get_user_backings(user_id):
         backing_obj["reward"] = reward.name
         backing_obj["image"] = project.preview_image
         backing_obj["reward_id"] = reward.id
-        print(project.preview_image)
 
         user_backings_list.append(backing_obj)
 
@@ -45,7 +44,6 @@ def create_backing(project_id):
     Create a backing for a project based on reward_id
     """
     body = request.get_json()
-    print(body)
     user = current_user
     reward = Reward.query.get(body["rewardId"])
     user.reward.append(reward)
@@ -64,7 +62,6 @@ def create_backing(project_id):
     backing_obj["reward_id"] = reward.id
 
     return backing_obj
-    # return {"message": "Backing successfully created"}
 
 
 @backings_route.route('/project/<int:project_id>', methods=["PUT"])
@@ -76,7 +73,6 @@ def update_backing(project_id):
     body = request.get_json()
 
     user = current_user
-
     prev_reward = Reward.query.get(body["prevRewardId"])
     user.reward.remove(prev_reward)
     # prev_reward.user.remove("prevRewardId")
@@ -88,7 +84,6 @@ def update_backing(project_id):
 
     backing_obj = {}
 
-    # reward = Reward.query.get(body["newRewardId"])
     project = Project.query.get(project_id)
     backing_obj["project_id"] = new_reward.project_id
     backing_obj["project_name"] = project.name
@@ -108,10 +103,8 @@ def delete_backing(project_id):
 
     body = request.get_json()
     user = current_user
-    print(body["rewardId"])
     reward = Reward.query.get(body["rewardId"])
     user.reward.remove(reward)
-    print(reward.user)
 
     db.session.commit()
 
