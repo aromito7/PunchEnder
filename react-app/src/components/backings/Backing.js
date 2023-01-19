@@ -9,7 +9,6 @@ const Backing = ({ backing, toggleDelete, setToggleDelete }) => {
     const dispatch = useDispatch()
 
     const deleteBacking = (projectId, rewardId) => {
-        console.log("projectId", projectId)
         dispatch(thunkDeleteBacking(projectId, rewardId))
         // dispatch(actionClearBackings())
         // dispatch(thunkGetAllBackings(user.id))

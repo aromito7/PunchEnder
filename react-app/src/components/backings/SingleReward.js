@@ -11,7 +11,6 @@ const SingleReward = ({ reward }) => {
     const { projectId } = useParams()
 
     const addBacking = async (rewardId) => {
-        console.log(rewardId)
         dispatch(thunkAddBacking(projectId, rewardId))
         dispatch(thunkGetAllBackings(user.id))
         history.push(`/users/${user.id}/backings`)

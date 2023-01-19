@@ -44,7 +44,6 @@ export const thunkGetAllBackings = (userId) => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
         dispatch(actionGetAllBackings(data))
         return response
     }
@@ -92,7 +91,6 @@ export const thunkUpdateBacking = (projectId, newRewardId, prevRewardId) => asyn
 }
 
 export const thunkDeleteBacking = (projectId, rewardId) => async (dispatch) => {
-    console.log(rewardId)
     const response = await fetch(`/api/backings/project/${projectId}`, {
         method: 'DELETE',
         headers: {
@@ -129,10 +127,8 @@ export default function userBackingsReducer(state = {}, action) {
             newState[action.payload.project_id] = action.payload
             return newState
         case DELETE_BACKING:
-            console.log(state)
             newState = { ...state }
             delete newState[action.payload]
-            console.log(newState)
             return newState
         case CLEAR_STATE:
             newState = {}
