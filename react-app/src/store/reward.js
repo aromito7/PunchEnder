@@ -1,6 +1,7 @@
 // constants
 const GET_REWARDS = 'reward/GET_REWARDS'
 const SET_REWARD = 'reward/SET_REWARD';
+const CLEAR_REWARDS = 'reward/CLEAR_REWARDS'
 
 
 const actionGetRewards = (rewards) => {
@@ -16,6 +17,12 @@ const actionSetReward = (reward) => {
     payload: reward
   }
 };
+
+export const actionClearRewards = () => {
+  return {
+    type: CLEAR_REWARDS
+  }
+}
 
 export const thunkGetRewards = (projectId) => async (dispatch) => {
   const response = await fetch(`/api/rewards/projects/${projectId}`, {
@@ -77,7 +84,7 @@ export const actionCreateReward = (reward) => async (dispatch) => {
 }
 
 
-export default function reducer(state = {}, action) {
+export default function rewardsReducer(state = {}, action) {
   let newState;
   switch (action.type) {
     case GET_REWARDS:
@@ -88,6 +95,9 @@ export default function reducer(state = {}, action) {
     case SET_REWARD:
       newState = { ...state }
       newState[action.payload.id] = action.payload
+      return newState
+    case CLEAR_REWARDS:
+      newState = {}
       return newState
     default:
       return state;
