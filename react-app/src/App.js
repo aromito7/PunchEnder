@@ -9,20 +9,19 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import ProjectRewards from './components/reward/ProjectRewards';
 import CreateReward from './components/reward/CreateReward';
 import UserBackings from './components/backings/UserBackings';
-import { authenticate } from './store/session';
 import * as sessionActions from './store/session';
 import LandingPage from './components/home/LandingPage';
 import CategoryProjects from './components/project/CategoryProjects';
 import RewardComponent from './components/reward/RewardComponent';
-import EditRewards from './components/backings/EditBacking';
 import Update from './components/updates/update';
 import UpdateProject from './components/project/UpdateProject';
 import SearchResults from './components/SearchResults';
 import Discover from './components/project/DiscoverProjects';
 import UserProjects from './components/project/UserProjects';
+import SelectRewards from './components/backings/SelectReward';
+import EditBacking from './components/backings/EditBacking';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -74,7 +73,7 @@ function App() {
           <SingleProject />
         </Route>
         <ProtectedRoute path='/projects/:projectId/rewards/create' exact={true}>
-          <CreateReward/>
+          <CreateReward />
         </ProtectedRoute>
         <Route path='/projects' exact={true}>
           <CategoryProjects />
@@ -82,9 +81,11 @@ function App() {
         <Route path='/discover'>
           <Discover />
         </Route>
-
-        <ProtectedRoute path='/backings/projects/:id/edit' exact={true}>
-          <EditRewards />
+        <ProtectedRoute path='/backings/projects/:projectId/edit' exact={true}>
+          <EditBacking />
+        </ProtectedRoute>
+        <ProtectedRoute path='/backings/projects/:projectId/' exact={true}>
+          <SelectRewards />
         </ProtectedRoute>
         <ProtectedRoute path='/rewards/create'>
           <CreateReward />
