@@ -8,7 +8,7 @@ function AboutUs() {
             <h1>About Us</h1>
             <div class="team-members">
                 <div class="team-member">
-                    <img src="" alt="kim-pto"></img>
+                    <img src="https://avatars.githubusercontent.com/u/70304890?v=4" alt="kim-pto"></img>
                     <h2>Abe Kim</h2>
                     <a target="_blank" href="https://github.com/arareabe">GitHub</a>
                     <a target="_blank" href="https://www.linkedin.com/in/abraham-kim-010132234/">LinkedIn</a>

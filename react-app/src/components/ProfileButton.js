@@ -37,14 +37,20 @@ const ProfileButton = () => {
                         </div>
                         <hr width="100%" />
                         <div>
-                            <Link to="/users/1/projects">
+                            <Link to={`/users/${user.id}/projects`}>
                                 <span className="logged-in test-nav">My Projects</span>
                             </Link>
                         </div>
                         <hr width="100%" />
                         <div>
-                            <Link to="/users/1/backings">
+                            <Link to={`/users/${user.id}/backings`}>
                                 <span className="logged-in test-nav">My Backings</span>
+                            </Link>
+                        </div>
+                        <hr width="100%" />
+                        <div>
+                            <Link to='/about-us'>
+                                <span className="logged-in test-nav">About Us</span>
                             </Link>
                         </div>
                         <hr width="100%" />
