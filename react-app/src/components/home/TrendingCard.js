@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-const TrendingCard1 = () => {
-    const [project, setProject] = useState({});
+const TrendingCard = ({project}) => {
 
-    useEffect(() => {
-        (async () => {
-        const res = await fetch(`/api/projects/1`);
-        const data = await res.json();
-        setProject(data);
-        })();
-    }, []);
-
+    if(!project) return null
     return (
         <div>
-            <NavLink to={`/projects/1`}>
+            <NavLink to={`/projects/${project.id}`}>
                 <div>
                     <img src={project.name ? project.preview_image : "https://ksr-ugc.imgix.net/assets/039/120/895/bdac65807093785ba2d12419f33b9595_original.png?ixlib=rb-4.0.2&w=680&fit=max&v=1667473938&gif-q=50&lossless=true&s=db5094847de845fae3f8515784b50463"}
                     alt="test" width="100%" height="300px"/>
@@ -33,4 +25,4 @@ const TrendingCard1 = () => {
     );
 }
 
-export default TrendingCard1;
+export default TrendingCard;
