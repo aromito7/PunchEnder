@@ -1,7 +1,8 @@
 .backings-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .edit-rewards-container {
@@ -10,12 +11,40 @@
     margin-left: 20vw;
 }
 
+.select-reward-header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 80px;
+    width: 100%;
+    height: 150px;
+    background-color: rgb(238, 238, 238);
+    align-items: center;
+}
+
+.rewards-container {
+    display: flex;
+    justify-content: center;
+}
+
+.rewards-disclaimer {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    margin-left: 150px;
+    font-style: italic;
+}
+
+.select-rewards {
+    width: 50vw;
+}
+
 .reward {
     display: flex;
     flex-direction: column;
     margin: 10px;
     border: 1px solid grey;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     padding-right: 25px;
 }
 
@@ -63,10 +92,19 @@ ul {
 }
 
 #backing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
     margin: 10px;
     border: 1px solid grey;
     padding-left: 10px;
     object-fit: contain;
+}
+
+#edit-container {
+    display: flex;
+    flex-direction: row;
 }
 
 #edit {
@@ -75,18 +113,75 @@ ul {
 }
 
 #delete {
-    background-color: #fff;
+    background: none;
     border: none;
 
 }
 
+
 #edit:hover {
-    background-color: lightgreen;
+    background: none;
     border: none;
 }
 
 #delete:hover {
-    background-color: red;
+    background: none;
     border: none;
+    cursor: pointer;
+}
+
+.rewards-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.rewards-list>li {
+    margin-bottom: 20px;
+}
+
+#reward-pledge-amount {
+    font-size: large;
+}
+
+.choose-reward {
+    border: none;
+    position: static;
+    background-color: #028858;
+    width: 200px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+}
+
+.rewards-list-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#shipping-date-header {
+    color: rgb(133, 133, 133);
+    font-size: small;
+}
+
+#shipping-date {
+    font-size: large;
+}
+
+.fa-trash,
+.fa-pen-to-square {
+    font-size: x-large;
+}
+
+#discover-button {
+    background-color: #028858;
+    color: white;
+    width: 200px;
+    height: 5rem;
+    font-size: 1.725rem;
+    border: 0;
     cursor: pointer;
 }

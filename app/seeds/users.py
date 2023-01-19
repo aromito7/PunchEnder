@@ -12,19 +12,22 @@ alex = User(
     firstname='alex', lastname='auch', email="auchie@aa.io", password='password')
 abe = User(
     firstname='abe', lastname='kim', email='akim@aa.io', password='password')
+john = User(
+    firstname='john', lastname='smith', email='jsmith@aa.io', password='password'
+)
+users = [demouser, isaac, romito, alex, abe, john]
 
-users = [demouser, isaac, romito, alex, abe]
 
 def seed_users():
 
     for user in users:
         db.session.add(user)
 
-    #db.session.add(demouser)
-    #db.session.add(isaac)
-    #db.session.add(alex)
-    #db.session.add(romito)
-    #db.session.add(abe)
+    # db.session.add(demouser)
+    # db.session.add(isaac)
+    # db.session.add(alex)
+    # db.session.add(romito)
+    # db.session.add(abe)
     db.session.commit()
 
 

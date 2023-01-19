@@ -26,48 +26,14 @@ function UpdateProject() {
     const [stateError, setStateError] = useState('');
 
     const [hasSubmitted, setHasSubmitted] = useState(false)
+
     const history = useHistory();
     const { id } = useParams();
-
-    useEffect(() => {
-        const validationErrors = []
-
-
-        if(name.length < 2) {setNameError("Name must be at least 2 characters"); validationErrors.push(nameError)}//validationErrors.push("Name must be at least 2 characters")
-        else if(name.length > 50) {setNameError("Name must be at most 50 characters"); validationErrors.push(nameError)}//validationErrors.push("Name must be 50 characters at most")
-        else setNameError('')
-
-        if(Number(goal_amount) < 1) {setGoalError("Goal must be a positive number"); validationErrors.push(goalError)} //validationErrors.push("Goal must be a positive number")
-        else setGoalError('')
-
-        if(Number(current_amount) < 0) {setCurrentError("Current amount cannot be negative"); validationErrors.push(currentError)}//validationErrors.push("Current amount must be a positive number")
-        else if(Number(current_amount) >= Number(goal_amount)) {setCurrentError("Current amount must be less than the goal"); validationErrors.push(currentError)} //validationErrors.push("Current amount must be less than the goal")
-        else setCurrentError('')
-
-        if(short_description.length < 50) {setShortDescriptionError("Short description must be at least 50 characters"); validationErrors.push(shortDescriptionError)}//validationErrors.push("Short description must be at least 50 characters")
-        else setShortDescriptionError('')
-
-        if(long_description.length < 100) {setLongDescriptionError("Long description must be at least 100 characters"); validationErrors.push(longDescriptionError)}//validationErrors.push("Long description must be at least 100 characters")
-        else setLongDescriptionError('')
-
-        if(!preview_image.match(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)) {setPreviewImageError("Preview image must be a valid URL"); validationErrors.push(previewImageError)}//validationErrors.push("Preview image must be a valid URL")
-        else setPreviewImageError('')
-
-        if(!city) {setCityError("Please enter a city"); validationErrors.push(cityError)}
-        else setCityError('')
-
-        if(!state.match(/^[a-zA-Z]{2}$/)) { setStateError("Please enter your state's two letter abbreviation"); validationErrors.push(stateError)}
-        else setStateError('')
-
-        setErrors(validationErrors)
-    },[name, goal_amount, current_amount, short_description, long_description, preview_image, city, state])
-
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true)
-        if(errors.length > 0) return
+        if (errors.length > 0) return
         const res = await fetch(`/api/projects/${id}/update`, {
             method: "PUT",
             headers: {
@@ -94,17 +60,17 @@ function UpdateProject() {
 
     useEffect(() => {
         (async () => {
-        const res = await fetch(`/api/projects/${id}`);
-        const data = await res.json();
-        setProject(data);
-        setName(data.name);
-        setShortDescription(data.short_description);
-        setCity(data.city);
-        setState(data.state);
-        setPreviewImage(data.preview_image);
-        setGoalAmount(data.goal_amount);
-        setCurrentAmount(data.current_amount);
-        setLongDescription(data.long_description);
+            const res = await fetch(`/api/projects/${id}`);
+            const data = await res.json();
+            setProject(data);
+            setName(data.name);
+            setShortDescription(data.short_description);
+            setCity(data.city);
+            setState(data.state);
+            setPreviewImage(data.preview_image);
+            setGoalAmount(data.goal_amount);
+            setCurrentAmount(data.current_amount);
+            setLongDescription(data.long_description);
         })();
     }, [id]);
 
@@ -112,34 +78,34 @@ function UpdateProject() {
         const validationErrors = []
 
 
-        if(name.length < 2) {setNameError("Name must be at least 2 characters"); validationErrors.push(nameError)}//validationErrors.push("Name must be at least 2 characters")
-        else if(name.length > 50) {setNameError("Name must be at most 50 characters"); validationErrors.push(nameError)}//validationErrors.push("Name must be 50 characters at most")
+        if (name.length < 2) { setNameError("Name must be at least 2 characters"); validationErrors.push(nameError) }//validationErrors.push("Name must be at least 2 characters")
+        else if (name.length > 50) { setNameError("Name must be at most 50 characters"); validationErrors.push(nameError) }//validationErrors.push("Name must be 50 characters at most")
         else setNameError('')
 
-        if(Number(goal_amount) < 1) {setGoalError("Goal must be a positive number"); validationErrors.push(goalError)} //validationErrors.push("Goal must be a positive number")
+        if (Number(goal_amount) < 1) { setGoalError("Goal must be a positive number"); validationErrors.push(goalError) } //validationErrors.push("Goal must be a positive number")
         else setGoalError('')
 
-        if(Number(current_amount) < 0) {setCurrentError("Current amount can not be negative"); validationErrors.push(currentError)}//validationErrors.push("Current amount must be a positive number")
-        else if(Number(current_amount) >= Number(goal_amount)) {setCurrentError("Current amount must be less than the goal"); validationErrors.push(currentError)} //validationErrors.push("Current amount must be less than the goal")
+        if (Number(current_amount) < 0) { setCurrentError("Current amount can not be negative"); validationErrors.push(currentError) }//validationErrors.push("Current amount must be a positive number")
+        else if (Number(current_amount) >= Number(goal_amount)) { setCurrentError("Current amount must be less than the goal"); validationErrors.push(currentError) } //validationErrors.push("Current amount must be less than the goal")
         else setCurrentError('')
 
-        if(short_description.length < 50) {setShortDescriptionError("Short description must be at least 50 characters"); validationErrors.push(shortDescriptionError)}//validationErrors.push("Short description must be at least 50 characters")
+        if (short_description.length < 50) { setShortDescriptionError("Short description must be at least 50 characters"); validationErrors.push(shortDescriptionError) }//validationErrors.push("Short description must be at least 50 characters")
         else setShortDescriptionError('')
 
-        if(long_description.length < 100) {setLongDescriptionError("Long description must be at least 100 characters"); validationErrors.push(longDescriptionError)}//validationErrors.push("Long description must be at least 100 characters")
+        if (long_description.length < 100) { setLongDescriptionError("Long description must be at least 100 characters"); validationErrors.push(longDescriptionError) }//validationErrors.push("Long description must be at least 100 characters")
         else setLongDescriptionError('')
 
-        if(!preview_image.match(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)) {setPreviewImageError("Preview image must be a valid URL"); validationErrors.push(previewImageError)}//validationErrors.push("Preview image must be a valid URL")
+        if (!preview_image.match(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)) { setPreviewImageError("Preview image must be a valid URL"); validationErrors.push(previewImageError) }//validationErrors.push("Preview image must be a valid URL")
         else setPreviewImageError('')
 
-        if(!city) {setCityError("Please enter a city"); validationErrors.push(cityError)}
+        if (!city) { setCityError("Please enter a city"); validationErrors.push(cityError) }
         else setCityError('')
 
-        if(!state.match(/^[a-zA-Z]{2}$/)) { setStateError("Please enter your state's two letter abbreviation"); validationErrors.push(stateError)}
+        if (!state.match(/^[a-zA-Z]{2}$/)) { setStateError("Please enter your state's two letter abbreviation"); validationErrors.push(stateError) }
         else setStateError('')
 
         setErrors(validationErrors)
-    },[name, goal_amount, current_amount, short_description, long_description, preview_image, city, state])
+    }, [name, goal_amount, current_amount, short_description, long_description, preview_image, city, state])
 
 
     return (
@@ -307,7 +273,7 @@ function UpdateProject() {
                                     Project Description
                                 </h2>
                                 <h3>
-                                    Describe what you're raising funto do, why you care about it, how you plan to make it happen,
+                                    Describe what you're raising funds to do, why you care about it, how you plan to make it happen,
                                     and who you are. Your description should tell backers everything they need to know. If possible,
                                     include images to show them what your project is all about and what rewards look like.
                                 </h3>
