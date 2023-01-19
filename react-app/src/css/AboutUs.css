@@ -1,46 +1,46 @@
 .about-page {
-    margin-top: 8em;
     text-align: center;
-}
+    margin-top: 8em;
+  }
 
-.about-page h1 {
-margin-bottom: 2rem;
-}
+  .about-page h1 {
+    margin-bottom: 6rem;
+  }
 
-.team-members {
-display: flex;
-flex-wrap: wrap;
-}
+  .team-members {
+    display: flex;
+    justify-content: center;
+  }
 
-.team-member {
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-justify-content: center;
-width: 25%;
-margin-bottom: 1rem;
-}
+  .team-member {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction:column;
+    align-items: center;
+    width: 25%;
+    margin-bottom: 1rem;
+  }
 
-.team-member img {
-width: 100px;
-height: 100px;
-border-radius: 50%;
-margin-right: 1rem;
-}
+  .team-member img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
 
-.team-member h2 {
-margin: 0;
-}
+  .team-member h2 {
+    margin: 0;
+  }
 
-.team-member .links {
-display: flex;
-align-items: center;
-justify-content: center;
-flex-wrap: nowrap;
-}
+  .team-member .links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    font-size: 20px;
+  }
 
-.team-member a {
-color: #000;
-text-decoration: none;
-margin-right: 0.5rem;
-}
+  .team-member a {
+    color: #000;
+    text-decoration: none;
+    margin-right: 0.5rem;
+  }
