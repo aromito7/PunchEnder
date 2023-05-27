@@ -8,14 +8,28 @@ import SignUpForm from './SignUpForm';
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState("")
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState("")
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    var data = await dispatch(login(email, password));
+    const dataErrors = {}
+    data = data.forEach(datum => {
+      const [key, value] = datum.split(' : ');
+      //console.log(key, value)
+
+      dataErrors[key] = value
+    })
+    // console.log(dataErrors)
+    // console.log(dataErrors.email, dataErrors.password)
+    if (dataErrors.email) setEmailError(dataErrors.email)
+    if (dataErrors.password) setPasswordError(dataErrors.password)
+
     if (data) {
       setErrors(data);
     }
@@ -70,6 +84,11 @@ const LoginForm = () => {
               className='box-input-log'
               onChange={updateEmail}
             />
+              {emailError &&
+                <p className='error-message'>
+                  {emailError}
+                </p>
+              }
           </div>
           <div>
             <label htmlFor='password'></label>
@@ -81,6 +100,11 @@ const LoginForm = () => {
               className='box-input-log'
               onChange={updatePassword}
             />
+              {passwordError &&
+                <p className='error-message'>
+                  {passwordError}
+                </p>
+              }
             <button className='login-submit-button'>Log in</button>
             <button onClick={demoUser} className="login-submit-button" type='submit'>
               Demo-User
