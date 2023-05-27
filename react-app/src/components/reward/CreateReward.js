@@ -9,12 +9,19 @@ const CreateReward = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [errors, setErrors] = useState([])
     const [name, setName] = useState("");
+    const [nameError, setNameError] = useState("");
     const [quantity, setQuantity] = useState(0);
-    const [price_threshold, setPriceThreshold] = useState(0);
+    const [quantityError, setQuantityError] = useState("")
+    const [priceThreshold, setPriceThreshold] = useState(0);
+    const [priceThresholdError, setPriceThresholdError] = useState("");
     const [includes, setIncludes] = useState("");
+    const [includesError, setIncludesError] = useState("");
     const [description, setDescription] = useState("");
-    const [shipping_date, setShippingDate] = useState(Date.now());
-    const [ships_to, setShipsTo] = useState("United States");
+    const [descriptionError, setDescriptionError] = useState("");
+    const [shippingDate, setShippingDate] = useState(Date.now());
+    const [shippingDateError, setShippingDateError] = useState("");
+    const [shipsTo, setShipsTo] = useState("United States");
+    const [shipsToError, setShipsToError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,11 +36,11 @@ const CreateReward = () => {
         body: JSON.stringify({
             name,
             quantity,
-            price_threshold,
+            price_threshold: priceThreshold,
             includes,
             description,
-            shipping_date,
-            ships_to,
+            shipping_date: shippingDate,
+            ships_to: shipsTo,
         }),
         });
         const data = await res.json();
@@ -44,18 +51,29 @@ const CreateReward = () => {
     };
 
     useEffect(() => {
-        const errors = []
-        if(name.length < 2) errors.push("Name must be at least 2 characters")
-        else if(name.length > 50) errors.push("Name can be at most 50 characters")
-        if(quantity < 1) errors.push("Quantity must be a positive number")
-        if(price_threshold < 1) errors.push("Donation price must be a positive number")
-        if(!includes) errors.push("Must include something in reward")
-        if(description.length < 50) errors.push("Description must be at least 50 characters")
-        else if(description.length > 50000) errors.push("Description must be less than 50,000 characters")
-        if(new Date(shipping_date) - new Date() < 0) errors.push("Estimated shipping date must be in the future")
-        setErrors(errors)
-        //console.log(new Date(shipping_date), new Date(), new Date(shipping_date) - new Date())
-    },[name, quantity, price_threshold, price_threshold, includes, description, shipping_date])
+        // const errors = []
+        if(name.length < 2) setNameError("Name must be at least 2 characters")
+        else if(name.length > 50) setNameError("Name can be at most 50 characters")
+        else setNameError("")
+
+        if(quantity < 1) setQuantityError("Quantity must be a positive number")
+        else setQuantityError("")
+
+        if(priceThreshold < 1) setPriceThresholdError("Donation price must be a positive number")
+        else setPriceThresholdError("")
+
+        if(!includes) setIncludesError("Must include something in reward")
+        else setIncludesError("")
+
+        if(description.length < 50) setDescriptionError("Description must be at least 50 characters")
+        else if(description.length > 50000) setDescriptionError("Description must be less than 50,000 characters")
+        else setDescriptionError("")
+
+        if(new Date(shippingDate) - new Date() < 0) setShippingDateError("Estimated shipping date must be in the future")
+        else setShippingDateError("")
+        // setErrors(errors)
+        //console.log(new Date(shippingDate), new Date(), new Date(shippingDate) - new Date())
+    },[name, quantity, priceThreshold, includes, description, shippingDate])
 
     return (
         <div>
@@ -87,6 +105,11 @@ const CreateReward = () => {
                     onChange={(e) => setName(e.target.value)}
                     required
                     />
+                    {hasSubmitted && nameError &&
+                        <p className="error-message">
+                            {nameError}
+                        </p>
+                    }
                 </label>
                 <label className='creRewLabels'>
                     Quantity
@@ -96,15 +119,25 @@ const CreateReward = () => {
                     onChange={(e) => setQuantity(e.target.value)}
                     required
                     />
+                    {hasSubmitted && quantityError &&
+                        <p className="error-message">
+                            {quantityError}
+                        </p>
+                    }
                 </label>
                 <label className='creRewLabels'>
                     Donation Price
                     <input
                     type="number"
-                    value={price_threshold}
+                    value={priceThreshold}
                     onChange={(e) => setPriceThreshold(e.target.value)}
                     required
                     />
+                    {hasSubmitted && priceThresholdError &&
+                        <p className="error-message">
+                            {priceThresholdError}
+                        </p>
+                    }
                 </label>
                 <label className='creRewLabels'>
                     What this includes
@@ -114,6 +147,11 @@ const CreateReward = () => {
                     onChange={(e) => setIncludes(e.target.value)}
                     required
                     />
+                    {hasSubmitted && includesError &&
+                        <p className="error-message">
+                            {includesError}
+                        </p>
+                    }
                 </label>
                 <label className='creRewLabels'>
                     Description
@@ -122,28 +160,43 @@ const CreateReward = () => {
                     onChange={(e) => setDescription(e.target.value)}
                     required
                     />
+                    {hasSubmitted && descriptionError &&
+                        <p className="error-message">
+                            {descriptionError}
+                        </p>
+                    }
                 </label>
                 <label className='creRewLabels'>
                     Estimated shipping date
                     <input className='creRewTextArea'
                     type="date"
-                    value={shipping_date}
+                    value={shippingDate}
                     onChange={(e) => setShippingDate(e.target.value)}
                     required
                     />
+                    {hasSubmitted && shippingDateError &&
+                        <p className="error-message">
+                            {shippingDateError}
+                        </p>
+                    }
                 </label>
                 <label className='creRewLabels'>
                     Ships to
                     <select
-                    value={ships_to}
+                    value={shipsTo}
                     onChange={(e) => setShipsTo(e.target.value)}
                     required
                     >
                         <option>United States</option>
                         <option>Anywhere in the world</option>
                     </select>
+                    {hasSubmitted && shipsToError &&
+                        <p className="error-message">
+                            {shipsToError}
+                        </p>
+                    }
                 </label>
-                {hasSubmitted && errors.length > 0 &&
+                {/* {hasSubmitted && errors.length > 0 &&
                     <ul>
                         {errors.map((error, i) => {
                             return(
@@ -151,7 +204,7 @@ const CreateReward = () => {
                             )
                         })}
                     </ul>
-                }
+                } */}
             <button id='creRewSubmitButton' type="submit" formNoValidate="formnovalidate">Save Reward</button>
             </form>
 
